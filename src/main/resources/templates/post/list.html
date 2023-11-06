@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{post.list.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{post.list.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/posts/add}" th:text="#{post.list.createNew}" class="btn btn-primary ms-2" />
+                </div>
+            </div>
+            <div th:if="${posts.empty}" th:text="#{post.list.empty}" />
+            <div th:if="${!posts.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th th:text="#{post.id.label}" scope="col" />
+                            <th th:text="#{post.title.label}" scope="col" />
+                            <th th:text="#{post.image.label}" scope="col" />
+                            <th th:text="#{post.user.label}" scope="col" />
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="post : ${posts}">
+                            <td th:text="${post.id}" />
+                            <td th:text="${post.title}" />
+                            <td th:text="${post.image}" />
+                            <td th:text="${post.user}" />
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/posts/edit/{id}(id=${post.id})}" th:text="#{post.list.edit}" class="btn btn-sm btn-secondary" />
+                                    <form th:action="@{/posts/delete/{id}(id=${post.id})}"
+                                            th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
+                                        <button th:text="#{post.list.delete}" type="submit" class="btn btn-sm btn-secondary" />
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

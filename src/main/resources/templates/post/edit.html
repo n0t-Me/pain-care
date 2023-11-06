@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title th:text="#{post.edit.headline}" />
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 th:text="#{post.edit.headline}" class="flex-grow-1" />
+                <div>
+                    <a th:href="@{/posts}" th:text="#{post.edit.back}" class="btn btn-secondary" />
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('post')}" />
+            <form th:action="${requestUri}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='post', field='id', disabled=true, type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='post', field='title')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='post', field='description', type='textarea')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='post', field='image')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='post', field='user', type='select')}" />
+                <input type="submit" th:value="#{post.edit.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>
