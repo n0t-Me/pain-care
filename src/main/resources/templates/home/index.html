@@ -54,6 +54,42 @@
 
   <div layout:fragment="content">
 
+    <main id="main">
+
+      <!-- ======= Featured Services Section ======= -->
+      <section id="featured-services" class="featured-services">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+              <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                <div class="icon"><i class="fas fa-heartbeat"></i></div>
+                <h4 class="title"><a href="">Test de diagnostic</a></h4>
+                <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              </div>
+            </div>
+  
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+              <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+                <div class="icon"><i class="fas fa-book-medical"></i></div>
+                <h4 class="title"><a href="#faq">Informations sur l'endométriose</a></h4>
+                <p class="description">Restez informé sur l'endométriose.</p>
+              </div>
+            </div>
+  
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+              <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+                <div class="icon"><i class="fas fa-chart-line"></i></div>
+                <h4 class="title"><a href="">Evolution de la douleur</a></h4>
+                <p class="description">Explorez votre parcours de douleur.</p>
+              </div>
+            </div>
+  
+          </div>
+  
+        </div>
+      </section><!-- End Featured Services Section -->
+
             <h1 th:text="#{home.index.headline}" class="mb-4" />
             <p th:utext="#{home.index.text}" />
             <p th:utext="#{home.index.swagger}" class="mb-5" />
@@ -67,41 +103,109 @@
                 </div>
             </div>
 
-            <main id="main">
+            
 
-                <!-- ======= Featured Services Section ======= -->
-                <section id="featured-services" class="featured-services">
-                  <div class="container" data-aos="fade-up">
-            
-                    <div class="row justify-content-center">
-                      <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                        <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-                          <div class="icon"><i class="fas fa-heartbeat"></i></div>
-                          <h4 class="title"><a href="">Test de diagnostic</a></h4>
-                          <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-                        </div>
-                      </div>
-            
-                      <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                        <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-                          <div class="icon"><i class="fas fa-book-medical"></i></div>
-                          <h4 class="title"><a href="">Informations sur l'endométriose</a></h4>
-                          <p class="description">Restez informé sur l'endométriose.</p>
-                        </div>
-                      </div>
-            
-                      <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                        <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-                          <div class="icon"><i class="fas fa-chart-line"></i></div>
-                          <h4 class="title"><a href="">Evolution de la douleur</a></h4>
-                          <p class="description">Explorez votre parcours de douleur.</p>
-                        </div>
-                      </div>
-            
-                    </div>
-            
+                <!-- ======= F.A.Q Section ======= -->
+    <section id="faq" class="faq">
+      <div class="container-fluid" data-aos="fade-up">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
+
+            <div class="content px-xl-5">
+              <h3> <strong>Questions</strong>Fréquemment posées</h3>
+            </div>
+
+            <div class="accordion accordion-flush px-xl-5" id="faqlist">
+
+              <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
+                    <i class="bi bi-question-circle question-icon"></i>
+                    Qu'est-ce que l'endométriose ?
+                  </button>
+                </h3>
+                <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                    L'endométriose est une affection dans laquelle des tissus similaires à la muqueuse de l'utérus sont également présents ailleurs dans le corps, principalement dans la cavité abdominale.  
                   </div>
-                </section><!-- End Featured Services Section -->
+                </div>
+              </div><!-- # Faq item-->
+
+              <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
+                    <i class="bi bi-question-circle question-icon"></i>
+                    Quels facteurs peuvent augmenter mes chances de souffrir d'endométriose ?
+                  </button>
+                </h3>
+                <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                    Vous avez plus de chances de développer une endometriose si vous avez :
+• Jamais eu d'enfants.
+• Des périodes menstruelles qui durent plus de sent jours.
+• Des cycles menstruels courts (27 jours ou moins).
+• Un membre de la famille (mère, tante, sœur) atteint d'endométriose.
+• Un problème de santé qui empêche l'écoulement normal du flux menstruel.
+• Des dommages aux cellules du pelvis causes par une infection
+         </div>
+                </div>
+              </div><!-- # Faq item-->
+
+              <div class="accordion-item" data-aos="fade-up" data-aos-delay="400">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-3">
+                    <i class="bi bi-question-circle question-icon"></i>
+                    Quels sont les symptômes de l'endométriose ?
+                  </button>
+                </h3>
+                <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                    Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                  </div>
+                </div>
+              </div><!-- # Faq item-->
+
+              <div class="accordion-item" data-aos="fade-up" data-aos-delay="500">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-4">
+                    <i class="bi bi-question-circle question-icon"></i>
+                    Comment traite-t-on l'endométriose ?
+                  </button>
+                </h3>
+                <div id="faq-content-4" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                    <i class="bi bi-question-circle question-icon"></i>
+                    Les excroissances d'endométriose sont bénignes (non cancéreuses), mais elles peuvent quand même causer de nombreux problèmes. Les tissus et le sang qui sont rejetés dans le corps peuvent provoquer une inflammation, des adhérences et des douleurs.
+Lorsque le tissu endométrial se développe, il peut recouvrir ou se développer dans les ovaires et bloquer les trompes de Fallope. Le sang piégé dans les ovaires peut former des kystes et causer des inflammations et des cicatrices (adhérences) qui lient parfois les organes entre eux. Ces cicatrices peuvent causer des douleurs pelviennes et rendre difficile pour les femmes de tomber enceintes. Les excroissances peuvent également causer des problèmes dans les intestins et la vessie
+                  </div>
+                </div>
+              </div><!-- # Faq item-->
+
+              <div class="accordion-item" data-aos="fade-up" data-aos-delay="600">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-5">
+                    <i class="bi bi-question-circle question-icon"></i>
+                    Comment puis-je réduire mes chances de contracter l'endométriose ?
+                  </button>
+                </h3>
+                <div id="faq-content-5" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                    Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in
+                  </div>
+                </div>
+              </div><!-- # Faq item-->
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("assets/img/endometriose-2.jpg");'>&nbsp;</div>
+        </div>
+
+      </div>
+    </section><!-- End F.A.Q Section -->
             </main>
         </div>
     </body>
