@@ -1,11 +1,59 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout}">
-    <head>
-        <title th:text="#{home.index.headline}" />
-    </head>
-    <body>
-        <div layout:fragment="content">
+<html xmlns:th="http://www.thymeleaf.org" 
+        layout:decorate="~{layout2}">
+
+        <div layout:fragment="content1">
+              <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+      <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+      <div class="carousel-inner" role="listbox">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg)">
+          <div class="container">
+            <h2>Bienvenu sur <span>PainCare</span></h2>
+            <p>La solution m-Health PainCare a été développée dans le but de fournir des ressources complètes et une assistance aux femmes qui luttent contre l'endométriose.</p>
+            <a href="#about" class="btn-get-started scrollto">Lire Plus</a>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item " style="background-image: url(assets/img/slide/slide-2.jpg)">
+          <div class="container">
+            <h2>Bienvenu sur PainCare</h2>
+            <p>La solution m-Health PainCare a été développée dans le but de fournir des ressources complètes et une assistance aux femmes qui luttent contre l'endométriose.</p>
+            <a href="#about" class="btn-get-started scrollto">Lire Plus</a>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item" style="background-image: url(assets/img/slide/slide-3.jpg)">
+          <div class="container">
+            <h2>Bienvenu sur PainCare</h2>
+            <p>La solution m-Health PainCare a été développée dans le but de fournir des ressources complètes et une assistance aux femmes qui luttent contre l'endométriose.</p>
+            <a href="#about" class="btn-get-started scrollto">Lire Plus</a>
+          </div>
+        </div>
+
+      </div>
+
+      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+      </a>
+
+      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+      </a>
+
+    </div>
+  </section><!-- End Hero -->
+</div>
+
+  <div layout:fragment="content">
+
             <h1 th:text="#{home.index.headline}" class="mb-4" />
             <p th:utext="#{home.index.text}" />
             <p th:utext="#{home.index.swagger}" class="mb-5" />
@@ -18,6 +66,43 @@
                     <a th:href="@{/painRecords}" th:text="#{painRecord.list.headline}" class="list-group-item list-group-item-action" />
                 </div>
             </div>
+
+            <main id="main">
+
+                <!-- ======= Featured Services Section ======= -->
+                <section id="featured-services" class="featured-services">
+                  <div class="container" data-aos="fade-up">
+            
+                    <div class="row justify-content-center">
+                      <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                          <div class="icon"><i class="fas fa-heartbeat"></i></div>
+                          <h4 class="title"><a href="">Test de diagnostic</a></h4>
+                          <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+                        </div>
+                      </div>
+            
+                      <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+                          <div class="icon"><i class="fas fa-book-medical"></i></div>
+                          <h4 class="title"><a href="">Informations sur l'endométriose</a></h4>
+                          <p class="description">Restez informé sur l'endométriose.</p>
+                        </div>
+                      </div>
+            
+                      <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+                          <div class="icon"><i class="fas fa-chart-line"></i></div>
+                          <h4 class="title"><a href="">Evolution de la douleur</a></h4>
+                          <p class="description">Explorez votre parcours de douleur.</p>
+                        </div>
+                      </div>
+            
+                    </div>
+            
+                  </div>
+                </section><!-- End Featured Services Section -->
+            </main>
         </div>
     </body>
 </html>

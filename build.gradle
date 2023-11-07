@@ -22,6 +22,7 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-validation')
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
     runtimeOnly('org.mariadb.jdbc:mariadb-java-client')
+    implementation 'mysql:mysql-connector-java:8.0.26'
     implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
     implementation('nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect')
     implementation('org.webjars:bootstrap:5.3.2')

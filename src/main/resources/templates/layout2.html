@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+      
+        <title th:text="#{home.index.headline}" />
+        <meta content="" name="description">
+        <meta content="" name="keywords">
+      
+        <!-- Favicons -->
+        <link href="assets/img/Paincare_logo.jpg" rel="icon">
+        <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+      
+        <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  
+      </head>
+      
+      <body>
+      
+        <!-- ======= Top Bar ======= -->
+        <div id="topbar" class="d-flex align-items-center fixed-top">
+          <div class="container d-flex align-items-center justify-content-center justify-content-md-between">
+            
+          </div>
+        </div>
+      
+        <!-- ======= Header ======= -->
+        <header id="header" class="fixed-top">
+          <div class="container d-flex align-items-center">
+      
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
+            <a th:href="@{/}" class="logo me-auto">
+                <img th:src="@{/images/Paincare_logo-V2.png}" th:alt="#{app.title}" width="60" height="58" >
+                <span th:text="#{app.title}" class="ps-1" />
+            </a>
+      
+            <nav id="navbar" class="navbar order-last order-lg-0">
+              <ul>
+                <li><a class="nav-link scrollto " th:href="@{/}" th:text="#{navigation.home}"/></li>
+                <li><a class="nav-link scrollto" th:href="@{/users}" th:text="#{user.list.headline}"/></li>
+                <li><a class="nav-link scrollto" th:href="@{/posts}" th:text="#{post.list.headline}" /></li>
+                <li><a class="nav-link scrollto" th:href="@{/comments}" th:text="#{comment.list.headline}" /></li>
+                <li><a class="nav-link scrollto" th:href="@{/painRecords}" th:text="#{painRecord.list.headline}"/></li>
+                <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+                  <ul>
+                    <li><a href="#">Drop Down 1</a></li>
+                    <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                      <ul>
+                        <li><a href="#">Deep Drop Down 1</a></li>
+                        <li><a href="#">Deep Drop Down 2</a></li>
+                        <li><a href="#">Deep Drop Down 3</a></li>
+                        <li><a href="#">Deep Drop Down 4</a></li>
+                        <li><a href="#">Deep Drop Down 5</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#">Drop Down 2</a></li>
+                    <li><a href="#">Drop Down 3</a></li>
+                    <li><a href="#">Drop Down 4</a></li>
+                  </ul>
+                </li>
+                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+              </ul>
+              <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+      
+            <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">A</span> Voir</a>
+      
+          </div>
+        </header><!-- End Header -->
+        
+        <main class="my-5">
+            <div class="container">
+                <p th:if="${MSG_SUCCESS}" th:text="${MSG_SUCCESS}" class="alert alert-success mb-4" role="alert" />
+                <p th:if="${MSG_INFO}" th:text="${MSG_INFO}" class="alert alert-info mb-4" role="alert" />
+                <p th:if="${MSG_ERROR}" th:text="${MSG_ERROR}" class="alert alert-danger mb-4" role="alert" />
+                <div layout:fragment="content1" />
+                <div layout:fragment="content" />
+            </div>
+        </main>
+        <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+    </body>
+</html>
