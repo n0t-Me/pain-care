@@ -25,3 +25,6 @@ spring:
       time: HH:mm:ss
 springdoc:
   pathsToMatch: /api/**
+logging:
+  level:
+    org.springframework.security: DEBUG

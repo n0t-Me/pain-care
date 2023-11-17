@@ -55,6 +55,9 @@
   <div layout:fragment="content">
 
     <main id="main">
+      <!-- Add a link to log out -->
+<a th:href="@{/logout}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+<form id="logout-form" action="/logout" method="post" style="display: none;"></form>
 
       <!-- ======= Featured Services Section ======= -->
       <section id="featured-services" class="featured-services">

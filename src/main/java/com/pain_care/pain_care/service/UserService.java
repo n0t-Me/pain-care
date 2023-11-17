@@ -12,7 +12,10 @@ import com.pain_care.pain_care.repos.UserRepository;
 import com.pain_care.pain_care.util.NotFoundException;
 import com.pain_care.pain_care.util.WebUtils;
 import java.util.List;
+
+
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -23,14 +26,16 @@ public class UserService {
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
     private final PainRecordRepository painRecordRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public UserService(final UserRepository userRepository, final PostRepository postRepository,
             final CommentRepository commentRepository,
-            final PainRecordRepository painRecordRepository) {
+            final PainRecordRepository painRecordRepository,final PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.postRepository = postRepository;
         this.commentRepository = commentRepository;
         this.painRecordRepository = painRecordRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<UserDTO> findAll() {
@@ -49,6 +54,7 @@ public class UserService {
     public Integer create(final UserDTO userDTO) {
         final User user = new User();
         mapToEntity(userDTO, user);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user).getId();
     }
 
@@ -56,6 +62,7 @@ public class UserService {
         final User user = userRepository.findById(id)
                 .orElseThrow(NotFoundException::new);
         mapToEntity(userDTO, user);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 

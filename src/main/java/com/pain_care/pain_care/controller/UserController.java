@@ -4,6 +4,7 @@ import com.pain_care.pain_care.model.UserDTO;
 import com.pain_care.pain_care.service.UserService;
 import com.pain_care.pain_care.util.WebUtils;
 import jakarta.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -86,5 +87,41 @@ public class UserController {
         }
         return "redirect:/users";
     }
+    @GetMapping("/register")
+    public String register(@ModelAttribute("user") final UserDTO userDTO) {
+        return "user/register";
+    }
 
+    @PostMapping("/register")
+public String register(@ModelAttribute("user") @Valid final UserDTO userDTO,
+        final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
+    if (bindingResult.hasErrors()) {
+        return "user/register";
+    }
+
+    // Check if the email already exists
+    if (userService.emailExists(userDTO.getEmail())) {
+        bindingResult.rejectValue("email", "Exists.user.email");
+        return "user/register";
+    }
+
+    // Other validation and registration logic
+    userService.create(userDTO);
+
+    redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("user.register.success"));
+    return "redirect:/users";
 }
+
+@GetMapping("/login")
+    public String login(@ModelAttribute("user") final UserDTO userDTO) {
+        return "user/login";
+    }
+
+@PostMapping("/login")
+    public String loginUser() {
+        // Perform any additional login-related logic if needed
+        
+        return "/home/index"; // Redirect to the home page after successful login
+    }
+}
+
