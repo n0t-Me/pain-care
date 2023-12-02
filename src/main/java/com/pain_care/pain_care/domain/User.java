@@ -10,10 +10,13 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
-import java.util.Set;
+import java.util.*;
+
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 
 @Entity
@@ -157,4 +160,10 @@ public class User {
         this.lastUpdated = lastUpdated;
     }
 
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // If your system doesn't use roles, you can return a default authority or an empty collection
+        // In this example, all users will have a simple authority 'ROLE_USER'
+
+        return Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
+    }
 }

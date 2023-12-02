@@ -9,15 +9,17 @@ public class UserDetailsinfo implements UserDetails{
 
     private String email;
     private String password ;
+    private Collection<? extends GrantedAuthority> authorities;
 
-     public UserDetailsinfo(User user) {
-        email= user.getEmail();
-        password= user.getPassword();
+    public UserDetailsinfo(User user, Collection<? extends GrantedAuthority> authorities) {
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.authorities = authorities;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
+        return authorities;
     }
 
     @Override

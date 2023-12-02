@@ -1,8 +1,10 @@
 package com.pain_care.pain_care.service;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,10 +21,14 @@ public class UserinfoService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional <User> user = userRepository.findByEmail(username);
-         return  user.map(UserDetailsinfo::new)
-           .orElseThrow(()-> new UsernameNotFoundException("UserName not found"+ username));
-           
-                
+        Optional<User> userOptional = userRepository.findByEmail(username);
+
+        return userOptional.map(user -> {
+            // Retrieve user authorities/roles from your User entity
+            Collection<? extends GrantedAuthority> authorities = user.getAuthorities(); // Replace this with your actual method to get authorities
+
+            return new UserDetailsinfo(user, authorities);
+        }).orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
     }
+
 }
