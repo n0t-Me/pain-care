@@ -5,7 +5,6 @@
         <title th:text="#{comment.add.headline}" />
     </head>
     <body>
-        <body>
             <div layout:fragment="content1">
                 <main id="main">
                     <section id="featured-services">
@@ -36,9 +35,10 @@
             </form>
         </div>
     </div>
+</section><!-- End Contact Section -->
+
     <div class="text-center">
         <a th:href="@{/comments}" th:text="#{comment.add.back}" class="btn btn-secondary" />
     </div>
-  </section><!-- End Contact Section -->
     </body>
 </html>

@@ -1,17 +1,29 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout}">
+        layout:decorate="~{layout2}">
     <head>
         <title th:text="#{painRecord.add.headline}" />
     </head>
     <body>
+        <div layout:fragment="content1">
+            <main id="main">
+                <section id="featured-services">
+
+                </section>
+
         <div layout:fragment="content">
-            <div class="d-flex flex-wrap mb-4">
-                <h1 th:text="#{painRecord.add.headline}" class="flex-grow-1" />
-                <div>
-                    <a th:href="@{/painRecords}" th:text="#{painRecord.add.back}" class="btn btn-secondary" />
+
+            <section id="contact" class="contact">
+              <div class="container">
+        
+                <div class="section-title">
+                  <h2 th:text="#{painRecord.add.headline}"></h2>
+                  <p></p>
                 </div>
-            </div>
+        
+              </div>
+        
+              <div class="container">
             <div th:replace="~{fragments/forms::globalErrors('painRecord')}" />
             <form th:action="${requestUri}" method="post">
                 <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='level', type='number')}" />
@@ -20,8 +32,15 @@
                 <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='makePainWorse', type='textarea')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='feelings', type='textarea')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='user', type='select')}" />
-                <input type="submit" th:value="#{painRecord.add.headline}" class="btn btn-primary mt-4" />
+                <div class="text-center">
+                <input type="submit" th:value="#{painRecord.add.headline}" class="appointment-btn" />
+                </div>
             </form>
+        </div>
+    </div>
+</section><!-- End Contact Section -->
+        <div class="text-center">
+            <a th:href="@{/painRecords}" th:text="#{painRecord.add.back}" class="btn btn-secondary" />
         </div>
     </body>
 </html>
