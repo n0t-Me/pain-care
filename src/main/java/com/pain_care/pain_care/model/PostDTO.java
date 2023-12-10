@@ -15,7 +15,6 @@ public class PostDTO {
     @NotNull
     private String description;
 
-    @Size(max = 255)
     private String image;
 
     private Integer user;

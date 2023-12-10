@@ -1329,6 +1329,10 @@ section {
   border-radius: 4px;
   background: #fff;
   box-shadow: 0px 2px 15px rgba(63, 187, 192, 0.1);
+
+  /* Increase the size of the member */
+  width: 100%;
+  max-width: 700px; /* Adjust the maximum width as needed */
 }
 
 .doctors .member .member-img {

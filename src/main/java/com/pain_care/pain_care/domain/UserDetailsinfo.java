@@ -9,11 +9,13 @@ public class UserDetailsinfo implements UserDetails{
 
     private String email;
     private String password ;
+    private String name;
     private Collection<? extends GrantedAuthority> authorities;
 
     public UserDetailsinfo(User user, Collection<? extends GrantedAuthority> authorities) {
         this.email = user.getEmail();
         this.password = user.getPassword();
+        this.name = user.getName();
         this.authorities = authorities;
     }
 
@@ -49,6 +51,10 @@ public class UserDetailsinfo implements UserDetails{
 
     @Override
     public boolean isEnabled() {
-return true;    }
-    
+         return true;  
+    }
+ 
+    public String getName() {
+        return name;
+    } 
 }

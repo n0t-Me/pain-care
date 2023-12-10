@@ -56,7 +56,13 @@ public class SecurityConfig {
                        .defaultSuccessUrl("/") // Redirect after successful login
                        .permitAll()
                 
-                )
+                ).logout(logout ->
+                logout
+                    .logoutUrl("/logout") // Customize the logout URL if needed
+                    .logoutSuccessUrl("/") // Redirect after successful logout
+                    .permitAll()
+            )
+            
                 ;
                 
          return http.build();

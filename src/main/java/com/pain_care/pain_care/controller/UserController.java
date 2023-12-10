@@ -116,12 +116,11 @@ public String register(@ModelAttribute("user") @Valid final UserDTO userDTO,
     public String login(@ModelAttribute("user") final UserDTO userDTO) {
         return "user/login";
     }
-
-@PostMapping("/login")
-    public String loginUser() {
-        // Perform any additional login-related logic if needed
-        
-        return "/home/index"; // Redirect to the home page after successful login
-    }
+ @PostMapping("/login")
+    public String processLogin(@ModelAttribute("user") final UserDTO userDTO) {
+            // Handle authentication logic here
+            // If using Spring Security, this method may not contain explicit authentication logic
+            return "home/index";
+        }    
 }
 

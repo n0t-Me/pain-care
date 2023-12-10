@@ -16,7 +16,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import java.io.IOException; 
+import java.util.Base64;
 
 
 @Controller
@@ -51,10 +55,21 @@ public class PostController {
 
     @PostMapping("/add")
     public String add(@ModelAttribute("post") @Valid final PostDTO postDTO,
+                      @RequestParam("imageFile") MultipartFile imageFile,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "post/add";
         }
+       // Convert MultipartFile to Base64-encoded string and set it in PostDTO
+       if (imageFile != null && !imageFile.isEmpty()) {
+        try {
+            String encodedImage = Base64.getEncoder().encodeToString(imageFile.getBytes());
+            postDTO.setImage(encodedImage);
+        } catch (IOException e) {
+            // Handle exception (e.g., log error, show user-friendly message)
+            e.printStackTrace();
+        }
+    }
         postService.create(postDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("post.create.success"));
         return "redirect:/posts";
@@ -69,9 +84,20 @@ public class PostController {
     @PostMapping("/edit/{id}")
     public String edit(@PathVariable final Integer id,
             @ModelAttribute("post") @Valid final PostDTO postDTO, final BindingResult bindingResult,
+            @RequestParam("imageFile") MultipartFile imageFile,
             final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "post/edit";
+        }
+        // Convert MultipartFile to Base64-encoded string and set it in PostDTO
+        if (imageFile != null && !imageFile.isEmpty()) {
+            try {
+                String encodedImage = Base64.getEncoder().encodeToString(imageFile.getBytes());
+                postDTO.setImage(encodedImage);
+            } catch (IOException e) {
+                // Handle exception (e.g., log error, show user-friendly message)
+                e.printStackTrace();
+            }
         }
         postService.update(id, postDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("post.update.success"));

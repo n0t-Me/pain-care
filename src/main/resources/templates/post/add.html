@@ -16,7 +16,16 @@
             <form th:action="${requestUri}" method="post">
                 <div th:replace="~{fragments/forms::inputRow(object='post', field='title')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='post', field='description', type='textarea')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='post', field='image')}" />
+
+<!-- Update the inputRow for 'image' to include file input -->
+<div class="row">
+  <div class="col-md-6 form-group">
+
+<label for="imageFile" class="col-sm-2 col-form-label" >Image</label>
+<div class="col-sm-10">
+<input type="file" id="imageFile" name="imageFile" class="form-control" accept="image/*" />
+</div>
+</div>
                 <div th:replace="~{fragments/forms::inputRow(object='post', field='user', type='select')}" />
                 <input type="submit" th:value="#{post.add.headline}" class="btn btn-primary mt-4" />
             </form>
