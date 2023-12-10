@@ -10,12 +10,16 @@ public class UserDetailsinfo implements UserDetails{
     private String email;
     private String password ;
     private String name;
+    private Integer id;
+    private String pic;
     private Collection<? extends GrantedAuthority> authorities;
 
     public UserDetailsinfo(User user, Collection<? extends GrantedAuthority> authorities) {
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.name = user.getName();
+        this.id = user.getId();
+        this.pic = user.getPic();
         this.authorities = authorities;
     }
 
@@ -57,4 +61,12 @@ public class UserDetailsinfo implements UserDetails{
     public String getName() {
         return name;
     } 
+
+    public Integer getId() {
+        return id;
+    } 
+
+    public String getPic() {
+        return pic;
+    }
 }

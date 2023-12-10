@@ -1,28 +1,50 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout}">
+        layout:decorate="~{layout2}">
     <head>
         <title th:text="#{user.edit.headline}" />
     </head>
     <body>
-        <div layout:fragment="content">
-            <div class="d-flex flex-wrap mb-4">
-                <h1 th:text="#{user.edit.headline}" class="flex-grow-1" />
-                <div>
-                    <a th:href="@{/users}" th:text="#{user.edit.back}" class="btn btn-secondary" />
-                </div>
-            </div>
+        <div layout:fragment="content1">
+            <main id="main">
+                <section id="featured-services">
+
+                </section>
+                <section id="contact" class="contact">
+                    <div class="container">
+              
+                      <div class="section-title">
+                        <h2 t> Mon Profile</h2>
+                        <p></p>
+                      </div>
+              
+                    </div>
+                    <div class="container">
+
             <div th:replace="~{fragments/forms::globalErrors('user')}" />
-            <form th:action="${requestUri}" method="post">
-                <div th:replace="~{fragments/forms::inputRow(object='user', field='id', disabled=true, type='number')}" />
+            <form th:action="${requestUri}" method="post" enctype="multipart/form-data">
+                <div th:replace="~{fragments/forms::inputRow(object='user', field='id', disabled=true, type='number'  )}" hidden="hidden"/>
                 <div th:replace="~{fragments/forms::inputRow(object='user', field='name')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='user', field='email')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='user', field='password')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='user', field='bday', inputClass='js-datepicker')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='user', field='pic')}" />
+               <!-- Update the inputRow for 'image' to include file input -->
+    <div class="form-group row">
+        <label for="imageFile" class="col-sm-2 col-form-label" >Image</label>
+        <div class="col-sm-10">
+            <input type="file" id="imageFile" name="imageFile" class="form-control-file" accept="image/*" />
+        </div>
+    </div>
+    
                 <div th:replace="~{fragments/forms::inputRow(object='user', field='language')}" />
-                <input type="submit" th:value="#{user.edit.headline}" class="btn btn-primary mt-4" />
+
+                <div class="text-center">
+                <input type="submit" th:value="Modifier" class="appointment-btn" />
+                </div>
             </form>
         </div>
+
+
+    </section><!-- End Contact Section -->
     </body>
 </html>

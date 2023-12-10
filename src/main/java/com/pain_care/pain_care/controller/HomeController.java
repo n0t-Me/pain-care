@@ -16,7 +16,12 @@ public class HomeController {
 
             if (userDetails != null) {
                 String username = userDetails.getName();
+                Integer userId = userDetails.getId();
+                String pic = userDetails.getPic();
+
                 model.addAttribute("username", username);
+                model.addAttribute("userId", userId);
+                model.addAttribute("picture", pic);
             }
 
 

@@ -40,7 +40,7 @@
             <li class="nav-item dropdown pe-3">
 
               <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                <img th:src="'data:image/png;base64,' + ${picture}" alt="Profile" class="rounded-circle">
                 <span class="d-none d-md-block dropdown-toggle ps-2" th:text="${username}" >th:text="${user.name}</span>
               </a><!-- End Profile Iamge Icon -->
     
@@ -54,9 +54,9 @@
                 </li>
     
                 <li>
-                  <a class="dropdown-item d-flex align-items-center" href="">
+                    <a th:href="@{/users/edit/{id}(id=${userId})}"  class="dropdown-item d-flex align-items-center" >
                     <i class="bi bi-person"></i>
-                    <span>My Profile</span>
+                    <span>Mon Profile</span>
                   </a>
                 </li>
                 <li>
@@ -108,7 +108,6 @@
             <nav id="navbar" class="navbar order-last order-lg-0">
               <ul>
                 <li><a class="nav-link scrollto " th:href="@{/}" th:text="#{navigation.home}"/></li>
-                <li><a class="nav-link scrollto" th:href="@{/users}" th:text="#{user.list.headline}"/></li>
                 <li><a class="nav-link scrollto" th:href="@{/posts}" th:text="#{post.list.headline}" /></li>
                 <li><a class="nav-link scrollto" th:href="@{/comments}" th:text="#{comment.list.headline}" /></li>
                 <li><a class="nav-link scrollto" th:href="@{/painRecords}" th:text="#{painRecord.list.headline}"/></li>
