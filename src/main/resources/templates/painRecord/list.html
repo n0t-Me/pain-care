@@ -1,10 +1,16 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout}">
+        layout:decorate="~{layout2}">
     <head>
         <title th:text="#{painRecord.list.headline}" />
     </head>
     <body>
+        <div layout:fragment="content1">
+            <main id="main">
+
+                <section id="featured-services">
+
+                </section>
         <div layout:fragment="content">
             <div class="d-flex flex-wrap mb-4">
                 <h1 th:text="#{painRecord.list.headline}" class="flex-grow-1" />

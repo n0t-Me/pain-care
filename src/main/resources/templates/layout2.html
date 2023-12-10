@@ -41,13 +41,13 @@
 
               <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                 <img th:src="'data:image/png;base64,' + ${picture}" alt="Profile" class="rounded-circle">
-                <span class="d-none d-md-block dropdown-toggle ps-2" th:text="${username}" >th:text="${user.name}</span>
+                <span class="d-none d-md-block dropdown-toggle ps-2" th:text="${username}" ></span>
               </a><!-- End Profile Iamge Icon -->
     
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile profile.z-index-high">
                 <li class="dropdown-topbar">
-                  <h6>Nom</h6>
-                  <span>Profil</span>
+                  <h6 class="text-center">Nom</h6>
+                  <span class="text-center">Profil</span>
                 </li>
                 <li>
                   <hr class="dropdown-divider">
@@ -61,27 +61,7 @@
                 </li>
                 <li>
                   <hr class="dropdown-divider">
-                </li>
-    
-                <li>
-                  <a class="dropdown-item d-flex align-items-center" href="">
-                    <i class="bi bi-gear"></i>
-                    <span>Account Settings</span>
-                  </a>
-                </li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-    
-                <li>
-                  <a class="dropdown-item d-flex align-items-center" href="">
-                    <i class="bi bi-question-circle"></i>
-                    <span>Need Help?</span>
-                  </a>
-                </li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
+                </li>    
     
                 <li>
                   <a class="dropdown-item d-flex align-items-center" th:href="@{/logout}">
@@ -128,7 +108,6 @@
                     <li><a href="#">Drop Down 4</a></li>
                   </ul>
                 </li>
-                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
               </ul>
               <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
