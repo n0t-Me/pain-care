@@ -5,6 +5,9 @@ import java.time.OffsetDateTime;
 import java.util.List;
 
 import com.pain_care.pain_care.domain.Feelings;
+import com.pain_care.pain_care.domain.Locations;
+import com.pain_care.pain_care.domain.MakePainWorse;
+import com.pain_care.pain_care.domain.Symptome;
 
 
 public class PainRecordDTO {
@@ -15,13 +18,13 @@ public class PainRecordDTO {
     private Integer level;
 
     @NotNull
-    private String locations;
+    private List<Locations> locations;
 
     @NotNull
-    private String symptoms;
+    private List<Symptome> symptoms;
 
     @NotNull
-    private String makePainWorse;
+    private List<MakePainWorse> makePainWorse;
 
     @NotNull
     private List<Feelings> feelings;
@@ -46,27 +49,27 @@ public class PainRecordDTO {
         this.level = level;
     }
 
-    public String getLocations() {
+    public List<Locations> getLocations() {
         return locations;
     }
 
-    public void setLocations(final String locations) {
+    public void setLocations(final List<Locations> locations) {
         this.locations = locations;
     }
 
-    public String getSymptoms() {
+    public List<Symptome> getSymptoms() {
         return symptoms;
     }
 
-    public void setSymptoms(final String symptoms) {
+    public void setSymptoms(final List<Symptome> symptoms) {
         this.symptoms = symptoms;
     }
 
-    public String getMakePainWorse() {
+    public List<MakePainWorse> getMakePainWorse() {
         return makePainWorse;
     }
 
-    public void setMakePainWorse(final String makePainWorse) {
+    public void setMakePainWorse(final List<MakePainWorse> makePainWorse) {
         this.makePainWorse = makePainWorse;
     }
 

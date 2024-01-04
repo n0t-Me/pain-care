@@ -27,18 +27,60 @@
             <div th:replace="~{fragments/forms::globalErrors('painRecord')}" />
             <form th:action="${requestUri}" method="post" th:object="${painRecord}">
                 <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='level', type='number')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='locations', type='textarea')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='symptoms', type='textarea')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='makePainWorse', type='textarea')}" />
-
-                <ul>
-                    <li th:each="feeling : ${feelingsValues}">
-                      <div>
-                        <input  type="checkbox" th:field="*{feelings}" th:value="${feeling}">
-                        <label th:text="${feeling}"></label>
-                      </div>
+              
+                <div class="row">
+                    <div class="col-md-3">
+                        <h6>Localisation des douleurs:</h6>
+                    </div>
+                    <div class="col-md-6">
+                <ul class="checkbox">
+                    <li th:each="location : ${locationValues}" th:id="${'check-' + location}">
+                        <input type="checkbox" th:field="*{locations}" th:value="${location}"  />
+                        <label th:text="${location}" ></label>
                     </li>
-                </ul>             
+                  </ul>
+                    </div></div>
+
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h6>Symptomes:</h6>
+                            </div>
+                            <div class="col-md-6">
+                        <ul class="checkbox">
+                            <li th:each="symptom : ${symptomeValues}" th:id="${'check-' + symptom}">
+                                <input type="checkbox" th:field="*{symptoms}" th:value="${symptom}"  />
+                                <label th:text="${symptom}" ></label>
+                            </li>
+                          </ul>
+                            </div></div>
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h6>Ce qui aggrave la douleur:</h6>
+                                </div>
+                                <div class="col-md-6">
+                            <ul class="checkbox">
+                                <li th:each="makePainWors : ${makepainworseValues}" th:id="${'check-' + makePainWors}">
+                                    <input type="checkbox" th:field="*{makePainWorse}" th:value="${makePainWors}"  />
+                                    <label th:text="${makePainWors}" ></label>
+                                </li>
+                              </ul>
+                                </div></div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <h6>Sentiments:</h6>
+                    </div>
+                    <div class="col-md-6">
+                <ul class="checkbox">
+                    <li th:each="feeling : ${feelingsValues}" th:id="${'check-' + feeling}">
+                        <input type="checkbox" th:field="*{feelings}" th:value="${feeling}"  />
+                        <label th:text="${feeling}" ></label>
+                    </li>
+                  </ul>
+                    </div>
+                               
                 
                 <input type="hidden" th:field="${painRecord.user}" th:value="${userId}" />
                 <div class="text-center">

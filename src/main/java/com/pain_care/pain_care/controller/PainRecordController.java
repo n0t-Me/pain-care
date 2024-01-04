@@ -1,6 +1,9 @@
 package com.pain_care.pain_care.controller;
 
 import com.pain_care.pain_care.domain.Feelings;
+import com.pain_care.pain_care.domain.Locations;
+import com.pain_care.pain_care.domain.MakePainWorse;
+import com.pain_care.pain_care.domain.Symptome;
 import com.pain_care.pain_care.domain.User;
 import com.pain_care.pain_care.domain.UserDetailsinfo;
 import com.pain_care.pain_care.model.PainRecordDTO;
@@ -55,6 +58,10 @@ public class PainRecordController {
 
             model.addAttribute("userId", userId);
             model.addAttribute("feelingsValues", Feelings.values());
+            model.addAttribute("locationValues", Locations.values());
+            model.addAttribute("symptomeValues", Symptome.values());
+            model.addAttribute("makepainworseValues", MakePainWorse.values());
+
         }
         return "painRecord/add";
     }
@@ -73,6 +80,10 @@ public class PainRecordController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable final Integer id, final Model model) {
         model.addAttribute("painRecord", painRecordService.get(id));
+        model.addAttribute("feelingsValues", Feelings.values());
+        model.addAttribute("locationValues", Locations.values());
+        model.addAttribute("symptomeValues", Symptome.values());
+        model.addAttribute("makepainworseValues", MakePainWorse.values());
         return "painRecord/edit";
     }
 

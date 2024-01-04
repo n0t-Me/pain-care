@@ -1,28 +1,97 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout}">
+        layout:decorate="~{layout2}">
     <head>
         <title th:text="#{painRecord.edit.headline}" />
     </head>
     <body>
         <div layout:fragment="content">
-            <div class="d-flex flex-wrap mb-4">
-                <h1 th:text="#{painRecord.edit.headline}" class="flex-grow-1" />
-                <div>
-                    <a th:href="@{/painRecords}" th:text="#{painRecord.edit.back}" class="btn btn-secondary" />
-                </div>
-            </div>
+            <main id="main">
+                <section id="featured-services">
+
+                </section>
+
+                <section id="contact" class="contact">
+                    <div class="container">
+              
+                      <div class="section-title">
+                        <h2 th:text="#{painRecord.edit.headline}"></h2>
+                        <p></p>
+                      </div>
+              
+                    </div>
+
+                    <div class="container">
             <div th:replace="~{fragments/forms::globalErrors('painRecord')}" />
             <form th:action="${requestUri}" method="post">
                 <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='id', disabled=true, type='number')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='level', type='number')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='locations', type='textarea')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='symptoms', type='textarea')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='makePainWorse', type='textarea')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='feelings', type='textarea')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='user', type='select')}" />
-                <input type="submit" th:value="#{painRecord.edit.headline}" class="btn btn-primary mt-4" />
+                
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="locations">Localisation des douleurs:</label>
+                    </div>
+                    <div class="col-md-6">
+                <ul class="checkbox">
+                    <li th:each="location : ${locationValues}" th:id="${'check-' + location}">
+                        <input type="checkbox" th:field="${painRecord.locations}" th:value="${location}" th:checked="${painRecord.locations.contains(location)}"  />
+                        <label th:text="${location}" ></label>
+                    </li>
+                  </ul>
+                    </div></div>
+
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="symptoms">Symptomes:</label>
+                            </div>
+                            <div class="col-md-6">
+                        <ul class="checkbox">
+                            <li th:each="symptom : ${symptomeValues}" th:id="${'check-' + symptom}">
+                                <input type="checkbox" th:field="${painRecord.symptoms}" th:value="${symptom}" th:checked="${painRecord.symptoms.contains(symptom)}"  />
+                                <label th:text="${symptom}" ></label>
+                            </li>
+                          </ul>
+                            </div></div>
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="makePainWorse">Ce qui aggrave la douleur:</label>
+                                </div>
+                                <div class="col-md-6">
+                            <ul class="checkbox">
+                                <li th:each="makePainWors : ${makepainworseValues}" th:id="${'check-' + makePainWors}">
+                                    <input type="checkbox" th:field="${painRecord.makePainWorse}" th:value="${makePainWors}" th:checked="${painRecord.makePainWorse.contains(makePainWors)}"  />
+                                    <label th:text="${makePainWors}" ></label>
+                                </li>
+                              </ul>
+                                </div></div>
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="feelings">Sentiments:</label>
+                                    </div>
+                                    <div class="col-md-6">
+                <ul>
+                    <li th:each="feeling : ${feelingsValues}">
+                        <div>
+                            <input type="checkbox" th:field="${painRecord.feelings}" th:value="${feeling}" th:checked="${painRecord.feelings.contains(feeling)}">
+                            <label th:text="${feeling}"></label>
+                        </div>
+                    </li>
+                </ul>  </div>              
+                
+                <input type="hidden" th:field="${painRecord.user}" th:value="${userId}" />
+
+                <input type="hidden" th:field="${painRecord.user}" th:value="${painRecord.user}" />
+                <div class="text-center">
+                <input type="submit" th:value="#{painRecord.edit.headline}" class="appointment-btn" />
+            </div>
             </form>
         </div>
-    </body>
+    </section><!-- End Contact Section -->
+    <div class="text-center">
+        <a th:href="@{/painRecords}" th:text="#{painRecord.edit.back}" class="btn btn-secondary" />
+    </div>
+</body>
 </html>

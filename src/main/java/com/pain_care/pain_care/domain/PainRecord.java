@@ -32,14 +32,17 @@ public class PainRecord {
     @Column(nullable = false)
     private Integer level;
 
+    @Convert(converter = LocationsListConverter.class)
     @Column(nullable = false, columnDefinition = "longtext")
-    private String locations;
+    private List<Locations> locations;
 
+    @Convert(converter = SymptomeListConverter.class)
     @Column(nullable = false, columnDefinition = "longtext")
-    private String symptoms;
+    private List<Symptome> symptoms;
 
+    @Convert(converter = MakePainWorseListConverter.class)
     @Column(nullable = false, columnDefinition = "longtext")
-    private String makePainWorse;
+    private List<MakePainWorse> makePainWorse;
 
     @Convert(converter = FeelingsListConverter.class)
     @Column(nullable = false, columnDefinition = "longtext")
@@ -73,27 +76,27 @@ public class PainRecord {
         this.level = level;
     }
 
-    public String getLocations() {
+    public List<Locations> getLocations() {
         return locations;
     }
 
-    public void setLocations(final String locations) {
+    public void setLocations(final List<Locations> locations) {
         this.locations = locations;
     }
 
-    public String getSymptoms() {
+    public List<Symptome> getSymptoms() {
         return symptoms;
     }
 
-    public void setSymptoms(final String symptoms) {
+    public void setSymptoms(final List<Symptome> symptoms) {
         this.symptoms = symptoms;
     }
 
-    public String getMakePainWorse() {
+    public List<MakePainWorse> getMakePainWorse() {
         return makePainWorse;
     }
 
-    public void setMakePainWorse(final String makePainWorse) {
+    public void setMakePainWorse(final List<MakePainWorse> makePainWorse) {
         this.makePainWorse = makePainWorse;
     }
 
