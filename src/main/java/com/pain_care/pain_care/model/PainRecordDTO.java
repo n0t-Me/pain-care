@@ -1,6 +1,10 @@
 package com.pain_care.pain_care.model;
 
 import jakarta.validation.constraints.NotNull;
+import java.time.OffsetDateTime;
+import java.util.List;
+
+import com.pain_care.pain_care.domain.Feelings;
 
 
 public class PainRecordDTO {
@@ -20,9 +24,11 @@ public class PainRecordDTO {
     private String makePainWorse;
 
     @NotNull
-    private String feelings;
+    private List<Feelings> feelings;
 
     private Integer user;
+
+    private OffsetDateTime dateCreated;  // Ajoutez cette ligne
 
     public Integer getId() {
         return id;
@@ -64,11 +70,11 @@ public class PainRecordDTO {
         this.makePainWorse = makePainWorse;
     }
 
-    public String getFeelings() {
+    public List<Feelings> getFeelings() {
         return feelings;
     }
 
-    public void setFeelings(final String feelings) {
+    public void setFeelings(final List<Feelings> feelings) {
         this.feelings = feelings;
     }
 
@@ -78,6 +84,14 @@ public class PainRecordDTO {
 
     public void setUser(final Integer user) {
         this.user = user;
+    }
+
+    public OffsetDateTime getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(final OffsetDateTime dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
 }

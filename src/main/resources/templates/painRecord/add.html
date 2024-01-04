@@ -25,13 +25,22 @@
         
               <div class="container">
             <div th:replace="~{fragments/forms::globalErrors('painRecord')}" />
-            <form th:action="${requestUri}" method="post">
+            <form th:action="${requestUri}" method="post" th:object="${painRecord}">
                 <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='level', type='number')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='locations', type='textarea')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='symptoms', type='textarea')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='makePainWorse', type='textarea')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='feelings', type='textarea')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='user', type='select')}" />
+
+                <ul>
+                    <li th:each="feeling : ${feelingsValues}">
+                      <div>
+                        <input  type="checkbox" th:field="*{feelings}" th:value="${feeling}">
+                        <label th:text="${feeling}"></label>
+                      </div>
+                    </li>
+                </ul>             
+                
+                <input type="hidden" th:field="${painRecord.user}" th:value="${userId}" />
                 <div class="text-center">
                 <input type="submit" th:value="#{painRecord.add.headline}" class="appointment-btn" />
                 </div>

@@ -1,6 +1,7 @@
 package com.pain_care.pain_care.domain;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.FetchType;
@@ -11,6 +12,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.OffsetDateTime;
+import java.util.List;
+
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -38,8 +41,9 @@ public class PainRecord {
     @Column(nullable = false, columnDefinition = "longtext")
     private String makePainWorse;
 
+    @Convert(converter = FeelingsListConverter.class)
     @Column(nullable = false, columnDefinition = "longtext")
-    private String feelings;
+    private List<Feelings> feelings;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -93,11 +97,11 @@ public class PainRecord {
         this.makePainWorse = makePainWorse;
     }
 
-    public String getFeelings() {
+    public List<Feelings> getFeelings() {
         return feelings;
     }
 
-    public void setFeelings(final String feelings) {
+    public void setFeelings(final List<Feelings> feelings) {
         this.feelings = feelings;
     }
 

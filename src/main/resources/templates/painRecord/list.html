@@ -6,47 +6,175 @@
     </head>
     <body>
         <div layout:fragment="content1">
+           <!-- Include FullCalendar dependencies -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <style>
+      #calendar {
+          max-height: 400px;
+      }
+
+      .fc-day-today {
+          background-color: #FFD1DC; /* Baby pink color */
+      }
+  </style>
             <main id="main">
 
                 <section id="featured-services">
 
                 </section>
-        <div layout:fragment="content">
-            <div class="d-flex flex-wrap mb-4">
-                <h1 th:text="#{painRecord.list.headline}" class="flex-grow-1" />
-                <div>
-                    <a th:href="@{/painRecords/add}" th:text="#{painRecord.list.createNew}" class="btn btn-primary ms-2" />
+
+        <section id="doctors" class="doctors section-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+                <h2 th:text="#{painRecord.list.headline}"  />
+                <p th:if="${painRecords.empty}" th:text="#{painRecord.list.empty}"></p>
+                <a th:href="@{/painRecords/add}" class="appointment-btn scrollto"><span th:text="#{painRecord.list.createNew}" class="d-none d-md-inline"></span></a>
+              </div>
+
+        <section class="section">
+            <div class="row">
+      
+              <div class="col-lg-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Line Chart</h5>
+      
+<!-- Line Chart -->
+<canvas id="lineChart" style="max-height: 400px;"></canvas>
+
+<script th:inline="javascript">
+  /*<![CDATA[*/
+  // Extracting pain records data directly from Thymeleaf
+  const painRecords = /*[[${painRecords}]]*/ [];
+
+    document.addEventListener("DOMContentLoaded", () => {
+        
+
+        // Check if data is available
+        if (painRecords && painRecords.length > 0) {
+            // Sort the pain records by dateCreated
+            painRecords.sort((a, b) => new Date(a.dateCreated) - new Date(b.dateCreated));
+
+            const chartData = {
+                labels: [],
+                datasets: [{
+                    label: 'Line Chart',
+                    data: [],
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            };
+
+            const dateFormatter = new Intl.DateTimeFormat('en-US', {
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric'
+            });
+
+            painRecords.forEach(painRecord => {
+                const formattedDate = dateFormatter.format(new Date(painRecord.dateCreated));
+                chartData.labels.push(formattedDate);
+                chartData.datasets[0].data.push(painRecord.level);
+            });
+
+            new Chart(document.querySelector('#lineChart'), {
+                type: 'line',
+                data: chartData,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        } else {
+            console.error('No painRecords data available.1');
+        }
+    });
+</script>
+<!-- End Line Chart -->
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Calendar</h5>
+
+                        <!-- Calendar Container -->
+                        <div id="calendar" style="max-height: 400px;">
+
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                                // Initialize FullCalendar
+                                $('#calendar').fullCalendar({
+                                    header: {
+                                        left: 'prev,next today',
+                                        center: 'title',
+                                        right: 'month,basicWeek,basicDay'
+                                    },
+                                    defaultDate: $.fullCalendar.moment(),
+                                    editable: true,
+                                    eventLimit: true // Allow "more" link when too many events
+                                    // You can add more configuration options here
+                                });
+                            });
+                        </script>
+                        <!-- End Calendar Container -->
+
+                    </div>
                 </div>
             </div>
-            <div th:if="${painRecords.empty}" th:text="#{painRecord.list.empty}" />
-            <div th:if="${!painRecords.empty}" class="table-responsive">
-                <table class="table table-striped table-hover align-middle">
-                    <thead>
-                        <tr>
-                            <th th:text="#{painRecord.id.label}" scope="col" />
-                            <th th:text="#{painRecord.level.label}" scope="col" />
-                            <th th:text="#{painRecord.user.label}" scope="col" />
-                            <th><!-- --></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="painRecord : ${painRecords}">
-                            <td th:text="${painRecord.id}" />
-                            <td th:text="${painRecord.level}" />
-                            <td th:text="${painRecord.user}" />
-                            <td>
-                                <div class="float-end text-nowrap">
-                                    <a th:href="@{/painRecords/edit/{id}(id=${painRecord.id})}" th:text="#{painRecord.list.edit}" class="btn btn-sm btn-secondary" />
-                                    <form th:action="@{/painRecords/delete/{id}(id=${painRecord.id})}"
-                                            th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
-                                        <button th:text="#{painRecord.list.delete}" type="submit" class="btn btn-sm btn-secondary" />
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+
             </div>
-        </div>
+        </section>
+
+
+        <div th:if="${!painRecords.empty}" class="table-responsive">
+          <table class="table table-striped table-hover align-middle">
+              <thead>
+                  <tr>
+                      <th th:text="#{painRecord.id.label}" scope="col" />
+                      <th th:text="#{painRecord.level.label}" scope="col" />
+                      <th th:text="#{painRecord.Date.label}" scope="col" />
+                      <th><!-- --></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr th:each="painRecord : ${painRecords}">
+                      <td th:text="${painRecord.id}" />
+                      <td th:text="${painRecord.level}" />
+                      <td th:text="${painRecord.dateCreated}" />
+                      <td>
+                          <div class="float-end text-nowrap">
+                              <a th:href="@{/painRecords/edit/{id}(id=${painRecord.id})}" th:text="#{painRecord.list.edit}" class="btn btn-sm btn-secondary" />
+                              <form th:action="@{/painRecords/delete/{id}(id=${painRecord.id})}"
+                                      th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
+                                  <button th:text="#{painRecord.list.delete}" type="submit" class="btn btn-sm btn-secondary" />
+                              </form>
+                          </div>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+      </section>
+
+        <script src="/assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="/assets/vendor/tinymce/tinymce.min.js"></script>
+
+        <script src="/assets/js/main2.js"></script>
+
     </body>
 </html>

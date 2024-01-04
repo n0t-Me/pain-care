@@ -55,7 +55,8 @@ public class UserService {
         final User user = new User();
         mapToEntity(userDTO, user);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user).getId();
+    User savedUser = userRepository.save(user);
+    return savedUser.getId();
     }
 
     public void update(final Integer id, final UserDTO userDTO) {

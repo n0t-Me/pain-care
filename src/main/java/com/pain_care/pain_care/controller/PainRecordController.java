@@ -1,6 +1,8 @@
 package com.pain_care.pain_care.controller;
 
+import com.pain_care.pain_care.domain.Feelings;
 import com.pain_care.pain_care.domain.User;
+import com.pain_care.pain_care.domain.UserDetailsinfo;
 import com.pain_care.pain_care.model.PainRecordDTO;
 import com.pain_care.pain_care.repos.UserRepository;
 import com.pain_care.pain_care.service.PainRecordService;
@@ -8,6 +10,7 @@ import com.pain_care.pain_care.util.CustomCollectors;
 import com.pain_care.pain_care.util.WebUtils;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -46,7 +49,13 @@ public class PainRecordController {
     }
 
     @GetMapping("/add")
-    public String add(@ModelAttribute("painRecord") final PainRecordDTO painRecordDTO) {
+    public String add(@ModelAttribute("painRecord") final PainRecordDTO painRecordDTO,@AuthenticationPrincipal UserDetailsinfo userDetails,Model model) {
+        if (userDetails != null) {
+            Integer userId = userDetails.getId();
+
+            model.addAttribute("userId", userId);
+            model.addAttribute("feelingsValues", Feelings.values());
+        }
         return "painRecord/add";
     }
 
