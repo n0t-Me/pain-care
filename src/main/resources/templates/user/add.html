@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div th:replace="~{fragments/forms::globalErrors('user')}" />
-            <form th:action="${requestUri}" method="post">
+            <form th:action="${requestUri}" method="post"enctype="multipart/form-data">
                 <div th:replace="~{fragments/forms::inputRow(object='user', field='name')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='user', field='email')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='user', field='password')}" />

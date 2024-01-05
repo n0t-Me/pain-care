@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+   
+    <title>Diagnostic Form</title>
+</head>
+<body>
+    <form id="diagnostic-form" th:action="@{/diagnostic}" method="POST" th:object="${diagnosticDTO}">
+        <div th:each="question, questionIndex : ${questionsBank}" class="diagnostic-panel">
+            <div class="mb-3">
+                <p th:text="${question[0]}"></p>
+            </div>
+            <th:block th:each="answer, answerIndex : ${question[1]}" varStatus="loop2">
+            <div class="mb-3">
+                <input type="radio" th:name="'answers[' + ${questionIndex.index} + ']'" th:value="${answerIndex.index}" th:id="'Q' + ${questionIndex.index} + 'A' + ${answer}" >
+                <label th:for="'Q' + ${questionIndex.index} + 'A' + ${answer}" th:text="${answer}"></label>
+            </div>
+        </th:block>
+        </div>
+        <button id="submit-btn" class="btn btn-primary" type="submit">Submit</button>
+
+    </form>
+        
+        
+        
+
+        <div th:if="${diagnosticDTO ne null}">
+            <div class="mb-3">
+                <p th:text="'Risk Level : ' + ${diagnosticDTO.calcResult()}"></p>
+            </div>
+            <th:each var="item" items="${questionsBank}" varStatus="loop">
+                <div class="mb-3">
+                    <p th:text="'Question : ' + ${item[0]}"></p>
+                </div>
+                <div class="mb-3">
+                    <p th:text="'Answer : ' + ${item[1][diagnosticDTO.answers[loop.index]]}"></p>
+                </div>
+            </th:each>
+            <a class="mb-3" th:href="@{/}">
+                <button class="btn btn-primary">Go Back Home</button>
+            </a>
+        </div>
+    </div>
+    <a class="mb-3" th:href="@{/}">
+        <button class="btn btn-primary">Go Back Home</button>
+    </a>
+
+</body>
+</html>

@@ -59,6 +59,17 @@
 <a th:href="@{/logout}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
 <form id="logout-form" action="/logout" method="post" style="display: none;"></form>
 
+<a th:href="@{/diagnostic}" class="col p-3 m-3 bg-primary-subtle border border-primary rounded cursor-pointer shadow-sm">
+  <h6>Diagnostic test</h6>
+  <p>Discover your potential endometriosis diagnostic</p>
+</a>
+
+<div th:if="${diagnosticResult != null}">
+  <div class="mb-3">
+      <p th:text="'Diagnostic Result: ' + ${diagnosticResult}"></p>
+  </div>
+</div>
+
       <!-- ======= Featured Services Section ======= -->
       <section id="featured-services" class="featured-services">
         <div class="container" data-aos="fade-up">

@@ -6,20 +6,7 @@
     </head>
     <body>
         <div layout:fragment="content1">
-           <!-- Include FullCalendar dependencies -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
-    <style>
-      #calendar {
-          max-height: 400px;
-      }
-
-      .fc-day-today {
-          background-color: #FFD1DC; /* Baby pink color */
-      }
-  </style>
+           
             <main id="main">
 
                 <section id="featured-services">
@@ -36,15 +23,14 @@
               </div>
 
         <section class="section">
-            <div class="row">
-      
-              <div class="col-lg-6">
-                <div class="card">
+            <div >
+                <div style="display: flex; justify-content: center;  ">
+                <div class="card" style="width: 650px;" >
                   <div class="card-body">
                     <h5 class="card-title">Line Chart</h5>
       
 <!-- Line Chart -->
-<canvas id="lineChart" style="max-height: 400px;"></canvas>
+<canvas id="lineChart" style="max-height: 400px;" ></canvas>
 
 <script th:inline="javascript">
   /*<![CDATA[*/
@@ -105,39 +91,7 @@
 
                   </div>
                 </div>
-              </div>
-
-              <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Calendar</h5>
-
-                        <!-- Calendar Container -->
-                        <div id="calendar" style="max-height: 400px;">
-
-                        <script>
-                            document.addEventListener("DOMContentLoaded", function () {
-                                // Initialize FullCalendar
-                                $('#calendar').fullCalendar({
-                                    header: {
-                                        left: 'prev,next today',
-                                        center: 'title',
-                                        right: 'month,basicWeek,basicDay'
-                                    },
-                                    defaultDate: $.fullCalendar.moment(),
-                                    editable: true,
-                                    eventLimit: true // Allow "more" link when too many events
-                                    // You can add more configuration options here
-                                });
-                            });
-                        </script>
-                        <!-- End Calendar Container -->
-
-                    </div>
                 </div>
-            </div>
-
-            </div>
         </section>
 
 
