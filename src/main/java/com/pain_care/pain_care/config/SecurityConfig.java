@@ -25,54 +25,53 @@ import com.pain_care.pain_care.service.UserinfoService;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
- 
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-     public UserDetailsService userdetailservice() {
-         //UserDetails user = User.withUsername(null)
-           //  .password( encoder.encode("password"))
-            // .build();
-         //return new InMemoryUserDetailsManager(user);
-         return new UserinfoService(); 
-     }
+    public UserDetailsService userdetailservice() {
+        //UserDetails user = User.withUsername(null)
+        //  .password( encoder.encode("password"))
+        // .build();
+        //return new InMemoryUserDetailsManager(user);
+        return new UserinfoService();
+    }
 
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
-          	.authorizeHttpRequests((authorizeHttpRequests) ->
-          		authorizeHttpRequests
-              		.requestMatchers("/","/assets/**","/css/**","/js/**","/images/**").permitAll()
-                    .requestMatchers("/users/register").permitAll()
-                    .requestMatchers("/users/login").permitAll()
+                .authorizeHttpRequests((authorizeHttpRequests) ->
+                        authorizeHttpRequests
+                                .requestMatchers("/", "/assets/**", "/css/**", "/js/**", "/images/**").permitAll()
+                                .requestMatchers("/users/register").permitAll()
+                                .anyRequest().authenticated()
 
-                    .anyRequest().authenticated()
-                    
-                ).formLogin((formLogin) ->
-                    formLogin
-                       .defaultSuccessUrl("/") // Redirect after successful login
-                       .permitAll()
-                
+                ).formLogin(formLogin ->
+                        formLogin
+                                .loginPage("/users/login")
+                                .loginProcessingUrl("/login")
+                                .defaultSuccessUrl("/") // Redirect after successful login
+                                .permitAll()
+
                 ).logout(logout ->
-                logout
-                    .logoutUrl("/logout") // Customize the logout URL if needed
-                    .logoutSuccessUrl("/") // Redirect after successful logout
-                    .permitAll()
-            )
-            
-                ;
-                
-         return http.build();
+                        logout
+                                .logoutUrl("/logout") // Customize the logout URL if needed
+                                .logoutSuccessUrl("/") // Redirect after successful logout
+                                .permitAll()
+                );
+
+        return http.build();
     }
+
     @Bean
-    public AuthenticationProvider authenticationProvider(){
-       DaoAuthenticationProvider authenticationProvider=new DaoAuthenticationProvider();
-       authenticationProvider.setUserDetailsService(userdetailservice());
-       authenticationProvider.setPasswordEncoder(passwordEncoder());
-       return authenticationProvider;
-     }
-    
+    public AuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(userdetailservice());
+        authenticationProvider.setPasswordEncoder(passwordEncoder());
+        return authenticationProvider;
+    }
+
 }
