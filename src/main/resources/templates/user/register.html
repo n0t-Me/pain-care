@@ -1,19 +1,64 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout}">
+<html xmlns:th="http://www.thymeleaf.org" >
     <head>
-        <title >Register</title>
+        <title th:text="#{home.index.headline}" />
+        <!-- Favicons -->
+        <link href="/assets/img/Paincare_logo.jpg" rel="icon">
+        <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> 
+    <link rel="stylesheet" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/core.min.css">
+    <link rel='stylesheet' id='roboto-subset.css-css'  href='https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/mdb5/fonts/roboto-subset.css?ver=3.9.0-update.5' type='text/css' media='all' />
+
     </head>
     <body>
-        <div layout:fragment="content">
-            <div class="d-flex flex-wrap mb-4">
-                <h1 th:text="#{user.add.headline}" class="flex-grow-1" />
-                <div>
-                    <a th:href="@{/users}" th:text="#{user.add.back}" class="btn btn-secondary" />
-                </div>
-            </div>
+        <section class="text-center text-lg-start">
+            <style>
+              .cascading-right {
+                margin-right: -50px;
+              }
+          
+              @media (max-width: 991.98px) {
+                .cascading-right {
+                  margin-right: 0;
+                }
+              }
+              .appointment-btn {
+                margin-left: 25px;
+                background: #3fbbc0;
+                color: #fff;
+                border-radius: 4px;
+                padding: 8px 25px;
+                white-space: nowrap;
+                transition: 0.3s;
+                font-size: 14px;
+                display: inline-block;}
+
+
+            </style>
+          
+            <!-- Jumbotron -->
+            <div class="container py-4">
+              <div class="row g-0 align-items-center">
+                <div class="col-lg-7 mb-5 mb-lg-0">
+                  <div class="card cascading-right" style="
+                      background: hsla(0, 0%, 100%, 0.55);
+                      backdrop-filter: blur(30px);
+                      ">
+                    <div class="card-body p-5 shadow-5 text-center">
+                        <div style="text-align: left;">
+                        <a th:href="@{/}" class="logo " >
+                            <img th:src="@{/images/Paincare_logo-V2.png}" th:alt="#{app.title}" width="60" height="58" >
+                            <span th:text="#{app.title}" style="line-height: 1;
+                            font-weight: 600;
+                            letter-spacing: 0.5px;
+                            color: rgb(237, 140, 161); font-size: 35px;" />
+                        </a>
+                    </div>
+
+                        <h2 class="fw-bold mb-5">Register now</h2>
             <div th:replace="~{fragments/forms::globalErrors('user')}" />
-            <form th:action="${requestUri}" method="post">
+            <form th:action="${requestUri}" method="post" enctype="multipart/form-data">
                 <div th:replace="~{fragments/forms::inputRow(object='user', field='name')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='user', field='email')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='user', field='password')}" />
@@ -26,8 +71,21 @@
         </div>
     </div>
                 <div th:replace="~{fragments/forms::inputRow(object='user', field='language')}" />
-                <button type="submit" class="btn btn-primary mt-4" >Register</button>
+                <button type="submit" class="appointment-btn" >Register</button>
+                
             </form>
+            
         </div>
+    </div>
+  </div>
+
+  <div class="col-lg-5 mb-5 mb-lg-0">
+    <img src="/assets/img/secrvices-medicaux.png" class="w-100 rounded-4 shadow-4"
+      alt="" />
+  </div>
+</div>
+</div>
+<!-- Jumbotron -->
+</section>
     </body>
 </html>

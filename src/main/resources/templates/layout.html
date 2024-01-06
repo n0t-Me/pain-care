@@ -5,22 +5,32 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" rel="stylesheet" />
-        <link th:href="@{/webjars/flatpickr/4.6.13/dist/flatpickr.min.css}" rel="stylesheet" />
         <link th:href="@{/css/app.css}" rel="stylesheet" />
         <script th:src="@{/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js}" defer></script>
         <script th:src="@{/webjars/htmx.org/1.9.6/dist/htmx.min.js}" defer></script>
         <script th:src="@{/webjars/flatpickr/4.6.13/dist/flatpickr.min.js}" defer></script>
         <script th:src="@{/js/app.js}" defer></script>
+
+        <link href="/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
     </head>
     <body hx-boost="true">
         <header class="bg-light">
             <div class="container">
                 <nav class="navbar navbar-light navbar-expand-md">
-                    <a th:href="@{/}" class="navbar-brand">
-                        <img th:src="@{/images/logo.png}" th:alt="#{app.title}" width="30" height="30" class="d-inline-block align-top">
-                        <span th:text="#{app.title}" class="ps-1" />
-                    </a>
+                        <a th:href="@{/}" class="logo " >
+                            <img th:src="@{/images/Paincare_logo-V2.png}" th:alt="#{app.title}" width="60" height="58" >
+                            <span th:text="#{app.title}" style="line-height: 1;
+                            font-weight: 600;
+                            letter-spacing: 0.5px;
+                            color: rgb(237, 140, 161); font-size: 35px;" />
+                        </a>
                     <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarToggle"
                             th:aria-label="#{navigation.toggle}" aria-controls="navbarToggle" aria-expanded="false">
                         <span class="navbar-toggler-icon"></span>

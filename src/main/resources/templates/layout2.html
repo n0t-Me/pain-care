@@ -71,6 +71,9 @@
                 </li>
               </ul>
             </nav>
+            <nav class="topbar-nav ms-auto" th:unless="${username}">
+              login ?
+            </nav>
           </div>
         </div>
       
@@ -78,8 +81,6 @@
         <header id="header" class="fixed-top">
           <div class="container d-flex align-items-center">
       
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
             <a th:href="@{/}" class="logo me-auto">
                 <img th:src="@{/images/Paincare_logo-V2.png}" th:alt="#{app.title}" width="60" height="58" >
                 <span th:text="#{app.title}" class="ps-1" />

@@ -42,7 +42,7 @@ public class UserController {
 
     @PostMapping("/add")
     public String add(@ModelAttribute("user") @Valid final UserDTO userDTO,
-                      @RequestParam("imageFile") MultipartFile imageFile,
+                      @RequestParam(value = "imageFile", required = false) MultipartFile imageFile,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (!bindingResult.hasFieldErrors("email") && userService.emailExists(userDTO.getEmail())) {
             bindingResult.rejectValue("email", "Exists.user.email");
@@ -120,17 +120,14 @@ public class UserController {
 
     @PostMapping("/register")
 public String register(@ModelAttribute("user") @Valid final UserDTO userDTO,
-                        @RequestParam("imageFile") MultipartFile imageFile,
+                        @RequestParam(value = "imageFile", required = false) MultipartFile imageFile,
         final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
-    if (bindingResult.hasErrors()) {
-        return "user/register";
-    }
-
-    // Check if the email already exists
-    if (userService.emailExists(userDTO.getEmail())) {
-        bindingResult.rejectValue("email", "Exists.user.email");
-        return "user/register";
-    }
+            if (!bindingResult.hasFieldErrors("email") && userService.emailExists(userDTO.getEmail())) {
+                bindingResult.rejectValue("email", "Exists.user.email");
+            }
+            if (bindingResult.hasErrors()) {
+                return "user/register";
+            }
     // Convert MultipartFile to Base64-encoded string and set it in PostDTO
        if (imageFile != null && !imageFile.isEmpty()) {
         try {
@@ -141,7 +138,6 @@ public String register(@ModelAttribute("user") @Valid final UserDTO userDTO,
             e.printStackTrace();
         }
     }
-    // Other validation and registration logic
     userService.create(userDTO);
 
     redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("user.register.success"));
