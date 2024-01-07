@@ -51,6 +51,12 @@ public class UserService {
                 .orElseThrow(NotFoundException::new);
     }
 
+    public UserDTO get(final String email) {
+        return userRepository.findByEmail(email)
+                .map(user -> mapToDTO(user, new UserDTO()))
+                .orElseThrow(NotFoundException::new);
+    }
+
     public Integer create(final UserDTO userDTO) {
         final User user = new User();
         mapToEntity(userDTO, user);

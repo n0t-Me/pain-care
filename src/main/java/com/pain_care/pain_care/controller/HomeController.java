@@ -1,5 +1,7 @@
 package com.pain_care.pain_care.controller;
 
+import com.pain_care.pain_care.model.DiagnosticDTO;
+import com.pain_care.pain_care.service.DiagnosticService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,18 +14,27 @@ import com.pain_care.pain_care.domain.UserDetailsinfo;
 @Controller
 public class HomeController {
 
+    private final DiagnosticService diagnosticService;
+
+    public HomeController(DiagnosticService diagnosticService) {
+        this.diagnosticService = diagnosticService;
+    }
+
     @GetMapping("/")
-    public String index(@AuthenticationPrincipal UserDetailsinfo userDetails,Model model,@RequestParam(name = "result", required = false) String diagnosticResult) {
+    public String index(@AuthenticationPrincipal UserDetailsinfo userDetails,Model model) {
 
             if (userDetails != null) {
                 String username = userDetails.getName();
                 Integer userId = userDetails.getId();
                 String pic = userDetails.getPic();
+                DiagnosticDTO diagnosticDTO = diagnosticService.getLatestDiagnostic(userId);
+
+                System.out.println(diagnosticDTO);
 
                 model.addAttribute("username", username);
                 model.addAttribute("userId", userId);
                 model.addAttribute("picture", pic);
-                model.addAttribute("diagnosticResult", diagnosticResult);
+                model.addAttribute("diagnosticResult", diagnosticDTO.getResult());
             }
 
 

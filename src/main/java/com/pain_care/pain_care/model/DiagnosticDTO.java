@@ -62,4 +62,15 @@ public class DiagnosticDTO {
     public void setResult(String result) {
         this.result = result;
     }
+
+    @Override
+    public String toString() {
+        return "DiagnosticDTO{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", answers=" + answers +
+                ", score=" + score +
+                ", result='" + result + '\'' +
+                '}';
+    }
 }

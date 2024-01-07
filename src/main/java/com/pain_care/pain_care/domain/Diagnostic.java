@@ -23,7 +23,29 @@ public class Diagnostic {
     @Column(nullable = false)
     private String answers;
 
+    @Column(nullable = false)
+    private String result;
+
+    @Column(nullable = false)
+    private Float score;
+
     // Constructors, getters, and setters
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public Float getScore() {
+        return score;
+    }
+
+    public void setScore(Float score) {
+        this.score = score;
+    }
 
     public Integer getId() {
         return id;

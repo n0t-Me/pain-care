@@ -47,12 +47,19 @@ public class DiagnosticService {
     private DiagnosticDTO mapToDTO(final Diagnostic diagnostic, final DiagnosticDTO diagnosticDTO) {
         diagnosticDTO.setId(diagnostic.getId());
         diagnosticDTO.setUserId(diagnostic.getUserId());
+        diagnosticDTO.setAnswers(diagnostic.getAnswersList());
+        diagnosticDTO.setResult(diagnostic.getResult());
+        diagnosticDTO.setScore(diagnostic.getScore());
         // Map other fields
         return diagnosticDTO;
     }
 
     private Diagnostic mapToEntity(final DiagnosticDTO diagnosticDTO, final Diagnostic diagnostic) {
         diagnostic.setUserId(diagnosticDTO.getUserId());
+        diagnostic.setAnswers(diagnosticDTO.getAnswers());
+        diagnostic.setId(diagnosticDTO.getId());
+        diagnostic.setScore(diagnosticDTO.getScore());
+        diagnostic.setResult(diagnosticDTO.getResult());
         // Map other fields
         return diagnostic;
     }

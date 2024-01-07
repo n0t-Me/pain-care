@@ -1,14 +1,34 @@
 package com.pain_care.pain_care.controller;
 
+import com.pain_care.pain_care.domain.User;
 import com.pain_care.pain_care.model.DiagnosticDTO;
+import com.pain_care.pain_care.model.UserDTO;
+import com.pain_care.pain_care.repos.UserRepository;
 import com.pain_care.pain_care.service.DiagnosticService;
+import com.pain_care.pain_care.service.UserService;
+import com.pain_care.pain_care.service.UserinfoService;
 import com.pain_care.pain_care.util.WebUtils;
 
+import java.security.Principal;
+import java.security.Security;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
 
+import jakarta.validation.Valid;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.FluentQuery;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -18,13 +38,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class DiagnosticController {
 
     private final DiagnosticService diagnosticService;
+    private final UserService userService;
 
-    public DiagnosticController(DiagnosticService diagnosticService) {
+    public DiagnosticController(DiagnosticService diagnosticService, UserService userService) {
         this.diagnosticService = diagnosticService;
+        this.userService = userService;
     }
 
     @GetMapping
-    public String showDiagnosticForm(Model model) {
+    public String showDiagnosticForm(@ModelAttribute("diagnostics") @Valid final DiagnosticDTO diagnosticDTO, Model model) {
         // Replace with your logic to retrieve questionsBank data
         Object[][] questionsBank = {
                 {"When do you start your period ?", new String[]{
@@ -55,18 +77,27 @@ public class DiagnosticController {
     }
 
     @PostMapping
-public String submitDiagnosticForm(DiagnosticDTO diagnosticDTO, RedirectAttributes redirectAttributes) {
+public String submitDiagnosticForm(
+            Principal principal,
+            @ModelAttribute("diagnostics") @Valid final DiagnosticDTO diagnosticDTO,
+            final BindingResult bindingResult,
+            final RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            return "diagnostics/diagnostic";
+        }
+        String username = principal.getName();
+        UserDTO user = userService.get(username);
     try {
-        // Set answers in DiagnosticDTO
-        diagnosticDTO.setAnswers(diagnosticDTO.getAnswers());
+        diagnosticDTO.setUserId(user.getId());
 
-        // Calculate the score (replace this with your actual calculation logic)
         float calculatedScore = calculateScore(diagnosticDTO.getAnswers());
         diagnosticDTO.setScore(calculatedScore);
 
         // Set the result (replace this with your actual result calculation logic)
         String result = calculateResult(calculatedScore);
         diagnosticDTO.setResult(result);
+
+        System.out.println(diagnosticDTO);
 
         // Save the diagnostic
         diagnosticService.create(diagnosticDTO);
@@ -75,7 +106,7 @@ public String submitDiagnosticForm(DiagnosticDTO diagnosticDTO, RedirectAttribut
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("diagnostic.create.success"));
 
         // Redirect to home page
-        return "redirect:/home/index";
+        return "redirect:/";
     } catch (Exception e) {
         // Log the exception for troubleshooting
         e.printStackTrace();  // Replace with a proper logging mechanism
