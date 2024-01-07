@@ -1,12 +1,45 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout2}">
 <head>
    
-    <title>Diagnostic Form</title>
+    <title th:text="#{home.index.headline}" />
 </head>
 <body>
+    <div layout:fragment="content1">
+        <main id="main">
+            <section id="featured-services">
+
+            </section>
+
+    <div layout:fragment="content">
+
+        <section id="contact" class="contact">
+          <div class="container">
+    
+            <div class="section-title">
+              <h2>Test diagnostic</h2>
+              <p></p>
+            </div>
+    
+          </div>
+    
+          <div class="container">
+
+          
+            <section id="heroD">
+
     <form id="diagnostic-form" th:action="@{/diagnostic}" method="POST" th:object="${diagnosticDTO}">
-        <div th:each="question, questionIndex : ${questionsBank}" class="diagnostic-panel">
+            <div id="heroCarousel" data-bs-interval="false" class="carousel slide carousel-fade" >
+        
+        
+              <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+        
+              <div class="carousel-inner" role="listbox">
+
+
+        <div th:each="question, questionIndex : ${questionsBank}"  class="carousel-item " th:classappend="${questionIndex.index == 0} ? 'active' : ''" style="background-image: url(/assets/img/stethoscope-medical-equipment.jpg) ;      background-position: center 53%; /* Adjust the percentage for desired cropping */"        >
+            <div class="container">
+
             <div class="mb-3">
                 <p th:text="${question[0]}"></p>
             </div>
@@ -17,9 +50,29 @@
             </div>
         </th:block>
         </div>
-        <button id="submit-btn" class="btn btn-primary" type="submit">Submit</button>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+<span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true" style="color: rgba(255, 255, 255, 0.8); background-color :  #3fbbc0; border-radius: 50%;  margin-top: 450px;"></span>
+</a>
+
+<a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+<span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true" style="color: rgba(255, 255, 255, 0.8); background-color :  #3fbbc0; border-radius: 50%;  margin-top: 450px;">
+</span>
+</a>
+<br>
+<div class="text-center">
+<button id="submit-btn" class="appointment-btn" type="submit">Submit</button>
+</div>
 
     </form>
+</section><!-- End Hero -->
+
+
         
         
         
@@ -36,14 +89,12 @@
                     <p th:text="'Answer : ' + ${item[1][diagnosticDTO.answers[loop.index]]}"></p>
                 </div>
             </th:each>
-            <a class="mb-3" th:href="@{/}">
-                <button class="btn btn-primary">Go Back Home</button>
-            </a>
+           
         </div>
+       
+</div>
+
     </div>
-    <a class="mb-3" th:href="@{/}">
-        <button class="btn btn-primary">Go Back Home</button>
-    </a>
 
 </body>
 </html>

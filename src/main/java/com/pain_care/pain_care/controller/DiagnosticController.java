@@ -1,29 +1,15 @@
 package com.pain_care.pain_care.controller;
 
-import com.pain_care.pain_care.domain.User;
 import com.pain_care.pain_care.model.DiagnosticDTO;
 import com.pain_care.pain_care.model.UserDTO;
-import com.pain_care.pain_care.repos.UserRepository;
 import com.pain_care.pain_care.service.DiagnosticService;
 import com.pain_care.pain_care.service.UserService;
-import com.pain_care.pain_care.service.UserinfoService;
 import com.pain_care.pain_care.util.WebUtils;
 
 import java.security.Principal;
-import java.security.Security;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Function;
 
 import jakarta.validation.Valid;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.FluentQuery;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -49,26 +35,26 @@ public class DiagnosticController {
     public String showDiagnosticForm(@ModelAttribute("diagnostics") @Valid final DiagnosticDTO diagnosticDTO, Model model) {
         // Replace with your logic to retrieve questionsBank data
         Object[][] questionsBank = {
-                {"When do you start your period ?", new String[]{
-                        "Before 11 years old",
-                        "Above 11 years old"
+                {"Quand est-ce que vous commencez vos règles ?", new String[]{
+                        "Avant l'age de 11 ans",
+                        "Apres l'age de 11 ans"
                 }},
-                {"Your menstrual cycle length average ?", new String[]{
-                        "Less than 27 days",
-                        "More than 27 days",
-                        "Not sure"
+                {"Quelle est la durée moyenne de votre cycle menstruel?", new String[]{
+                        "Moins de 27 jours",
+                        "Plud de 27 jours",
+                        "Je ne suis pas sure"
                 }},
-                {"Do you have a family history of endometriosis ?", new String[]{
-                        "Yes",
-                        "No"
+                {"Avez vous des antécédants familiaux d'endométriose ?", new String[]{
+                        "Oui",
+                        "Non"
                 }},
-                {"Did you give birth ?", new String[]{
-                        "Yes",
-                        "No"
+                {"Avez-vous deja accouché ?", new String[]{
+                        "Oui",
+                        "Non"
                 }},
-                {"Do you have trouble getting pregnant ?", new String[]{
-                        "Yes",
-                        "No"
+                {"Avez vous des difficultés à tomber enceinte ?", new String[]{
+                        "Oui",
+                        "Non"
                 }}
         };
 
@@ -127,28 +113,28 @@ public String submitDiagnosticForm(
 
             switch (i) {
                 case 0:
-                    // "When do you start your period ?"
+                    // "Quand est-ce que vous commencez vos règles ?"
                     totalScore += (answerIndex == 0) ? 2.0 : 0.5;
                     break;
                 case 1:
-                    // "Your menstrual cycle length average ?"
+                    // "Quelle est la durée moyenne de votre cycle menstruel?"
                     if (answerIndex == 0) {
                         totalScore += 1.0;
                     } else if (answerIndex == 1) {
                         totalScore += 1.5;
                     }
-                    // No score for "Not sure"
+                    // No score for "Je suis pas sure"
                     break;
                 case 2:
-                    // "Do you have a family history of endometriosis ?"
+                    // "Avez vous des antécédants familiaux d'endométriose ?"
                     totalScore += (answerIndex == 0) ? 3.0 : 0.5;
                     break;
                 case 3:
-                    // "Did you give birth ?"
+                    // "Avez-vous deja accouché ?"
                     totalScore += (answerIndex == 0) ? 1.0 : 0.5;
                     break;
                 case 4:
-                    // "Do you have trouble getting pregnant ?"
+                    // "Avez vous des difficultés à tomber enceinte ?"
                     totalScore += (answerIndex == 0) ? 2.0 : 0.5;
                     break;
                 // Add more cases if you have additional questions

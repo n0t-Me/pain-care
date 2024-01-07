@@ -268,6 +268,7 @@ h6 {
   background: #3fbbc0;
   color: #fff;
   border-radius: 4px;
+  border-color: #fff;
   padding: 8px 25px;
   white-space: nowrap;
   transition: 0.3s;
@@ -682,6 +683,179 @@ h6 {
   }
 }
 
+
+
+#heroD {
+  width: 100%;
+  height: 60vh;
+  background-color: rgba(60, 60, 60, 0.8);
+  overflow: hidden;
+  position: relative;
+}
+
+#heroD .carousel,
+#heroD .carousel-inner,
+#heroD .carousel-item,
+#heroD .carousel-item::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+#heroD .carousel-item {
+  background-size: cover;
+  background-position: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+#heroD .container {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 50px;
+  border-top: 4px solid #3fbbc0;
+}
+
+@media (max-width: 1200px) {
+  #heroD .container {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}
+
+#heroD h2 {
+  color: #2f2f2f;
+  margin-bottom: 20px;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+#heroD p {
+  margin: 0 auto 30px auto;
+  color: #555555;
+}
+
+#heroD .carousel-inner .carousel-item {
+  transition-property: opacity;
+  background-position: center top;
+}
+
+#heroD .carousel-inner .carousel-item,
+#heroD .carousel-inner .active.carousel-item-start,
+#heroD .carousel-inner .active.carousel-item-end {
+  opacity: 0;
+}
+
+#heroD .carousel-inner .active,
+#heroD .carousel-inner .carousel-item-next.carousel-item-start,
+#heroD .carousel-inner .carousel-item-prev.carousel-item-end {
+  opacity: 1;
+  transition: 0.5s;
+}
+
+#heroD .carousel-inner .carousel-item-next,
+#heroD .carousel-inner .carousel-item-prev,
+#heroD .carousel-inner .active.carousel-item-start,
+#heroD .carousel-inner .active.carousel-item-end {
+  left: 0;
+  transform: translate3d(0, 0, 0);
+}
+
+#heroD .carousel-control-next-icon,
+#heroD .carousel-control-prev-icon {
+  background: none;
+  font-size: 30px;
+  line-height: 0;
+  width: auto;
+  height: auto;
+  background: rgba(63, 187, 192, 0.8);
+  border-radius: 50px;
+  transition: 0.3s;
+  color: rgba(255, 255, 255, 0.5);
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#heroD .carousel-control-next-icon:hover,
+#heroD .carousel-control-prev-icon:hover {
+  background: #3fbbc0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+#heroD .carousel-indicators li {
+  list-style-type: none;
+  cursor: pointer;
+  background: #fff;
+  overflow: hidden;
+  border: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50px;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+#heroD .carousel-indicators li.active {
+  opacity: 1;
+  background: #3fbbc0;
+}
+
+#heroD .btn-get-started {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 14px 32px;
+  border-radius: 4px;
+  transition: 0.5s;
+  line-height: 1;
+  color: #fff;
+  background: #3fbbc0;
+}
+
+#heroD .btn-get-started:hover {
+  background: #65c9cd;
+}
+
+@media (max-width: 992px) {
+  #heroD {
+    height: 100vh;
+  }
+
+  #heroD .container {
+    margin-top: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  #heroD h2 {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 1024px) {
+
+  #heroD .carousel-control-prev,
+  #heroD .carousel-control-next {
+    width: 5%;
+  }
+}
+
+@media (max-height: 500px) {
+  #heroD {
+    height: 160vh;
+  }
+}
 /*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
@@ -1322,90 +1496,90 @@ section {
 /*--------------------------------------------------------------
 # Doctors
 --------------------------------------------------------------*/
-.doctors .member {
-  margin-bottom: 20px;
-  overflow: hidden;
-  text-align: center;
-  border-radius: 4px;
-  background: #fff;
-  box-shadow: 0px 2px 15px rgba(63, 187, 192, 0.1);
 
-  /* Increase the size of the member */
-  width: 100%;
-  max-width: 700px;
-  max-height: 1000px; /* Adjust the maximum width as needed */
+.doctors .blog .posts-list article {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  height: 100%;
 }
 
-.doctors .member .member-img {
-  position: relative;
+.doctors .blog .posts-list article + article {
+  margin-top: 60px;
+}
+
+.doctors .blog .posts-list .post-img {
+  max-height: 240px;
+  margin: -30px -30px 0 -30px;
   overflow: hidden;
 }
 
-.doctors .member .social {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  height: 40px;
-  opacity: 0;
-  transition: ease-in-out 0.3s;
-  background: rgba(255, 255, 255, 0.85);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.doctors .member .social a {
-  transition: color 0.3s;
-  color: #555555;
-  margin: 0 10px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.doctors .member .social a i {
-  line-height: 0;
-}
-
-.doctors .member .social a:hover {
-  color: #3fbbc0;
-}
-
-.doctors .member .social i {
-  font-size: 18px;
-  margin: 0 2px;
-}
-
-.doctors .member .member-info {
-  padding: 25px 15px;
-}
-
-.doctors .member .member-info h4 {
+.doctors .blog .posts-list .title {
+  font-size: 24px;
   font-weight: 700;
-  margin-bottom: 5px;
-  font-size: 18px;
-  color: #555555;
+  padding: 0;
+  margin: 20px 0 0 0;
 }
 
-.doctors .member .member-info span {
-  display: block;
-  font-size: 13px;
-  font-weight: 400;
-  color: #aaaaaa;
+.doctors .blog .posts-list .title a {
+  color: rgb(72, 86, 100);
+  transition: 0.3s;
 }
 
-.doctors .member .member-info p {
-  white-space: normal;
-  white-space: pre-wrap; /* Allow line breaks */
-  font-style: italic;
+.doctors .blog .posts-list .title a:hover {
+  color: var(--color-primary);
+}
+
+.doctors .blog .posts-list .meta-top {
+  margin-top: 20px;
+  color: var(--color-gray);
+}
+
+.doctors .blog .posts-list .meta-top ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.doctors .blog .posts-list .meta-top ul li + li {
+  padding-left: 20px;
+}
+
+.doctors .blog .posts-list .meta-top i {
+  font-size: 16px;
+  margin-right: 8px;
+  line-height: 0;
+  color: rgb(63, 187, 192);
+}
+
+.doctors .blog .posts-list .meta-top a {
+  color: var(--color-gray);
   font-size: 14px;
-  color: #777777;
+  display: inline-block;
+  line-height: 1;
 }
 
-.doctors .member:hover .social {
-  opacity: 1;
+.doctors .blog .posts-list .content {
+  margin-top: 20px;
+  word-wrap: break-word;
 }
+
+.doctors .blog .posts-list .read-more a {
+  display: inline-block;
+  background: rgb(63, 187, 192);
+  color: white;
+  padding: 8px 30px;
+  transition: 0.3s;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.doctors .blog .posts-list .read-more a:hover {
+  background: rgba(var(--color-primary-rgb), 0.8);
+}
+
 
 /*--------------------------------------------------------------
 # Gallery

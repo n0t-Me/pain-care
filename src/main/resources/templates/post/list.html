@@ -25,35 +25,62 @@
             <a th:href="@{/posts/add}" class="appointment-btn scrollto"><span th:text="#{post.list.createNew}" class="d-none d-md-inline"></span></a>
           </div>
   
-          <div th:if="${!posts.empty}" class="row">
+          <section id="blog" class="blog">
+            <div class="container" data-aos="fade-up">
+      
+      
+      
+                  <div th:if="${!posts.empty}" class="row gy-4 posts-list">
 
-            <div th:each="post : ${posts}" class="col-lg-6 col-md-6 d-flex align-items-stretch">
-              <div class="member" data-aos="fade-up" data-aos-delay="100">
-                <div class="member-img">
-                    <img th:src="'data:image/png;base64,' + ${post.image}" alt="Image" style="max-width: 400px; max-height: 400px;"/>
-                  <div class="social">
-                    <div class="float-end text-nowrap">
-                        <a th:href="@{/posts/edit/{id}(id=${post.id})}"   >
-                        <button th:text="#{post.list.edit}" class="btn btn-sm btn-secondary"></button>
-                        </a>
-                        <form th:action="@{/posts/delete/{id}(id=${post.id})}"
-                                th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
-                            <button th:text="#{post.list.delete}" type="submit" class="btn btn-sm btn-secondary" />
-                        </form>
-                    </div>
-                  </div>
+            <div th:each="post : ${posts}" class="col-lg-6 posts-list">
+              <article class="d-flex flex-column" >
+                <div class="post-img">
+                    <img th:src="'data:image/png;base64,' + ${post.image}" alt="Image" class="img-fluid"/>
                 </div>
-                <div class="member-info; height=500px " >
-                  <h4 th:text="${post.title}"></h4>
-                  <span th:text="${post.id}"></span>
-                  <p th:text="${post.user}"></p>
-                  <p style="font-size: 14px;   margin-top: 20px; white-space: normal; margin-left: 10px; margin-right: 10px;" th:text="${post.description}"></p>
+
+                <h2 th:text="${post.title}"class="title"></h2>
+
+                <div class="meta-top">
+                  <ul>
+                    <li class="d-flex align-items-center"><i class="bi bi-sticky" th:text="${post.id}"></i></li>
+                    <li class="d-flex align-items-center"><i class="bi bi-person" th:text="${post.user}"></i></li>
+                  </ul>
+                </div>
+
+                <div class="content" style="  word-wrap: break-word;">
+                  <p th:text="${post.description}"></p>
+                </div>
+
+
+                <div class="row gy-4 ">
+                <div class="col-lg-4">
+                  <a  th:href="@{/posts/edit/{id}(id=${post.id})}" >
+                    <button th:text="#{post.list.edit}" class="appointment-btn"></button>
+                  </a>
+                </div>
+
+                <div class="col-lg-4">
+                  <form th:action="@{/posts/delete/{id}(id=${post.id})}"
+                            th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
+                        <button th:text="#{post.list.delete}" type="submit" class="appointment-btn" />
+                    </form>
+                </div>
               </div>
+
+                
+                
+
+              </article>
+            </div><!-- End post list item -->
+
               </div>
             </div>
   
             
   
+        </div>
+          </div>
+        </section><!-- End Blog Section -->
         </div>
       </section><!-- End Doctors Section -->
             </main>
