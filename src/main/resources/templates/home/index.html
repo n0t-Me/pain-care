@@ -16,7 +16,6 @@
           <div class="container">
             <h2>Bienvenu sur <span>PainCare</span></h2>
             <p>La solution m-Health PainCare a été développée dans le but de fournir des ressources complètes et une assistance aux femmes qui luttent contre l'endométriose.</p>
-            <a href="#about" class="btn-get-started scrollto">Lire Plus</a>
           </div>
         </div>
 
@@ -25,7 +24,6 @@
           <div class="container">
             <h2>Bienvenu sur PainCare</h2>
             <p>La solution m-Health PainCare a été développée dans le but de fournir des ressources complètes et une assistance aux femmes qui luttent contre l'endométriose.</p>
-            <a href="#about" class="btn-get-started scrollto">Lire Plus</a>
           </div>
         </div>
 
@@ -34,7 +32,6 @@
           <div class="container">
             <h2>Bienvenu sur PainCare</h2>
             <p>La solution m-Health PainCare a été développée dans le but de fournir des ressources complètes et une assistance aux femmes qui luttent contre l'endométriose.</p>
-            <a href="#about" class="btn-get-started scrollto">Lire Plus</a>
           </div>
         </div>
 
@@ -56,28 +53,36 @@
 
     <main id="main">
       
-
-<a th:href="@{/diagnostic}" class="col p-3 m-3 bg-primary-subtle border border-primary rounded cursor-pointer shadow-sm">
-  <h6>Diagnostic test</h6>
-  <p>Discover your potential endometriosis diagnostic</p>
-</a>
-
-<div th:if="${diagnosticResult != null}">
-  <div class="mb-3">
-      <p th:text="'Diagnostic Result: ' + ${diagnosticResult}"></p>
-  </div>
-</div>
-
       <!-- ======= Featured Services Section ======= -->
       <section id="featured-services" class="featured-services">
         <div class="container" data-aos="fade-up">
-  
+          <div class="row justify-content-center"></div>
+          <a th:href="@{/diagnostic}">
+            <div class="d-flex align-items-center rounded border border-danger p-3 m-3 bg-white shadow-sm">
+        <div class="flex-grow-1">
+            <h6 style="color: black; ">Dernier score</h6>
+            <p style="color: black;">Mettez à jour votre score régulièrement</p>
+        </div>
+        <div style="background-image: url('/assets/img/cercle_rose.webp'); background-size: cover;
+        background-position: center; 
+        width: 100px; 
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;">
+        <strong th:if="${username}" class="mx-3" th:text="${diagnosticResult} +' !'" style="margin-right: 2rem!important; color: aliceblue;z-index: 10000;position: absolute"></strong>
+        <strong th:unless="${username}" class="mx-3"  style="margin-right: 2rem!important; color: aliceblue;z-index: 10000;position: absolute">Vas-y!</strong>
+         </div>
+        </div>
+      </a>
+        </div>
           <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-              <a th:href="@{/posts}"><div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" >
+              <a th:href="@{/diagnostic}"><div class="icon-box" data-aos="fade-up" data-aos-delay="100">
                 <div class="icon"><i class="fas fa-heartbeat"></i></div>
-                <h4 class="title">Communauté</h4>
-                <p class="description">Découvrez une communauté de soutien et partagez des posts!</p>
+                <h4 class="title">Test de diagnostic</h4>
+                <p class="description">Découvrez votre potentiel d'endométriose.</p>
               </div></a>
             </div>
   
@@ -99,19 +104,8 @@
   
           </div>
   
-        </div>
       </section><!-- End Featured Services Section -->
 
-           
-            <div class="col-md-4 mb-5">
-                <h4 th:text="#{home.index.exploreEntities}" class="mb-3" />
-                <div class="list-group">
-                    <a th:href="@{/users}" th:text="#{user.list.headline}" class="list-group-item list-group-item-action" />
-                    <a th:href="@{/posts}" th:text="#{post.list.headline}" class="list-group-item list-group-item-action" />
-                    <a th:href="@{/comments}" th:text="#{comment.list.headline}" class="list-group-item list-group-item-action" />
-                    <a th:href="@{/painRecords}" th:text="#{painRecord.list.headline}" class="list-group-item list-group-item-action" />
-                </div>
-            </div>
 
             
 

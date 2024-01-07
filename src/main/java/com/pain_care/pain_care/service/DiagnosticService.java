@@ -18,7 +18,7 @@ public class DiagnosticService {
     public DiagnosticDTO getLatestDiagnostic(final Integer userId) {
         Diagnostic diagnostic = diagnosticRepository.findFirstByUserId(userId);
         if (diagnostic == null) {
-            throw new NotFoundException("Diagnostic not found for user with ID: " + userId);
+            return null;
         }
 
         return mapToDTO(diagnostic, new DiagnosticDTO());

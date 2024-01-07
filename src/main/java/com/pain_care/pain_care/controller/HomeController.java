@@ -28,13 +28,17 @@ public class HomeController {
                 Integer userId = userDetails.getId();
                 String pic = userDetails.getPic();
                 DiagnosticDTO diagnosticDTO = diagnosticService.getLatestDiagnostic(userId);
+                                 if (diagnosticDTO== null) {
 
+                                model.addAttribute("diagnosticResult", "vas-y");
+
+                      }else{
                 System.out.println(diagnosticDTO);
+                                model.addAttribute("diagnosticResult", diagnosticDTO.getResult());}
 
                 model.addAttribute("username", username);
                 model.addAttribute("userId", userId);
                 model.addAttribute("picture", pic);
-                model.addAttribute("diagnosticResult", diagnosticDTO.getResult());
             }
 
 
