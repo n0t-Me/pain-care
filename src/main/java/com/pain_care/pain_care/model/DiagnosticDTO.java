@@ -10,7 +10,7 @@ public class DiagnosticDTO {
     private Float score;
     private String result;
 
-    // Constructors
+
     public DiagnosticDTO() {
     }
 
@@ -22,7 +22,7 @@ public class DiagnosticDTO {
         this.result = result;
     }
 
-    // Getters and setters
+
     public Integer getId() {
         return id;
     }

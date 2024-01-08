@@ -24,8 +24,8 @@ public class UserinfoService implements UserDetailsService {
         Optional<User> userOptional = userRepository.findByEmail(username);
 
         return userOptional.map(user -> {
-            // Retrieve user authorities/roles from your User entity
-            Collection<? extends GrantedAuthority> authorities = user.getAuthorities(); // Replace this with your actual method to get authorities
+
+            Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
 
             return new UserDetailsinfo(user, authorities);
         }).orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));

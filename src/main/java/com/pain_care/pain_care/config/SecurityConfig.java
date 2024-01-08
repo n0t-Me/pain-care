@@ -16,9 +16,9 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import com.pain_care.pain_care.service.UserinfoService;
 
-//import com.pain_care.pain_care.domain.User;
-//import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-//import com.pain_care.pain_care.service.UserService;
+
+
+
 
 
 @Configuration
@@ -33,10 +33,10 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userdetailservice() {
-        //UserDetails user = User.withUsername(null)
-        //  .password( encoder.encode("password"))
-        // .build();
-        //return new InMemoryUserDetailsManager(user);
+
+
+
+
         return new UserinfoService();
     }
 
@@ -53,12 +53,12 @@ public class SecurityConfig {
                         formLogin
                                 .loginPage("/users/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/") // Redirect after successful login
+                                .defaultSuccessUrl("/")
                                 .permitAll()
 
                 ).logout(logout ->
                         logout
-                                .logoutSuccessUrl("/") // Redirect after successful logout
+                                .logoutSuccessUrl("/")
                                 .permitAll()
                 );
 

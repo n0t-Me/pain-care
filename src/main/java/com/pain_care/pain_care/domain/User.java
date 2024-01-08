@@ -163,8 +163,8 @@ public class User {
     }
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // If your system doesn't use roles, you can return a default authority or an empty collection
-        // In this example, all users will have a simple authority 'ROLE_USER'
+
+
 
         return Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
     }

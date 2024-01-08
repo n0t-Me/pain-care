@@ -61,7 +61,7 @@ public class PainRecordService {
         painRecordDTO.setMakePainWorse(painRecord.getMakePainWorse());
         painRecordDTO.setFeelings(painRecord.getFeelings());
         painRecordDTO.setUser(painRecord.getUser() == null ? null : painRecord.getUser().getId());
-        painRecordDTO.setDateCreated(painRecord.getDateCreated());  // Ajoutez cette ligne
+        painRecordDTO.setDateCreated(painRecord.getDateCreated());
         return painRecordDTO;
     }
 

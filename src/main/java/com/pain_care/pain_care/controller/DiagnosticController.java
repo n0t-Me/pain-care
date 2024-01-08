@@ -33,7 +33,7 @@ public class DiagnosticController {
 
     @GetMapping
     public String showDiagnosticForm(@ModelAttribute("diagnostics") @Valid final DiagnosticDTO diagnosticDTO, Model model) {
-        // Replace with your logic to retrieve questionsBank data
+
         Object[][] questionsBank = {
                 {"Quand est-ce que vous commencez vos règles ?", new String[]{
                         "Avant l'age de 11 ans",
@@ -79,75 +79,75 @@ public String submitDiagnosticForm(
         float calculatedScore = calculateScore(diagnosticDTO.getAnswers());
         diagnosticDTO.setScore(calculatedScore);
 
-        // Set the result (replace this with your actual result calculation logic)
+
         String result = calculateResult(calculatedScore);
         diagnosticDTO.setResult(result);
 
         System.out.println(diagnosticDTO);
 
-        // Save the diagnostic
+
         diagnosticService.create(diagnosticDTO);
 
-        // Add a flash attribute for success message if needed
+
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("diagnostic.create.success"));
 
-        // Redirect to home page
+
         return "redirect:/";
     } catch (Exception e) {
-        // Log the exception for troubleshooting
-        e.printStackTrace();  // Replace with a proper logging mechanism
-        // Add a flash attribute for error message
+
+        e.printStackTrace();
+
         redirectAttributes.addFlashAttribute(WebUtils.MSG_ERROR, "An error occurred while processing the form.");
-        // Redirect to the diagnostic form page
+
         return "redirect:/diagnostic";
     }
 }
 
-    // Your actual score calculation logic
+
     private float calculateScore(List<Integer> answers) {
         float totalScore = 0;
 
-        // Map the selected answers to their corresponding scores based on the provided scoring logic
+
         for (int i = 0; i < answers.size(); i++) {
             int answerIndex = answers.get(i);
 
             switch (i) {
                 case 0:
-                    // "Quand est-ce que vous commencez vos règles ?"
+
                     totalScore += (answerIndex == 0) ? 2.0 : 0.5;
                     break;
                 case 1:
-                    // "Quelle est la durée moyenne de votre cycle menstruel?"
+
                     if (answerIndex == 0) {
                         totalScore += 1.0;
                     } else if (answerIndex == 1) {
                         totalScore += 1.5;
                     }
-                    // No score for "Je suis pas sure"
+
                     break;
                 case 2:
-                    // "Avez vous des antécédants familiaux d'endométriose ?"
+
                     totalScore += (answerIndex == 0) ? 3.0 : 0.5;
                     break;
                 case 3:
-                    // "Avez-vous deja accouché ?"
+
                     totalScore += (answerIndex == 0) ? 1.0 : 0.5;
                     break;
                 case 4:
-                    // "Avez vous des difficultés à tomber enceinte ?"
+
                     totalScore += (answerIndex == 0) ? 2.0 : 0.5;
                     break;
-                // Add more cases if you have additional questions
+
             }
         }
 
         return totalScore;
     }
 
-    // Your actual result calculation logic
+
     private String calculateResult(float score) {
-        // Replace this with your logic to determine the result based on the score
-        // Example: Low, Medium, High based on a threshold
+
+
         if (score < 4) {
             return "Low";
         } else if (score < 7) {

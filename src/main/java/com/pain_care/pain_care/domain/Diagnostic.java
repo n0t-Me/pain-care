@@ -29,7 +29,7 @@ public class Diagnostic {
     @Column(nullable = false)
     private Float score;
 
-    // Constructors, getters, and setters
+
 
     public String getResult() {
         return result;

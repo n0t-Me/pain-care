@@ -60,13 +60,13 @@ public class PostController {
         if (bindingResult.hasErrors()) {
             return "post/add";
         }
-       // Convert MultipartFile to Base64-encoded string and set it in PostDTO
+
        if (imageFile != null && !imageFile.isEmpty()) {
         try {
             String encodedImage = Base64.getEncoder().encodeToString(imageFile.getBytes());
             postDTO.setImage(encodedImage);
         } catch (IOException e) {
-            // Handle exception (e.g., log error, show user-friendly message)
+
             e.printStackTrace();
         }
     }
@@ -89,13 +89,13 @@ public class PostController {
         if (bindingResult.hasErrors()) {
             return "post/edit";
         }
-        // Convert MultipartFile to Base64-encoded string and set it in PostDTO
+
         if (imageFile != null && !imageFile.isEmpty()) {
             try {
                 String encodedImage = Base64.getEncoder().encodeToString(imageFile.getBytes());
                 postDTO.setImage(encodedImage);
             } catch (IOException e) {
-                // Handle exception (e.g., log error, show user-friendly message)
+
                 e.printStackTrace();
             }
         }

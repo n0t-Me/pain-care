@@ -10,11 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 
-/**
- * Extends default Spring Boot error handling with a custom error method for htmx requests.
- * Always returns http status 200 so the HTML is swapped properly in the client.
- * @see BasicErrorController
- */
+
 @Controller
 public class HtmxErrorController {
 

@@ -51,13 +51,13 @@ public class UserController {
             return "user/add";
         }
 
-        // Convert MultipartFile to Base64-encoded string and set it in PostDTO
+
        if (imageFile != null && !imageFile.isEmpty()) {
         try {
             String encodedImage = Base64.getEncoder().encodeToString(imageFile.getBytes());
             userDTO.setPic(encodedImage);
         } catch (IOException e) {
-            // Handle exception (e.g., log error, show user-friendly message)
+
             e.printStackTrace();
         }
     }
@@ -86,13 +86,13 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "user/edit";
         }
-        // Convert MultipartFile to Base64-encoded string and set it in PostDTO
+
         if (imageFile != null && !imageFile.isEmpty()) {
             try {
                 String encodedImage = Base64.getEncoder().encodeToString(imageFile.getBytes());
                 userDTO.setPic(encodedImage);
             } catch (IOException e) {
-                // Handle exception (e.g., log error, show user-friendly message)
+
                 e.printStackTrace();
             }
         }
@@ -128,13 +128,13 @@ public String register(@ModelAttribute("user") @Valid final UserDTO userDTO,
             if (bindingResult.hasErrors()) {
                 return "user/register";
             }
-    // Convert MultipartFile to Base64-encoded string and set it in PostDTO
+
        if (imageFile != null && !imageFile.isEmpty()) {
         try {
             String encodedImage = Base64.getEncoder().encodeToString(imageFile.getBytes());
             userDTO.setPic(encodedImage);
         } catch (IOException e) {
-            // Handle exception (e.g., log error, show user-friendly message)
+
             e.printStackTrace();
         }
     }
@@ -150,8 +150,8 @@ public String register(@ModelAttribute("user") @Valid final UserDTO userDTO,
     }
  @PostMapping("/login")
     public String processLogin(@ModelAttribute("user") final UserDTO userDTO) {
-            // Handle authentication logic here
-            // If using Spring Security, this method may not contain explicit authentication logic
+
+
             return "home/index";
         }    
 }

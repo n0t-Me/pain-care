@@ -31,7 +31,7 @@ public class PainRecordDTO {
 
     private Integer user;
 
-    private OffsetDateTime dateCreated;  // Ajoutez cette ligne
+    private OffsetDateTime dateCreated;
 
     public Integer getId() {
         return id;

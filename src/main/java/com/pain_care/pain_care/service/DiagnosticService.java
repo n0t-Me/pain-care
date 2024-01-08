@@ -50,7 +50,7 @@ public class DiagnosticService {
         diagnosticDTO.setAnswers(diagnostic.getAnswersList());
         diagnosticDTO.setResult(diagnostic.getResult());
         diagnosticDTO.setScore(diagnostic.getScore());
-        // Map other fields
+
         return diagnosticDTO;
     }
 
@@ -60,12 +60,12 @@ public class DiagnosticService {
         diagnostic.setId(diagnosticDTO.getId());
         diagnostic.setScore(diagnosticDTO.getScore());
         diagnostic.setResult(diagnosticDTO.getResult());
-        // Map other fields
+
         return diagnostic;
     }
 
     public float normalizeScore(float score) {
-        // Ensure the score is between 0 and 10
+
         return Math.max(0, Math.min(score, 10));
     }
 }
