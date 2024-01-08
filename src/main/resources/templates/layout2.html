@@ -64,10 +64,10 @@
                 </li>    
     
                 <li>
-                  <a class="dropdown-item d-flex align-items-center" th:href="@{/logout}">
+                  <form class="dropdown-item d-flex align-items-center" th:action="@{/logout}" th:method="POST">
                     <i class="bi bi-box-arrow-right"></i>
-                    <span>Se Déconnecter</span>
-                  </a>
+                    <input class="dropdown-item d-flex align-items-center" type="submit" value="Se Déconnecter" />
+                  </form>
                 </li>
               </ul>
             </nav>

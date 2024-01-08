@@ -58,7 +58,6 @@ public class SecurityConfig {
 
                 ).logout(logout ->
                         logout
-                                .logoutUrl("/logout") // Customize the logout URL if needed
                                 .logoutSuccessUrl("/") // Redirect after successful logout
                                 .permitAll()
                 );

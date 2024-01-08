@@ -98,7 +98,7 @@ public class UserController {
         }
         userService.update(id, userDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("user.update.success"));
-        return "redirect:/users";
+        return "redirect:/";
     }
 
     @PostMapping("/delete/{id}")
