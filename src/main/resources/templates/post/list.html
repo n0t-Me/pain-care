@@ -43,7 +43,9 @@
                 <div class="meta-top">
                   <ul>
                     <li class="d-flex align-items-center"><i class="bi bi-sticky" th:text="${post.id}"></i></li>
-                    <li class="d-flex align-items-center"><i class="bi bi-person" th:text="${post.user}"></i></li>
+                    <li class="d-flex align-items-center">
+                      <i class="bi bi-person" th:text="${userNames.get(post.user)}" ></i>
+                  </li>
                   </ul>
                 </div>
 

@@ -21,6 +21,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.IOException; 
 import java.util.Base64;
+import java.util.stream.Collectors;
+import java.util.List;
+import java.util.Map;
+
 
 
 @Controller
@@ -45,6 +49,15 @@ public class PostController {
     @GetMapping
     public String list(final Model model) {
         model.addAttribute("posts", postService.findAll());
+        List<PostDTO> posts = postService.findAll();
+        // Fetch user names for each post
+        Map<Integer, String> userNames = posts.stream()
+                .filter(post -> post.getUser() != null)
+                .collect(Collectors.toMap(PostDTO::getUser, post -> postService.getUserNameById(post.getUser())));
+
+        model.addAttribute("posts", posts);
+        model.addAttribute("userNames", userNames);
+
         return "post/list";
     }
 

@@ -86,5 +86,11 @@ public class PostService {
         }
         return null;
     }
+    
+    public String getUserNameById(Integer userId) {
+        return userRepository.findById(userId)
+                .map(User::getName)
+                .orElse(null); // or any default value you want to use
+    }
 
 }
