@@ -141,7 +141,7 @@ public String register(@ModelAttribute("user") @Valid final UserDTO userDTO,
     userService.create(userDTO);
 
     redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("user.register.success"));
-    return "redirect:/users";
+    return "user/login";
 }
 
 @GetMapping("/login")
