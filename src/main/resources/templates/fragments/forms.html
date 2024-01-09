@@ -15,14 +15,71 @@
                 </div>
                 <div th:replace="~{:: fieldErrors(${object}, ${field})}" />
             </div>
-            <label th:if="${type != 'checkbox'}" th:for="${field}" class="col-md-2 col-form-label">
+            <strong><label th:if="${type != 'checkbox'}" th:for="${field}" class="form-label col-md-2 col-form-label">
                 <span th:text="#{__${object}__.__${field}__.label}" /><!--/*
                 */--><span th:replace="~{:: requiredStar(object=${object}, field=${field}, required=${required})}" />
-            </label>
-            <div th:if="${type != 'checkbox'}" class="col-md-10">
+            </label></strong>
+            <div th:if="${type != 'checkbox'}" class="col-md-9">
                 <input th:if="${type == 'text' || type == 'password' || type == 'email' || type == 'tel' || type == 'number'}"
                         th:type="${type}" th:field="*{__${field}__}" th:disabled="${disabled}"
                         th:classappend="${inputClassappend}" class="form-control" />
+                        <div style="position: relative;">
+                <input th:if="${type == 'range'}" 
+                        th:type="${type}" 
+                        th:field="*{__${field}__}" 
+                        th:disabled="${disabled}" 
+                        th:classappend="${inputClassappend}" 
+                        th:min="0" 
+                        th:max="10" 
+                        class="form-range" style="width: 100%; height: 10px; background: linear-gradient(to right, #fff, #fff); border: 1px solid #ccc;
+                        border-radius: 5px; " />
+
+                        <div id="${field}Value" class="range-value" style="position: absolute;
+                        top: -30px; /* Adjust the distance above the thumb */
+                        left: 50%;
+                        transform: translateX(-50%);
+                        padding: 5px;
+                        border-radius: 5px;
+                        background-color: rgba(255, 255, 255, 0.9);
+                        color: maroon;
+                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                        display: none;">0</div></div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var rangeInput = document.getElementById(/*[[${field}]]*/);
+    var rangeValue = document.getElementById('${field}Value');
+    
+    function updateTooltip() {
+        rangeValue.textContent = rangeInput.value;
+
+        // Calculate the left position of the tooltip based on the range value
+        var leftPosition = (rangeInput.value / rangeInput.max) * 100;
+        rangeValue.style.left = leftPosition + '%';
+    }
+
+    rangeInput.addEventListener('input', updateTooltip);
+
+    rangeInput.addEventListener('mousedown', function() {
+        rangeValue.style.display = 'block';
+    });
+
+    rangeInput.addEventListener('mouseup', function() {
+        rangeValue.style.display = 'none';
+    });
+
+    rangeInput.addEventListener('touchstart', function() {
+        rangeValue.style.display = 'block';
+    });
+
+    rangeInput.addEventListener('touchend', function() {
+        rangeValue.style.display = 'none';
+    });
+
+    // Initial positioning of the tooltip
+    updateTooltip();
+    /*]]>*/
+</script>
                 <textarea th:if="${type == 'textarea'}" th:field="*{__${field}__}" th:disabled="${disabled}"
                         th:classappend="${inputClassappend}" class="form-control" />
                 <select th:if="${type == 'select' || type == 'multiselect'}" th:field="*{__${field}__}" th:disabled="${disabled}"

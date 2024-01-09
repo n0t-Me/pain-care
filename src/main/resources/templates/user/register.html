@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" >
+<html  lang="en" xmlns:th="http://www.thymeleaf.org" >
     <head>
         <title th:text="#{home.index.headline}" />
         <!-- Favicons -->
@@ -9,11 +9,18 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> 
     <link rel="stylesheet" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/core.min.css">
     <link rel='stylesheet' id='roboto-subset.css-css'  href='https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/mdb5/fonts/roboto-subset.css?ver=3.9.0-update.5' type='text/css' media='all' />
-
+        
     </head>
     <body>
-        <section class="text-center text-lg-start">
+       
             <style>
+              .register {
+                background-image: url(/assets/img/stethoscope-medications-cardiogram.jpg);
+                background-position: center;
+                background-size: cover;
+                padding: 2%;
+              }
+
               .cascading-right {
                 margin-right: -50px;
               }
@@ -28,15 +35,29 @@
                 background: #3fbbc0;
                 color: #fff;
                 border-radius: 4px;
+                border-color: #fff;
                 padding: 8px 25px;
                 white-space: nowrap;
                 transition: 0.3s;
                 font-size: 14px;
                 display: inline-block;}
 
+                .file-upload{display:block;text-align:center;font-family: Helvetica, Arial, sans-serif;font-size: 12px;}
+.file-upload .file-select{display:block;border: 2px solid #dce4ec;color: #4f4f4f;cursor:pointer;height:40px;line-height:40px;text-align:left;background:#FFFFFF;overflow:hidden;position:relative;}
+.file-upload .file-select .file-select-button{background:#dce4ec;padding:0 10px;display:inline-block;height:40px;line-height:40px;}
+.file-upload .file-select .file-select-name{line-height:40px;display:inline-block;padding:0 10px;}
+.file-upload .file-select:hover{border-color:#4f4f4f;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
+.file-upload .file-select:hover .file-select-button{background:#4f4f4f;color:#FFFFFF;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
+.file-upload.active .file-select{border-color:#3fa46a;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
+.file-upload.active .file-select .file-select-button{background:#3fa46a;color:#FFFFFF;transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-webkit-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;}
+.file-upload .file-select input[type=file]{z-index:100;cursor:pointer;position:absolute;height:100%;width:100%;top:0;left:0;opacity:0;filter:alpha(opacity=0);}
+.file-upload .file-select.file-select-disabled{opacity:0.65;}
+.file-upload .file-select.file-select-disabled:hover{cursor:default;display:block;border: 2px solid #dce4ec;color: #34495e;cursor:pointer;height:40px;line-height:40px;margin-top:5px;text-align:left;background:#FFFFFF;overflow:hidden;position:relative;}
+.file-upload .file-select.file-select-disabled:hover .file-select-button{background:#dce4ec;color:#666666;padding:0 10px;display:inline-block;height:40px;line-height:40px;}
+.file-upload .file-select.file-select-disabled:hover .file-select-name{line-height:40px;display:inline-block;padding:0 10px;}
 
             </style>
-          
+           <section class="register text-center text-lg-start">
             <!-- Jumbotron -->
             <div class="container py-4">
               <div class="row g-0 align-items-center">
@@ -66,10 +87,16 @@
                 <!-- Update the inputRow for 'image' to include file input -->
     <div class="form-group row">
         <label for="imageFile" class="col-sm-2 col-form-label" >Picture</label>
-        <div class="col-sm-10">
-            <input type="file" id="imageFile" name="imageFile" class="form-control-file" accept="image/*" />
-        </div>
+
+        <div class="file-upload col-sm-10" >
+          <div class="file-select">
+            <div class="file-select-button" id="fileName">Choose File</div>
+            <div class="file-select-name" id="noFile">No file chosen...</div> 
+            <input type="file" id="imageFile" name="imageFile"  accept="image/*" />
     </div>
+      </div>
+    </div>
+    <br>
                 <div th:replace="~{fragments/forms::inputRow(object='user', field='language')}" />
                 <button type="submit" class="appointment-btn" >Register</button>
                 

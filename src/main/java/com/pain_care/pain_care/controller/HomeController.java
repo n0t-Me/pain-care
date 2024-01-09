@@ -28,7 +28,7 @@ public class HomeController {
                 DiagnosticDTO diagnosticDTO = diagnosticService.getLatestDiagnostic(userId);
                                  if (diagnosticDTO== null) {
 
-                                model.addAttribute("diagnosticResult", "vas-y !");
+                                model.addAttribute("diagnosticResult", "Go !");
 
                       }else{
                 System.out.println(diagnosticDTO);

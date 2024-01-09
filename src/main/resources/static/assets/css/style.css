@@ -1301,9 +1301,6 @@ background-color: #f7fcfc;
 /*--------------------------------------------------------------
 # Departments
 --------------------------------------------------------------*/
-.departments {
-  background-color: #f7fcfc;
-}
 .departments .nav-tabs {
   border: 0;
 }
@@ -2058,7 +2055,9 @@ background-color: #f7fcfc;
 /*--------------------------------------------------------------
 # Frequently Asked Questioins
 --------------------------------------------------------------*/
-
+.faq{
+  background-color: #f7fcfc;
+}
 
 .faq .faq-list {
   padding: 0;
@@ -2285,7 +2284,14 @@ background-color: #f7fcfc;
 
 .checkbox li {
   margin-right: 20px; /* Adjust the spacing between checkboxes */
-  
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  display: inline-block;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a shadow effect */
+  backdrop-filter: blur(30px);
 }
 
 .checkbox input {

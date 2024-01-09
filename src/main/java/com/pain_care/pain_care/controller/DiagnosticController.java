@@ -35,27 +35,27 @@ public class DiagnosticController {
     public String showDiagnosticForm(@ModelAttribute("diagnostics") @Valid final DiagnosticDTO diagnosticDTO, Model model) {
 
         Object[][] questionsBank = {
-                {"Quand est-ce que vous commencez vos règles ?", new String[]{
-                        "Avant l'age de 11 ans",
-                        "Apres l'age de 11 ans"
-                }},
-                {"Quelle est la durée moyenne de votre cycle menstruel?", new String[]{
-                        "Moins de 27 jours",
-                        "Plud de 27 jours",
-                        "Je ne suis pas sure"
-                }},
-                {"Avez vous des antécédants familiaux d'endométriose ?", new String[]{
-                        "Oui",
-                        "Non"
-                }},
-                {"Avez-vous deja accouché ?", new String[]{
-                        "Oui",
-                        "Non"
-                }},
-                {"Avez vous des difficultés à tomber enceinte ?", new String[]{
-                        "Oui",
-                        "Non"
-                }}
+            {"When do you start your period ?", new String[]{
+                "Before 11 years old",
+                "Above 11 years old"
+            }},
+            {"Your menstrual cycle length average ?", new String[]{
+                "Less than 27 days",
+                "More than 27 days",
+                "Not sure"
+            }},
+            {"Do you have a familly history of endometriosis ?", new String[]{
+                "Yes",
+                "No"
+            }},
+            {"Did you give birth ?", new String[]{
+                "Yes",
+                "No"
+            }},
+            {"Do you have trouble getting pregnant ?", new String[]{
+                "Yes",
+                "No"
+            }}
         };
 
         model.addAttribute("questionsBank", questionsBank);

@@ -23,7 +23,7 @@
         
               </div>
         
-              <div class="container" style="background-image:url(/assets/img/61805.jpg); /* White background color */
+              <div class="container" style="background-image:url(/assets/img/stethoscope-medical-equipment.jpg); /* White background color */
                 background-position: center;
                 background-size: cover;
               border-radius: 10px; /* Rounded corners */
@@ -31,13 +31,13 @@
               padding: 20px; /* Add some padding inside the box */">
             <div th:replace="~{fragments/forms::globalErrors('painRecord')}" />
             <form th:action="${requestUri}" method="post" th:object="${painRecord}">
-                <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='level', type='number')}" />
-              
+            <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='level', type='range')}" />
+
                 <div class="row" style="margin-bottom: 20px; margin-top: 20px;">
                     <div class="col-md-3" >
                         <h6>Pain Location :</h6>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-9">
                 <ul class="checkbox">
                     <li th:each="location : ${locationValues}" th:id="${'check-' + location}">
                         <input type="checkbox" th:field="*{locations}" th:value="${location}"  />
@@ -51,7 +51,7 @@
                             <div class="col-md-3">
                                 <h6>Symptoms:</h6>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-9">
                         <ul class="checkbox">
                             <li th:each="symptom : ${symptomeValues}" th:id="${'check-' + symptom}">
                                 <input type="checkbox" th:field="*{symptoms}" th:value="${symptom}"  />
@@ -64,7 +64,7 @@
                                 <div class="col-md-3">
                                     <h6>What makes the Pain Worse:</h6>
                                 </div>
-                                <div class="col-md-7">
+                                <div class="col-md-9">
                             <ul class="checkbox">
                                 <li th:each="makePainWors : ${makepainworseValues}" th:id="${'check-' + makePainWors}">
                                     <input type="checkbox" th:field="*{makePainWorse}" th:value="${makePainWors}"  />
@@ -77,7 +77,7 @@
                     <div class="col-md-3">
                         <h6>Feelings:</h6>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-9">
                 <ul class="checkbox">
                     <li th:each="feeling : ${feelingsValues}" th:id="${'check-' + feeling}">
                         <input type="checkbox" th:field="*{feelings}" th:value="${feeling}"  />
