@@ -24,7 +24,12 @@
         
               </div>
         
-              <div class="container">
+              <div class="container" style="background-image:url(/assets/img/61805.jpg); /* White background color */
+              background-position: center;
+              background-size: cover;
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+            padding: 20px; /* Add some padding inside the box */">
             <div th:replace="~{fragments/forms::globalErrors('post')}" />
             <form th:action="${requestUri}" method="post" enctype="multipart/form-data" >
                 <div class="form-group mt-3">

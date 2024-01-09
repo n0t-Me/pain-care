@@ -52,16 +52,40 @@
   <div layout:fragment="content">
 
     <main id="main">
+
+      <section id="services" class="services services">
+        <div class="container" data-aos="fade-up">
+    
+          <div class="row">
+            <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="100">
+              <div><img src="assets/img/soins-de-sante.png" style="width: 20%; height: 20%;" alt="" ></div>
+              <h4 class="title"><a href="">10 %</a></h4>
+              <p class="description">De femmes atteintes d'éntrometriose.</p>
+            </div>
+            <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="200">
+              <div><img src="assets/img/pilulier.png" style="width: 20%; height: 20%;" alt="" ></div>
+              <h4 class="title"><a href="">7 ANS</a></h4>
+              <p class="description">En moyenne pour  diagnostiquer la maladie.</p>
+            </div>
+            <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="300">
+              <div ><img src="assets/img/douleur.png" style="width: 20%; height: 20%;" alt="" ></div>
+              <h4 class="title"><a href="">70 %</a></h4>
+              <p class="description">De douleurs chroniques invalidentes.</p>
+            </div>
+          </div>
+        </div>
+      </section>
       
       <!-- ======= Featured Services Section ======= -->
-      <section id="featured-services" class="featured-services">
+      <section id="featured-services" class="featured-services" style="background-image: url(/assets/img/stethoscope-medical-equipment.jpg);background-size: cover;
+      background-position: center;">
         <div class="container" data-aos="fade-up">
           <div class="row justify-content-center"></div>
           <a th:href="@{/diagnostic}">
             <div class="d-flex align-items-center rounded border border-danger p-3 m-3 bg-white shadow-sm">
         <div class="flex-grow-1">
-            <h6 style="color: black; ">Dernier score</h6>
-            <p style="color: black;">Mettez à jour votre score régulièrement</p>
+            <h6 style="color: black; ">Last score</h6>
+            <p style="color: black;">Update your score regularly.</p>
         </div>
         <div style="background-image: url('/assets/img/cercle_rose.webp'); background-size: cover;
         background-position: center; 
@@ -81,24 +105,24 @@
             <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" >
               <a th:href="@{/diagnostic}"><div class="icon-box" data-aos="fade-up" data-aos-delay="100">
                 <div class="icon"><i class="fas fa-heartbeat"></i></div>
-                <h4 class="title">Test de diagnostic</h4>
-                <p class="description">Découvrez votre potentiel d'endométriose.</p>
+                <h4 class="title">Diagnostic Test</h4>
+                <p class="description">Discover your potential for endometriosis.</p>
               </div></a>
             </div>
   
             <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
               <a href="#faq"><div class="icon-box" data-aos="fade-up" data-aos-delay="200">
                 <div class="icon"><i class="fas fa-book-medical"></i></div>
-                <h4 class="title">Informations sur l'endométriose</h4>
-                <p class="description">Restez informé sur l'endométriose.</p>
+                <h4 class="title">Information about endometriosis</h4>
+                <p class="description">Stay informed about endometriosis .</p>
               </div></a>
             </div>
   
             <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
               <a th:href="@{/painRecords}" ><div class="icon-box" data-aos="fade-up" data-aos-delay="300">
                 <div class="icon"><i class="fas fa-chart-line"></i></div>
-                <h4 class="title">Evolution de la douleur</h4>
-                <p class="description">Explorez votre parcours de douleur.</p>
+                <h4 class="title">Pain evolution</h4>
+                <p class="description">Explore your pain journey.</p>
               </div></a>
             </div>
   
@@ -106,6 +130,31 @@
   
       </section><!-- End Featured Services Section -->
 
+      <!-- ======= Gallery Section ======= -->
+    <section id="gallery" class="gallery">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Endometriosis</h2>
+          <p>Endometriosis is a gynecological condition that often causes chronic pelvic pain or intense cramps during menstruation.</p>
+        </div>
+
+        <div class="gallery-slider swiper">
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic1.png"><img src="assets/img/gallery/pic1.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic2.png"><img src="assets/img/gallery/pic2.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic3.png"><img src="assets/img/gallery/pic3.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic4.png"><img src="assets/img/gallery/pic4.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic5.png"><img src="assets/img/gallery/pic5.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic6.png"><img src="assets/img/gallery/pic6.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic7.png"><img src="assets/img/gallery/pic7.png" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic8.ipg"><img src="assets/img/gallery/pic8.jpg" class="img-fluid" alt=""></a></div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Gallery Section -->
 
             
 
@@ -118,7 +167,7 @@
           <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
 
             <div class="content px-xl-5">
-              <h3> <strong>Questions</strong> Fréquemment posées</h3>
+              <h3> Frequently Asked <strong> Questions </strong> </h3>
             </div>
 
             <div class="accordion accordion-flush px-xl-5" id="faqlist">
@@ -127,12 +176,12 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Qu'est-ce que l'endométriose ?
+                    What is endometriosis?
                   </button>
                 </h3>
                 <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
-                    L'endométriose est une affection dans laquelle des tissus similaires à la muqueuse de l'utérus sont également présents ailleurs dans le corps, principalement dans la cavité abdominale.  
+                    Endometriosis is a condition in which tissues similar to the lining of the uterus are also present elsewhere in the body, primarily in the abdominal cavity.  
                   </div>
                 </div>
               </div><!-- # Faq item-->
@@ -141,19 +190,21 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Quels facteurs peuvent augmenter mes chances de souffrir d'endométriose ?
+                    What factors can increase my chances of having endometriosis?
                   </button>
                 </h3>
                 <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
-                    Vous avez plus de chances de développer une endometriose si vous avez :
-                    <ul>
-<li> Jamais eu d'enfants.</li>
-<li> Des périodes menstruelles qui durent plus de sent jours.</li>
-<li> Des cycles menstruels courts (27 jours ou moins).</li>
-<li> Un membre de la famille (mère, tante, sœur) atteint d'endométriose.</li>
-<li> Un problème de santé qui empêche l'écoulement normal du flux menstruel.</li>
-<li> Des dommages aux cellules du pelvis causes par une infection.</li> </ul>
+                    You are more likely to develop endometriosis if you have:
+
+<ul>
+<li>Never had children.</li>
+<li>Menstrual periods that last more than seven days.</li>
+<li>Short menstrual cycles (27 days or less).</li>
+<li>A family member (mother, aunt, sister) with endometriosis.</li>
+<li>A health issue preventing normal menstrual flow.</li>
+<li>Damage to pelvic cells caused by an infection.</li>
+</ul>
          </div>
                 </div>
               </div><!-- # Faq item-->
@@ -162,14 +213,12 @@
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-3">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Quels sont les symptômes de l'endométriose ?
+                    What are the symptoms of endometriosis?
                   </button>
                 </h3>
                 <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
-                    Le symptôme le plus courant de l'endométriose est la douleur pelvienne. La douleur survient souvent pendant les menstruations, pendant l'ovulation et/ou lors des rapports sexuels. Cependant, une femme atteinte d'endométriose peut également.
-ressentir une douleur à d'autres moments de son cycle menstruel. Un autre symptôme est l'infertilité.
-Certaines femmes atteintes d'endométriose éprouvent également une grande fatigue.
+                    The most common symptom of endometriosis is pelvic pain. The pain often occurs during menstruation, ovulation, and/or sexual intercourse. However, a woman with endometriosis may also experience pain at other times in her menstrual cycle. Another symptom is infertility. Some women with endometriosis also report significant fatigue.
                   </div>
                 </div>
               </div><!-- # Faq item-->
@@ -178,16 +227,19 @@ Certaines femmes atteintes d'endométriose éprouvent également une grande fa
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-4">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Comment traite-t-on l'endométriose ?
+                    How is endometriosis treated?
                   </button>
                 </h3>
                 <div id="faq-content-4" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Il n'existe pas de cure pour l'endométriose, mais il existe de nombreux traitements pour la douleur et l'infertilité qu'elle cause. Parlez à votre médecin de l'option qui vous convient le mieux. Le traitement que vous choisissez dépendra de vos symptômes, de votre âge et de vos projets de grossesse.
-Médicaments contre la douleur - Pour certaines femmes présentant des symptômes légers, les médecins peuvent suggérer de prendre des médicaments en vente libre contre la douleur.
-Traitement hormonal - Lorsque les médicaments contre la douleur ne suffisent pas, les médecins recommandent souvent des médicaments hormonaux pour traiter l'endométriose. Seules les femmes qui ne souhaitent pas devenir enceintes peuvent utiliser ces médicaments.
-Chirurgie - La chirurgie est généralement la meilleure option pour les femmes atteintes d'endométriose sévère avec de nombreuses excroissances, beaucoup de douleur ou des problèmes de fertilité.
+                    There is no cure for endometriosis, but there are many treatments for the pain and infertility it causes. Talk to your doctor about the option that best suits you. The treatment you choose will depend on your symptoms, age, and pregnancy plans.
+
+                    Pain Medications - For some women with mild symptoms, doctors may suggest over-the-counter pain medications.
+                    
+                    Hormone Therapy - When pain medications are not sufficient, doctors often recommend hormonal medications to treat endometriosis. These medications can only be used by women who do not wish to become pregnant.
+                    
+                    Surgery - Surgery is typically the best option for women with severe endometriosis with many growths, significant pain, or fertility problems.
                   </div>
                 </div>
               </div><!-- # Faq item-->
@@ -196,16 +248,17 @@ Chirurgie - La chirurgie est généralement la meilleure option pour les femmes 
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-5">
                     <i class="bi bi-question-circle question-icon"></i>
-                    Comment puis-je réduire mes chances de contracter l'endométriose ?
+                    How can I reduce my chances of developing endometriosis?
                   </button>
                 </h3>
                 <div id="faq-content-5" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                   <div class="accordion-body">
-                    Maintenez des niveaux d'oestrogène plus bas dans votre corps. Essayez : <ul>
-                    <li> Faire de l'exercice régulièrement.</li>
-                    <li> Maintenir un faible pourcentage de graisse corporelle.</li>
-                    <li> Éviter de consommer de grandes quantités d'alcool et de boissons contenant de la caféine. </li>
-                     </ul></div>
+                    Maintain lower estrogen levels in your body. Try:
+<ul>
+<li>Exercising regularly.</li>
+<li>Maintaining a low body fat percentage.</li>
+<li>Avoiding consuming large amounts of alcohol and caffeine-containing beverages.</li>
+</ul></div>
                 </div>
               </div><!-- # Faq item-->
 
@@ -220,7 +273,7 @@ Chirurgie - La chirurgie est généralement la meilleure option pour les femmes 
     </section><!-- End F.A.Q Section -->
 
      <!-- ======= Departments Section ======= -->
-     <section id="departments" class="departments">
+     <section id="departments" class="departments" >
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -292,6 +345,67 @@ Chirurgie - La chirurgie est généralement la meilleure option pour les femmes 
 
       </div>
     </section><!-- End Departments Section -->
+
+    <section id="articles" class="articles">
+      <div class="container" data-aos="fade-up">
+        <div class="row gy-5">
+
+          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+            <div class="service-item">
+              <div class="img">
+                <img src="assets/img/article4.webp" class="img-fluid" alt="">
+              </div>
+              <div class="details position-relative">
+                <div class="icon">
+                  <i class="bi bi-activity"></i>
+                </div>
+                <a href="https://www.insider.com/are-period-cramps-more-painful-than-heart-attack-2018-3" class="stretched-link">
+                  <h3>Here's why period cramps can hurt even more than a heart attack, according to science</h3>
+                </a>
+                <p>Doctors are finally starting to take women's period pain seriously. 
+                  Some doctors say that period cramps can be just as painful — or more painful — than a heart attack. </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+            <div class="service-item">
+              <div class="img">
+                <img src="assets/img/article5.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="details position-relative">
+                <div class="icon">
+                  <i class="bi bi-broadcast"></i>
+                </div>
+                <a href="https://www.abc.net.au/news/2023-12-31/pill-liberation-to-burden-australian-women-contraceptive/103191234" class="stretched-link">
+                  <h3>What once was liberation is now often seen as a burden: Australia's complicated relationship with the pill</h3>
+                </a>
+                <p>The pill, so ubiquitous it goes by one name, has long been synonymous with women's liberation and sexual freedom.</p>
+              </div>
+            </div>
+          </div><!-- End Item -->
+
+          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+            <div class="service-item">
+              <div class="img">
+                <img src="assets/img/article6.png" class="img-fluid" alt="">
+              </div>
+              <div class="details position-relative">
+                <div class="icon">
+                  <i class="bi bi-easel"></i>
+                </div>
+                <a href="https://www.stgeorgeutah.com/news/archive/2024/01/04/avm-spc-valleywomenshealth-24-valley-womens-health-adopts-on-call-labor-and-delivery-schedule-to-better-serve-patients-doctors/" class="stretched-link">
+                  <h3>Valley Women’s Health adopts on-call labor and delivery schedule to better serve patients, doctors</h3>
+                </a>
+                <p>Valley Women’s Health recently adopted a rotating physician call schedule. </p>
+              </div>
+            </div>
+          </div><!-- End  Item -->
+
+        </div>
+
+      </div>
+    </section>
 
             </main>
         </div>

@@ -1028,40 +1028,6 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Cta
---------------------------------------------------------------*/
-.cta {
-  background: #3fbbc0;
-  color: #fff;
-  background-size: cover;
-  padding: 60px 0;
-}
-
-.cta h3 {
-  font-size: 28px;
-  font-weight: 700;
-}
-
-.cta .cta-btn {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  letter-spacing: 1px;
-  display: inline-block;
-  padding: 10px 35px;
-  border-radius: 25px;
-  transition: 0.5s;
-  margin-top: 10px;
-  border: 2px solid #fff;
-  color: #fff;
-}
-
-.cta .cta-btn:hover {
-  background: #fff;
-  color: #3fbbc0;
-}
-
-/*--------------------------------------------------------------
 # About Us
 --------------------------------------------------------------*/
 .about .content h3 {
@@ -1169,6 +1135,10 @@ section {
 /*--------------------------------------------------------------
 # Services
 --------------------------------------------------------------*/
+.services {
+padding-bottom: 0%;
+background-color: #f7fcfc;
+}
 .services .icon-box {
   margin-bottom: 20px;
   text-align: center;
@@ -1331,6 +1301,9 @@ section {
 /*--------------------------------------------------------------
 # Departments
 --------------------------------------------------------------*/
+.departments {
+  background-color: #f7fcfc;
+}
 .departments .nav-tabs {
   border: 0;
 }
@@ -2151,4 +2124,170 @@ section {
 
 #calendar.fullcalendar-container .fc-day-today {
   background-color: #FFD1DC;
+}
+/*--------------------------------------------------------------
+# Articles Section
+--------------------------------------------------------------*/
+
+.articles .img {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.articles .img img {
+  transition: 0.6s;
+}
+
+.articles .details {
+  padding: 50px 30px;
+  margin: -100px 30px 0 30px;
+  transition: all ease-in-out 0.3s;
+  background: var(--color-white);
+  position: relative;
+  background: white;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0px 0 25px rgba(0, 0, 0, 0.1);
+}
+
+.articles .details .icon {
+  margin: 0;
+  width: 72px;
+  height: 72px;
+  background: #3fbbc0;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: white;
+  font-size: 28px;
+  transition: ease-in-out 0.3s;
+  position: absolute;
+  top: -36px;
+  left: calc(50% - 36px);
+  border: 6px solid white;
+}
+
+.articles .details h3 {
+  color: #1a1f24;
+  font-weight: 700;
+  margin: 10px 0 15px 0;
+  font-size: 22px;
+  transition: ease-in-out 0.3s;
+}
+
+.articles .details p {
+  line-height: 24px;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.articles .service-item:hover .details h3 {
+  color: #3fbbc0;
+}
+
+.articles .service-item:hover .details .icon {
+  background: white;
+  border: 2px solid #3fbbc0;
+}
+
+.articles .service-item:hover .details .icon i {
+  color: #3fbbc0;
+}
+
+.articles .service-item:hover .img img {
+  transform: scale(1.2);
+}
+
+
+/*--------------------------------------------------------------
+# Call To Action Section
+--------------------------------------------------------------*/
+.cta {
+  padding: 0;
+  margin-bottom: 60px;
+}
+
+.cta .container {
+  padding: 80px;
+  background: rgba(72, 86, 100, 0.1);
+  border-radius: 15px;
+}
+
+@media (max-width: 992px) {
+  .cta .container {
+    padding: 60px;
+  }
+}
+
+.cta .content h3 {
+  color: #485664;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.cta .content h3 em {
+  font-style: normal;
+  position: relative;
+}
+
+.cta .content h3 em:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  height: 10px;
+  background: rgba(var(--color-primary-rgb), 0.5);
+  z-index: -1;
+}
+
+.cta .content p {
+  color: #485664;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.cta .img {
+  position: relative;
+}
+
+.cta .img:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  transform: rotate(12deg);
+}
+
+.cta .img:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  transform: rotate(6deg);
+}
+
+.cta .img img {
+  position: relative;
+  z-index: 3;
+  border-radius: 15px;
+}
+.checkbox {
+  list-style: none; /* Remove default list styles */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+  display: flex; /* Use flexbox to arrange items horizontally */
+}
+
+.checkbox li {
+  margin-right: 20px; /* Adjust the spacing between checkboxes */
+  
+}
+
+.checkbox input {
+  margin-right: 5px; /* Adjust the spacing between the checkbox and label */
 }

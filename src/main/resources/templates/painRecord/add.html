@@ -23,16 +23,21 @@
         
               </div>
         
-              <div class="container">
+              <div class="container" style="background-image:url(/assets/img/61805.jpg); /* White background color */
+                background-position: center;
+                background-size: cover;
+              border-radius: 10px; /* Rounded corners */
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+              padding: 20px; /* Add some padding inside the box */">
             <div th:replace="~{fragments/forms::globalErrors('painRecord')}" />
             <form th:action="${requestUri}" method="post" th:object="${painRecord}">
                 <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='level', type='number')}" />
               
-                <div class="row">
-                    <div class="col-md-3">
-                        <h6>Localisation des douleurs:</h6>
+                <div class="row" style="margin-bottom: 20px; margin-top: 20px;">
+                    <div class="col-md-3" >
+                        <h6>Pain Location :</h6>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                 <ul class="checkbox">
                     <li th:each="location : ${locationValues}" th:id="${'check-' + location}">
                         <input type="checkbox" th:field="*{locations}" th:value="${location}"  />
@@ -42,11 +47,11 @@
                     </div></div>
 
 
-                        <div class="row">
+                        <div class="row" style="margin-bottom: 20px;">
                             <div class="col-md-3">
-                                <h6>Symptomes:</h6>
+                                <h6>Symptoms:</h6>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                         <ul class="checkbox">
                             <li th:each="symptom : ${symptomeValues}" th:id="${'check-' + symptom}">
                                 <input type="checkbox" th:field="*{symptoms}" th:value="${symptom}"  />
@@ -55,11 +60,11 @@
                           </ul>
                             </div></div>
 
-                            <div class="row">
+                            <div class="row" style="margin-bottom: 20px;">
                                 <div class="col-md-3">
-                                    <h6>Ce qui aggrave la douleur:</h6>
+                                    <h6>What makes the Pain Worse:</h6>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-7">
                             <ul class="checkbox">
                                 <li th:each="makePainWors : ${makepainworseValues}" th:id="${'check-' + makePainWors}">
                                     <input type="checkbox" th:field="*{makePainWorse}" th:value="${makePainWors}"  />
@@ -68,11 +73,11 @@
                               </ul>
                                 </div></div>
 
-                <div class="row">
+                <div class="row" style="margin-bottom: 20px;">
                     <div class="col-md-3">
-                        <h6>Sentiments:</h6>
+                        <h6>Feelings:</h6>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                 <ul class="checkbox">
                     <li th:each="feeling : ${feelingsValues}" th:id="${'check-' + feeling}">
                         <input type="checkbox" th:field="*{feelings}" th:value="${feeling}"  />
@@ -83,7 +88,7 @@
                                
                 
                 <input type="hidden" th:field="${painRecord.user}" th:value="${userId}" />
-                <div class="text-center">
+                <div class="text-center" style="margin-top: 20px;">
                 <input type="submit" th:value="#{painRecord.add.headline}" class="appointment-btn" />
                 </div>
             </form>
