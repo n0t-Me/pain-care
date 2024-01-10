@@ -1,50 +1,51 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout2}">
-    <head>
-        <title th:text="#{painRecord.add.headline}" />
-    </head>
-    <body>
-        <div layout:fragment="content1">
-            <main id="main">
-                <section id="featured-services">
+<html layout:decorate="~{layout2}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{painRecord.add.headline}"/>
+</head>
+<body>
+<div layout:fragment="content1">
+    <main id="main">
+        <section id="featured-services">
 
-                </section>
+        </section>
 
         <div layout:fragment="content">
 
-            <section id="contact" class="contact">
-              <div class="container">
-        
-                <div class="section-title">
-                  <h2 th:text="#{painRecord.add.headline}"></h2>
-                  <p></p>
+            <section class="contact" id="contact">
+                <div class="container">
+
+                    <div class="section-title">
+                        <h2 th:text="#{painRecord.add.headline}"></h2>
+                        <p></p>
+                    </div>
+
                 </div>
-        
-              </div>
-        
-              <div class="container" style="background-image:url(/assets/img/stethoscope-medical-equipment.jpg); /* White background color */
+
+                <div class="container" style="background-image:url(/assets/img/stethoscope-medical-equipment.jpg); /* White background color */
                 background-position: center;
                 background-size: cover;
               border-radius: 10px; /* Rounded corners */
               box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
               padding: 20px; /* Add some padding inside the box */">
-            <div th:replace="~{fragments/forms::globalErrors('painRecord')}" />
-            <form th:action="${requestUri}" method="post" th:object="${painRecord}">
-            <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='level', type='range')}" />
+                    <div th:replace="~{fragments/forms::globalErrors('painRecord')}"/>
+                    <form method="post" th:action="${requestUri}" th:object="${painRecord}">
+                        <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='level', type='range')}"/>
 
-                <div class="row" style="margin-bottom: 20px; margin-top: 20px;">
-                    <div class="col-md-3" >
-                        <h6>Pain Location :</h6>
-                    </div>
-                    <div class="col-md-9">
-                <ul class="checkbox">
-                    <li th:each="location : ${locationValues}" th:id="${'check-' + location}">
-                        <input type="checkbox" th:field="*{locations}" th:value="${location}"  />
-                        <label th:text="${location}" ></label>
-                    </li>
-                  </ul>
-                    </div></div>
+                        <div class="row" style="margin-bottom: 20px; margin-top: 20px;">
+                            <div class="col-md-3">
+                                <h6>Pain Location :</h6>
+                            </div>
+                            <div class="col-md-9">
+                                <ul class="checkbox">
+                                    <li th:each="location : ${locationValues}" th:id="${'check-' + location}">
+                                        <input th:field="*{locations}" th:value="${location}" type="checkbox"/>
+                                        <label th:text="${location}"></label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
 
 
                         <div class="row" style="margin-bottom: 20px;">
@@ -52,51 +53,54 @@
                                 <h6>Symptoms:</h6>
                             </div>
                             <div class="col-md-9">
-                        <ul class="checkbox">
-                            <li th:each="symptom : ${symptomeValues}" th:id="${'check-' + symptom}">
-                                <input type="checkbox" th:field="*{symptoms}" th:value="${symptom}"  />
-                                <label th:text="${symptom}" ></label>
-                            </li>
-                          </ul>
-                            </div></div>
+                                <ul class="checkbox">
+                                    <li th:each="symptom : ${symptomeValues}" th:id="${'check-' + symptom}">
+                                        <input th:field="*{symptoms}" th:value="${symptom}" type="checkbox"/>
+                                        <label th:text="${symptom}"></label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
 
-                            <div class="row" style="margin-bottom: 20px;">
-                                <div class="col-md-3">
-                                    <h6>What makes the Pain Worse:</h6>
-                                </div>
-                                <div class="col-md-9">
-                            <ul class="checkbox">
-                                <li th:each="makePainWors : ${makepainworseValues}" th:id="${'check-' + makePainWors}">
-                                    <input type="checkbox" th:field="*{makePainWorse}" th:value="${makePainWors}"  />
-                                    <label th:text="${makePainWors}" ></label>
-                                </li>
-                              </ul>
-                                </div></div>
+                        <div class="row" style="margin-bottom: 20px;">
+                            <div class="col-md-3">
+                                <h6>What makes the Pain Worse:</h6>
+                            </div>
+                            <div class="col-md-9">
+                                <ul class="checkbox">
+                                    <li th:each="makePainWors : ${makepainworseValues}"
+                                        th:id="${'check-' + makePainWors}">
+                                        <input th:field="*{makePainWorse}" th:value="${makePainWors}" type="checkbox"/>
+                                        <label th:text="${makePainWors}"></label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
 
-                <div class="row" style="margin-bottom: 20px;">
-                    <div class="col-md-3">
-                        <h6>Feelings:</h6>
-                    </div>
-                    <div class="col-md-9">
-                <ul class="checkbox">
-                    <li th:each="feeling : ${feelingsValues}" th:id="${'check-' + feeling}">
-                        <input type="checkbox" th:field="*{feelings}" th:value="${feeling}"  />
-                        <label th:text="${feeling}" ></label>
-                    </li>
-                  </ul>
-                    </div>
-                               
-                
-                <input type="hidden" th:field="${painRecord.user}" th:value="${userId}" />
-                <div class="text-center" style="margin-top: 20px;">
-                <input type="submit" th:value="#{painRecord.add.headline}" class="appointment-btn" />
+                        <div class="row" style="margin-bottom: 20px;">
+                            <div class="col-md-3">
+                                <h6>Feelings:</h6>
+                            </div>
+                            <div class="col-md-9">
+                                <ul class="checkbox">
+                                    <li th:each="feeling : ${feelingsValues}" th:id="${'check-' + feeling}">
+                                        <input th:field="*{feelings}" th:value="${feeling}" type="checkbox"/>
+                                        <label th:text="${feeling}"></label>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                            <input th:field="${painRecord.user}" th:value="${userId}" type="hidden"/>
+                            <div class="text-center" style="margin-top: 20px;">
+                                <input class="appointment-btn" th:value="#{painRecord.add.headline}" type="submit"/>
+                            </div>
+                    </form>
                 </div>
-            </form>
         </div>
-    </div>
-</section><!-- End Contact Section -->
+        </section><!-- End Contact Section -->
         <div class="text-center">
-            <a th:href="@{/painRecords}" th:text="#{painRecord.add.back}" class="btn btn-secondary" />
+            <a class="btn btn-secondary" th:href="@{/painRecords}" th:text="#{painRecord.add.back}"/>
         </div>
-    </body>
+</body>
 </html>

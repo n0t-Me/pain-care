@@ -1,93 +1,96 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" 
-        layout:decorate="~{layout2}">
+<html layout:decorate="~{layout2}"
+      xmlns:th="http://www.thymeleaf.org">
 
-        <div layout:fragment="content1">
-              <!-- ======= Hero Section ======= -->
-  <section id="hero">
-    <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+<div layout:fragment="content1">
+    <!-- ======= Hero Section ======= -->
+    <section id="hero">
+        <div class="carousel slide carousel-fade" data-bs-interval="5000" data-bs-ride="carousel" id="heroCarousel">
 
-      <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+            <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
 
-      <div class="carousel-inner" role="listbox">
+            <div class="carousel-inner" role="listbox">
 
-        <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(/assets/img/slide/phpDdupMh.jpg)">
-          <div class="container">
-            <h2>Welcome to <span>PainCare</span></h2>
-            <p>The m-Health solution PainCare has been developed with the aim of providing comprehensive resources and support to women battling endometriosis.</p>
-           </div>
+                <!-- Slide 1 -->
+                <div class="carousel-item active" style="background-image: url(/assets/img/slide/phpDdupMh.jpg)">
+                    <div class="container">
+                        <h2>Welcome to <span>PainCare</span></h2>
+                        <p>The m-Health solution PainCare has been developed with the aim of providing comprehensive
+                            resources and support to women battling endometriosis.</p>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-item " style="background-image: url(/assets/img/slide/slide-7.jpg)">
+                    <div class="container">
+                        Welcome to <span>PainCare</span></h2>
+                        <p>The m-Health solution PainCare has been developed with the aim of providing comprehensive
+                            resources and support to women battling endometriosis.</p>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-item" style="background-image: url(/assets/img/slide/slide-1.jpg)">
+                    <div class="container">
+                        Welcome to <span>PainCare</span></h2>
+                        <p>The m-Health solution PainCare has been developed with the aim of providing comprehensive
+                            resources and support to women battling endometriosis.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <a class="carousel-control-prev" data-bs-slide="prev" href="#heroCarousel" role="button">
+                <span aria-hidden="true" class="carousel-control-prev-icon bi bi-chevron-left"></span>
+            </a>
+
+            <a class="carousel-control-next" data-bs-slide="next" href="#heroCarousel" role="button">
+                <span aria-hidden="true" class="carousel-control-next-icon bi bi-chevron-right"></span>
+            </a>
+
         </div>
-
-        <!-- Slide 2 -->
-        <div class="carousel-item " style="background-image: url(/assets/img/slide/slide-7.jpg)">
-          <div class="container">
-            Welcome to <span>PainCare</span></h2>
-<p>The m-Health solution PainCare has been developed with the aim of providing comprehensive resources and support to women battling endometriosis.</p>
- </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="carousel-item" style="background-image: url(/assets/img/slide/slide-1.jpg)">
-          <div class="container">
-            Welcome to <span>PainCare</span></h2>
-<p>The m-Health solution PainCare has been developed with the aim of providing comprehensive resources and support to women battling endometriosis.</p>
-  </div>
-        </div>
-
-      </div>
-
-      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
-      </a>
-
-      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
-        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
-      </a>
-
-    </div>
-  </section><!-- End Hero -->
+    </section><!-- End Hero -->
 </div>
 
-  <div layout:fragment="content">
+<div layout:fragment="content">
 
     <main id="main">
 
-      <section id="services" class="services services">
-        <div class="container" data-aos="fade-up">
-    
-          <div class="row">
-            <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="100">
-              <div><img src="assets/img/soins-de-sante.png" style="width: 20%; height: 20%;" alt="" ></div>
-              <h4 class="title"><a href="">10 %</a></h4>
-              <p class="description">Of women affected by endometriosis .</p>
+        <section class="services services" id="services">
+            <div class="container" data-aos="fade-up">
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="100">
+                        <div><img alt="" src="assets/img/soins-de-sante.png" style="width: 20%; height: 20%;"></div>
+                        <h4 class="title"><a href="">10 %</a></h4>
+                        <p class="description">Of women affected by endometriosis .</p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="200">
+                        <div><img alt="" src="assets/img/pilulier.png" style="width: 20%; height: 20%;"></div>
+                        <h4 class="title"><a href="">7 YEARS</a></h4>
+                        <p class="description">On average to diagnose the disease.</p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="300">
+                        <div><img alt="" src="assets/img/douleur.png" style="width: 20%; height: 20%;"></div>
+                        <h4 class="title"><a href="">70 %</a></h4>
+                        <p class="description"> Of debilitating chronic pain.</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="200">
-              <div><img src="assets/img/pilulier.png" style="width: 20%; height: 20%;" alt="" ></div>
-              <h4 class="title"><a href="">7 YEARS</a></h4>
-              <p class="description">On average to diagnose the disease.</p>
-            </div>
-            <div class="col-lg-4 col-md-6 icon-box" data-aos="zoom-in" data-aos-delay="300">
-              <div ><img src="assets/img/douleur.png" style="width: 20%; height: 20%;" alt="" ></div>
-              <h4 class="title"><a href="">70 %</a></h4>
-              <p class="description"> Of debilitating chronic pain.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <!-- ======= Featured Services Section ======= -->
-      <section id="featured-services" class="featured-services" style="background-image: url(/assets/img/stethoscope-medical-equipment.jpg);background-size: cover;
+        </section>
+
+        <!-- ======= Featured Services Section ======= -->
+        <section class="featured-services" id="featured-services" style="background-image: url(/assets/img/stethoscope-medical-equipment.jpg);background-size: cover;
       background-position: center;">
-        <div class="container" data-aos="fade-up">
-          <div class="row justify-content-center"></div>
-          <a th:href="@{/diagnostic}">
-            <div class="d-flex align-items-center rounded border border-danger p-3 m-3 bg-white shadow-sm">
-        <div class="flex-grow-1">
-            <h6 style="color: black; ">Last score</h6>
-            <p style="color: black;">Update your score regularly.</p>
-        </div>
-        <div style="background-image: url('/assets/img/cercle_rose.webp'); background-size: cover;
+            <div class="container" data-aos="fade-up">
+                <div class="row justify-content-center"></div>
+                <a th:href="@{/diagnostic}">
+                    <div class="d-flex align-items-center rounded border border-danger p-3 m-3 bg-white shadow-sm">
+                        <div class="flex-grow-1">
+                            <h6 style="color: black; ">Last score</h6>
+                            <p style="color: black;">Update your score regularly.</p>
+                        </div>
+                        <div style="background-image: url('/assets/img/cercle_rose.webp'); background-size: cover;
         background-position: center; 
         width: 100px; 
         height: 100px;
@@ -95,319 +98,381 @@
         align-items: center;
         justify-content: center;
         position: relative;">
-        <strong th:if="${username}" class="mx-3" th:text="${diagnosticResult} " style="margin-right: 2rem!important; color: aliceblue;z-index: 10000;position: absolute"></strong>
-        <strong th:unless="${username}" class="mx-3"  style="margin-right: 2rem!important; color: aliceblue;z-index: 10000;position: absolute">Vas-y!</strong>
-         </div>
-        </div>
-      </a>
-        </div>
-          <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" >
-              <a th:href="@{/diagnostic}"><div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-                <div class="icon"><i class="fas fa-heartbeat"></i></div>
-                <h4 class="title">Diagnostic Test</h4>
-                <p class="description">Discover your potential for endometriosis.</p>
-              </div></a>
-            </div>
-  
-            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-              <a href="#faq"><div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-                <div class="icon"><i class="fas fa-book-medical"></i></div>
-                <h4 class="title">Information about endometriosis</h4>
-                <p class="description">Stay informed about endometriosis .</p>
-              </div></a>
-            </div>
-  
-            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-              <a th:href="@{/painRecords}" ><div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-                <div class="icon"><i class="fas fa-chart-line"></i></div>
-                <h4 class="title">Pain evolution</h4>
-                <p class="description">Explore your pain journey.</p>
-              </div></a>
-            </div>
-  
-          </div>
-  
-      </section><!-- End Featured Services Section -->
-
-      <!-- ======= Gallery Section ======= -->
-    <section id="gallery" class="gallery">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Endometriosis</h2>
-          <p>Endometriosis is a gynecological condition that often causes chronic pelvic pain or intense cramps during menstruation.</p>
-        </div>
-
-        <div class="gallery-slider swiper">
-          <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic1.png"><img src="assets/img/gallery/pic1.png" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic2.png"><img src="assets/img/gallery/pic2.png" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic3.png"><img src="assets/img/gallery/pic3.png" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic4.png"><img src="assets/img/gallery/pic4.png" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic5.png"><img src="assets/img/gallery/pic5.png" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic6.png"><img src="assets/img/gallery/pic6.png" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic7.png"><img src="assets/img/gallery/pic7.png" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic8.ipg"><img src="assets/img/gallery/pic8.jpg" class="img-fluid" alt=""></a></div>
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-    </section><!-- End Gallery Section -->
-
-            
-
-                <!-- ======= F.A.Q Section ======= -->
-    <section id="faq" class="faq">
-      <div class="container-fluid" data-aos="fade-up">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
-
-            <div class="content px-xl-5">
-              <h3> Frequently Asked <strong> Questions </strong> </h3>
-            </div>
-
-            <div class="accordion accordion-flush px-xl-5" id="faqlist">
-
-              <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
-                <h3 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
-                    <i class="bi bi-question-circle question-icon"></i>
-                    What is endometriosis?
-                  </button>
-                </h3>
-                <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
-                  <div class="accordion-body">
-                    Endometriosis is a condition in which tissues similar to the lining of the uterus are also present elsewhere in the body, primarily in the abdominal cavity.  
-                  </div>
-                </div>
-              </div><!-- # Faq item-->
-
-              <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
-                <h3 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
-                    <i class="bi bi-question-circle question-icon"></i>
-                    What factors can increase my chances of having endometriosis?
-                  </button>
-                </h3>
-                <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
-                  <div class="accordion-body">
-                    You are more likely to develop endometriosis if you have:
-
-<ul>
-<li>Never had children.</li>
-<li>Menstrual periods that last more than seven days.</li>
-<li>Short menstrual cycles (27 days or less).</li>
-<li>A family member (mother, aunt, sister) with endometriosis.</li>
-<li>A health issue preventing normal menstrual flow.</li>
-<li>Damage to pelvic cells caused by an infection.</li>
-</ul>
-         </div>
-                </div>
-              </div><!-- # Faq item-->
-
-              <div class="accordion-item" data-aos="fade-up" data-aos-delay="400">
-                <h3 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-3">
-                    <i class="bi bi-question-circle question-icon"></i>
-                    What are the symptoms of endometriosis?
-                  </button>
-                </h3>
-                <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
-                  <div class="accordion-body">
-                    The most common symptom of endometriosis is pelvic pain. The pain often occurs during menstruation, ovulation, and/or sexual intercourse. However, a woman with endometriosis may also experience pain at other times in her menstrual cycle. Another symptom is infertility. Some women with endometriosis also report significant fatigue.
-                  </div>
-                </div>
-              </div><!-- # Faq item-->
-
-              <div class="accordion-item" data-aos="fade-up" data-aos-delay="500">
-                <h3 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-4">
-                    <i class="bi bi-question-circle question-icon"></i>
-                    How is endometriosis treated?
-                  </button>
-                </h3>
-                <div id="faq-content-4" class="accordion-collapse collapse" data-bs-parent="#faqlist">
-                  <div class="accordion-body">
-                    <i class="bi bi-question-circle question-icon"></i>
-                    There is no cure for endometriosis, but there are many treatments for the pain and infertility it causes. Talk to your doctor about the option that best suits you. The treatment you choose will depend on your symptoms, age, and pregnancy plans.
-
-                    Pain Medications - For some women with mild symptoms, doctors may suggest over-the-counter pain medications.
-                    
-                    Hormone Therapy - When pain medications are not sufficient, doctors often recommend hormonal medications to treat endometriosis. These medications can only be used by women who do not wish to become pregnant.
-                    
-                    Surgery - Surgery is typically the best option for women with severe endometriosis with many growths, significant pain, or fertility problems.
-                  </div>
-                </div>
-              </div><!-- # Faq item-->
-
-              <div class="accordion-item" data-aos="fade-up" data-aos-delay="600">
-                <h3 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-5">
-                    <i class="bi bi-question-circle question-icon"></i>
-                    How can I reduce my chances of developing endometriosis?
-                  </button>
-                </h3>
-                <div id="faq-content-5" class="accordion-collapse collapse" data-bs-parent="#faqlist">
-                  <div class="accordion-body">
-                    Maintain lower estrogen levels in your body. Try:
-<ul>
-<li>Exercising regularly.</li>
-<li>Maintaining a low body fat percentage.</li>
-<li>Avoiding consuming large amounts of alcohol and caffeine-containing beverages.</li>
-</ul></div>
-                </div>
-              </div><!-- # Faq item-->
-
-            </div>
-
-          </div>
-
-          <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img" style='background-image: url("assets/img/endometriose-2.jpg");'>&nbsp;</div>
-        </div>
-
-      </div>
-    </section><!-- End F.A.Q Section -->
-
-     <!-- ======= Departments Section ======= -->
-     <section id="departments" class="departments" >
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Articles</h2>
-          <p></p>
-        </div>
-
-        <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-4 mb-5 mb-lg-0">
-            <ul class="nav nav-tabs flex-column">
-              <li class="nav-item">
-                <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#tab-1">
-                  <h4>Endometriosis: 21-year-old 'begging for help' from health system
-                  </h4>
-                  <p>Living with seizures and crippling pain, Zara Corbett says she's "begging for help" as she copes with endometriosis.</p>
+                            <strong class="mx-3" style="margin-right: 2rem!important; color: aliceblue;z-index: 10000;position: absolute" th:if="${username}"
+                                    th:text="${diagnosticResult} "></strong>
+                            <strong class="mx-3" style="margin-right: 2rem!important; color: aliceblue;z-index: 10000;position: absolute"
+                                    th:unless="${username}">Vas-y!</strong>
+                        </div>
+                    </div>
                 </a>
-              </li>
-              <li class="nav-item mt-2">
-                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-2">
-                  <h4>Period poverty</h4>
-                  <p>How air pollution in Kenya could make periods heavier, more painful and more expensive
-                    .</p>
-                </a>
-              </li>
-              <li class="nav-item mt-2">
-                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-3">
-                  <h4>Causes of Infertility + Risk Factors to Know
-                    </h4>
-                  <p>Why am I not getting pregnant?</p>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-lg-8">
-            <div class="tab-content">
-              <div class="tab-pane active show" id="tab-1">
-                <h3>Endometriosis: 21-year-old 'begging for help' from health system</h3>
-                <p class="fst-italic">Living with seizures and crippling pain, Zara Corbett says she's "begging for help" as she copes with endometriosis.</p>
-                <img src="/assets/img/21year-old.jpeg" alt="" class="img-fluid">
-                <p>Zara Corbett, who is 21, says Northern Ireland needs a dedicated centre to provide support.
-                  Media caption, Zara Corbett was diagnosed with endometriosis at 21
-                  Living with seizures and crippling pain, Zara Corbett says she's "begging for help" as she copes with endometriosis.
-                  The 21-year-..</p>
-                  <a href="https://www.bbc.com/news/uk-northern-ireland-67626522" class="appointment-btn " target="_blank"><span class="d-none d-md-inline">Lire</span> Plus</a>
-
-              </div>
-              <div class="tab-pane" id="tab-2">
-                <h3>Period poverty</h3>
-                <p class="fst-italic">How air pollution in Kenya could make periods heavier, more painful and more expensive.   </p>
-                <img src="/assets/img/period-poverty.png" alt="" class="img-fluid">
-                <p>Period poverty affects millions worldwide.
-                  New research now suggests air pollution is making periods heavier and more painful.
-                  CNN travels to Nairobi to look at how this is affecting Kenya's most vulnerable women.
-                  This story is part of As Equals, CNN's ongoing series on gender inequality. Find out more about it here...</p>
-                  <a href="https://edition.cnn.com/2023/12/05/africa/period-poverty-air-pollution-kenya-as-equals-intl-cmd/index.html" class="appointment-btn " target="_blank"><span class="d-none d-md-inline">Lire</span> Plus</a>
-
-              </div>
-              <div class="tab-pane" id="tab-3">
-                <h3>Causes of Infertility + Risk Factors to Know</h3>
-                <p class="fst-italic">Why am I not getting pregnant?</p>
-                <img src="/assets/img/Causes-of-Infertility.jpg" alt="" class="img-fluid">
-                <p>Infertility isn't just a clinical term; it's a journey filled with hopes, doubts, and a quest for answers. Whether you've been TTC (trying to conceive) for several months or even for years, you're likely looking for answers to the nagging question, Why am I n...
-                </p>
-                  <a href="https://www.mamanatural.com/causes-of-infertility/" class="appointment-btn " target="_blank"><span class="d-none d-md-inline">Lire</span> Plus</a>
-                </div>
             </div>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Departments Section -->
-
-    <section id="articles" class="articles">
-      <div class="container" data-aos="fade-up">
-        <div class="row gy-5">
-
-          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
-            <div class="service-item">
-              <div class="img">
-                <img src="assets/img/article4.webp" class="img-fluid" alt="">
-              </div>
-              <div class="details position-relative">
-                <div class="icon">
-                  <i class="bi bi-activity"></i>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <a th:href="@{/diagnostic}">
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                            <div class="icon"><i class="fas fa-heartbeat"></i></div>
+                            <h4 class="title">Diagnostic Test</h4>
+                            <p class="description">Discover your potential for endometriosis.</p>
+                        </div>
+                    </a>
                 </div>
-                <a href="https://www.insider.com/are-period-cramps-more-painful-than-heart-attack-2018-3" class="stretched-link">
-                  <h3>Here's why period cramps can hurt even more than a heart attack, according to science</h3>
-                </a>
-                <p>Doctors are finally starting to take women's period pain seriously. 
-                  Some doctors say that period cramps can be just as painful — or more painful — than a heart attack. </p>
-              </div>
-            </div>
-          </div>
 
-          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
-            <div class="service-item">
-              <div class="img">
-                <img src="assets/img/article5.jpg" class="img-fluid" alt="">
-              </div>
-              <div class="details position-relative">
-                <div class="icon">
-                  <i class="bi bi-broadcast"></i>
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <a href="#faq">
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+                            <div class="icon"><i class="fas fa-book-medical"></i></div>
+                            <h4 class="title">Information about endometriosis</h4>
+                            <p class="description">Stay informed about endometriosis .</p>
+                        </div>
+                    </a>
                 </div>
-                <a href="https://www.abc.net.au/news/2023-12-31/pill-liberation-to-burden-australian-women-contraceptive/103191234" class="stretched-link">
-                  <h3>What once was liberation is now often seen as a burden: Australia's complicated relationship with the pill</h3>
-                </a>
-                <p>The pill, so ubiquitous it goes by one name, has long been synonymous with women's liberation and sexual freedom.</p>
-              </div>
-            </div>
-          </div><!-- End Item -->
 
-          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
-            <div class="service-item">
-              <div class="img">
-                <img src="assets/img/article6.png" class="img-fluid" alt="">
-              </div>
-              <div class="details position-relative">
-                <div class="icon">
-                  <i class="bi bi-easel"></i>
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <a th:href="@{/painRecords}">
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+                            <div class="icon"><i class="fas fa-chart-line"></i></div>
+                            <h4 class="title">Pain evolution</h4>
+                            <p class="description">Explore your pain journey.</p>
+                        </div>
+                    </a>
                 </div>
-                <a href="https://www.stgeorgeutah.com/news/archive/2024/01/04/avm-spc-valleywomenshealth-24-valley-womens-health-adopts-on-call-labor-and-delivery-schedule-to-better-serve-patients-doctors/" class="stretched-link">
-                  <h3>Valley Women’s Health adopts on-call labor and delivery schedule to better serve patients, doctors</h3>
-                </a>
-                <p>Valley Women’s Health recently adopted a rotating physician call schedule. </p>
-              </div>
+
             </div>
-          </div><!-- End  Item -->
 
-        </div>
+        </section><!-- End Featured Services Section -->
 
-      </div>
-    </section>
+        <!-- ======= Gallery Section ======= -->
+        <section class="gallery" id="gallery">
+            <div class="container" data-aos="fade-up">
 
-            </main>
-        </div>
-    </body>
+                <div class="section-title">
+                    <h2>Endometriosis</h2>
+                    <p>Endometriosis is a gynecological condition that often causes chronic pelvic pain or intense
+                        cramps during menstruation.</p>
+                </div>
+
+                <div class="gallery-slider swiper">
+                    <div class="swiper-wrapper align-items-center">
+                        <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic1.png"><img
+                                alt="" class="img-fluid" src="assets/img/gallery/pic1.png"></a></div>
+                        <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic2.png"><img
+                                alt="" class="img-fluid" src="assets/img/gallery/pic2.png"></a></div>
+                        <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic3.png"><img
+                                alt="" class="img-fluid" src="assets/img/gallery/pic3.png"></a></div>
+                        <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic4.png"><img
+                                alt="" class="img-fluid" src="assets/img/gallery/pic4.png"></a></div>
+                        <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic5.png"><img
+                                alt="" class="img-fluid" src="assets/img/gallery/pic5.png"></a></div>
+                        <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic6.png"><img
+                                alt="" class="img-fluid" src="assets/img/gallery/pic6.png"></a></div>
+                        <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic7.png"><img
+                                alt="" class="img-fluid" src="assets/img/gallery/pic7.png"></a></div>
+                        <div class="swiper-slide"><a class="gallery-lightbox" href="assets/img/gallery/pic8.ipg"><img
+                                alt="" class="img-fluid" src="assets/img/gallery/pic8.jpg"></a></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+
+            </div>
+        </section><!-- End Gallery Section -->
+
+
+        <!-- ======= F.A.Q Section ======= -->
+        <section class="faq" id="faq">
+            <div class="container-fluid" data-aos="fade-up">
+
+                <div class="row gy-4">
+
+                    <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
+
+                        <div class="content px-xl-5">
+                            <h3> Frequently Asked <strong> Questions </strong></h3>
+                        </div>
+
+                        <div class="accordion accordion-flush px-xl-5" id="faqlist">
+
+                            <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" data-bs-target="#faq-content-1" data-bs-toggle="collapse"
+                                            type="button">
+                                        <i class="bi bi-question-circle question-icon"></i>
+                                        What is endometriosis?
+                                    </button>
+                                </h3>
+                                <div class="accordion-collapse collapse" data-bs-parent="#faqlist" id="faq-content-1">
+                                    <div class="accordion-body">
+                                        Endometriosis is a condition in which tissues similar to the lining of the
+                                        uterus are also present elsewhere in the body, primarily in the abdominal
+                                        cavity.
+                                    </div>
+                                </div>
+                            </div><!-- # Faq item-->
+
+                            <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" data-bs-target="#faq-content-2" data-bs-toggle="collapse"
+                                            type="button">
+                                        <i class="bi bi-question-circle question-icon"></i>
+                                        What factors can increase my chances of having endometriosis?
+                                    </button>
+                                </h3>
+                                <div class="accordion-collapse collapse" data-bs-parent="#faqlist" id="faq-content-2">
+                                    <div class="accordion-body">
+                                        You are more likely to develop endometriosis if you have:
+
+                                        <ul>
+                                            <li>Never had children.</li>
+                                            <li>Menstrual periods that last more than seven days.</li>
+                                            <li>Short menstrual cycles (27 days or less).</li>
+                                            <li>A family member (mother, aunt, sister) with endometriosis.</li>
+                                            <li>A health issue preventing normal menstrual flow.</li>
+                                            <li>Damage to pelvic cells caused by an infection.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div><!-- # Faq item-->
+
+                            <div class="accordion-item" data-aos="fade-up" data-aos-delay="400">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" data-bs-target="#faq-content-3" data-bs-toggle="collapse"
+                                            type="button">
+                                        <i class="bi bi-question-circle question-icon"></i>
+                                        What are the symptoms of endometriosis?
+                                    </button>
+                                </h3>
+                                <div class="accordion-collapse collapse" data-bs-parent="#faqlist" id="faq-content-3">
+                                    <div class="accordion-body">
+                                        The most common symptom of endometriosis is pelvic pain. The pain often occurs
+                                        during menstruation, ovulation, and/or sexual intercourse. However, a woman with
+                                        endometriosis may also experience pain at other times in her menstrual cycle.
+                                        Another symptom is infertility. Some women with endometriosis also report
+                                        significant fatigue.
+                                    </div>
+                                </div>
+                            </div><!-- # Faq item-->
+
+                            <div class="accordion-item" data-aos="fade-up" data-aos-delay="500">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" data-bs-target="#faq-content-4" data-bs-toggle="collapse"
+                                            type="button">
+                                        <i class="bi bi-question-circle question-icon"></i>
+                                        How is endometriosis treated?
+                                    </button>
+                                </h3>
+                                <div class="accordion-collapse collapse" data-bs-parent="#faqlist" id="faq-content-4">
+                                    <div class="accordion-body">
+                                        <i class="bi bi-question-circle question-icon"></i>
+                                        There is no cure for endometriosis, but there are many treatments for the pain
+                                        and infertility it causes. Talk to your doctor about the option that best suits
+                                        you. The treatment you choose will depend on your symptoms, age, and pregnancy
+                                        plans.
+
+                                        Pain Medications - For some women with mild symptoms, doctors may suggest
+                                        over-the-counter pain medications.
+
+                                        Hormone Therapy - When pain medications are not sufficient, doctors often
+                                        recommend hormonal medications to treat endometriosis. These medications can
+                                        only be used by women who do not wish to become pregnant.
+
+                                        Surgery - Surgery is typically the best option for women with severe
+                                        endometriosis with many growths, significant pain, or fertility problems.
+                                    </div>
+                                </div>
+                            </div><!-- # Faq item-->
+
+                            <div class="accordion-item" data-aos="fade-up" data-aos-delay="600">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" data-bs-target="#faq-content-5" data-bs-toggle="collapse"
+                                            type="button">
+                                        <i class="bi bi-question-circle question-icon"></i>
+                                        How can I reduce my chances of developing endometriosis?
+                                    </button>
+                                </h3>
+                                <div class="accordion-collapse collapse" data-bs-parent="#faqlist" id="faq-content-5">
+                                    <div class="accordion-body">
+                                        Maintain lower estrogen levels in your body. Try:
+                                        <ul>
+                                            <li>Exercising regularly.</li>
+                                            <li>Maintaining a low body fat percentage.</li>
+                                            <li>Avoiding consuming large amounts of alcohol and caffeine-containing
+                                                beverages.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div><!-- # Faq item-->
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img"
+                         style='background-image: url("assets/img/endometriose-2.jpg");'>&nbsp;
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End F.A.Q Section -->
+
+        <!-- ======= Departments Section ======= -->
+        <section class="departments" id="departments">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-title">
+                    <h2>Articles</h2>
+                    <p></p>
+                </div>
+
+                <div class="row" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <ul class="nav nav-tabs flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link active show" data-bs-target="#tab-1" data-bs-toggle="tab">
+                                    <h4>Endometriosis: 21-year-old 'begging for help' from health system
+                                    </h4>
+                                    <p>Living with seizures and crippling pain, Zara Corbett says she's "begging for
+                                        help" as she copes with endometriosis.</p>
+                                </a>
+                            </li>
+                            <li class="nav-item mt-2">
+                                <a class="nav-link" data-bs-target="#tab-2" data-bs-toggle="tab">
+                                    <h4>Period poverty</h4>
+                                    <p>How air pollution in Kenya could make periods heavier, more painful and more
+                                        expensive
+                                        .</p>
+                                </a>
+                            </li>
+                            <li class="nav-item mt-2">
+                                <a class="nav-link" data-bs-target="#tab-3" data-bs-toggle="tab">
+                                    <h4>Causes of Infertility + Risk Factors to Know
+                                    </h4>
+                                    <p>Why am I not getting pregnant?</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="tab-content">
+                            <div class="tab-pane active show" id="tab-1">
+                                <h3>Endometriosis: 21-year-old 'begging for help' from health system</h3>
+                                <p class="fst-italic">Living with seizures and crippling pain, Zara Corbett says she's
+                                    "begging for help" as she copes with endometriosis.</p>
+                                <img alt="" class="img-fluid" src="/assets/img/21year-old.jpeg">
+                                <p>Zara Corbett, who is 21, says Northern Ireland needs a dedicated centre to provide
+                                    support.
+                                    Media caption, Zara Corbett was diagnosed with endometriosis at 21
+                                    Living with seizures and crippling pain, Zara Corbett says she's "begging for help"
+                                    as she copes with endometriosis.
+                                    The 21-year-..</p>
+                                <a class="appointment-btn " href="https://www.bbc.com/news/uk-northern-ireland-67626522"
+                                   target="_blank"><span class="d-none d-md-inline">Lire</span> Plus</a>
+
+                            </div>
+                            <div class="tab-pane" id="tab-2">
+                                <h3>Period poverty</h3>
+                                <p class="fst-italic">How air pollution in Kenya could make periods heavier, more
+                                    painful and more expensive. </p>
+                                <img alt="" class="img-fluid" src="/assets/img/period-poverty.png">
+                                <p>Period poverty affects millions worldwide.
+                                    New research now suggests air pollution is making periods heavier and more painful.
+                                    CNN travels to Nairobi to look at how this is affecting Kenya's most vulnerable
+                                    women.
+                                    This story is part of As Equals, CNN's ongoing series on gender inequality. Find out
+                                    more about it here...</p>
+                                <a class="appointment-btn "
+                                   href="https://edition.cnn.com/2023/12/05/africa/period-poverty-air-pollution-kenya-as-equals-intl-cmd/index.html" target="_blank"><span class="d-none d-md-inline">Lire</span>
+                                    Plus</a>
+
+                            </div>
+                            <div class="tab-pane" id="tab-3">
+                                <h3>Causes of Infertility + Risk Factors to Know</h3>
+                                <p class="fst-italic">Why am I not getting pregnant?</p>
+                                <img alt="" class="img-fluid" src="/assets/img/Causes-of-Infertility.jpg">
+                                <p>Infertility isn't just a clinical term; it's a journey filled with hopes, doubts, and
+                                    a quest for answers. Whether you've been TTC (trying to conceive) for several months
+                                    or even for years, you're likely looking for answers to the nagging question, Why am
+                                    I n...
+                                </p>
+                                <a class="appointment-btn " href="https://www.mamanatural.com/causes-of-infertility/"
+                                   target="_blank"><span class="d-none d-md-inline">Lire</span> Plus</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End Departments Section -->
+
+        <section class="articles" id="articles">
+            <div class="container" data-aos="fade-up">
+                <div class="row gy-5">
+
+                    <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="service-item">
+                            <div class="img">
+                                <img alt="" class="img-fluid" src="assets/img/article4.webp">
+                            </div>
+                            <div class="details position-relative">
+                                <div class="icon">
+                                    <i class="bi bi-activity"></i>
+                                </div>
+                                <a class="stretched-link"
+                                   href="https://www.insider.com/are-period-cramps-more-painful-than-heart-attack-2018-3">
+                                    <h3>Here's why period cramps can hurt even more than a heart attack, according to
+                                        science</h3>
+                                </a>
+                                <p>Doctors are finally starting to take women's period pain seriously.
+                                    Some doctors say that period cramps can be just as painful — or more painful — than
+                                    a heart attack. </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="service-item">
+                            <div class="img">
+                                <img alt="" class="img-fluid" src="assets/img/article5.jpg">
+                            </div>
+                            <div class="details position-relative">
+                                <div class="icon">
+                                    <i class="bi bi-broadcast"></i>
+                                </div>
+                                <a class="stretched-link"
+                                   href="https://www.abc.net.au/news/2023-12-31/pill-liberation-to-burden-australian-women-contraceptive/103191234">
+                                    <h3>What once was liberation is now often seen as a burden: Australia's complicated
+                                        relationship with the pill</h3>
+                                </a>
+                                <p>The pill, so ubiquitous it goes by one name, has long been synonymous with women's
+                                    liberation and sexual freedom.</p>
+                            </div>
+                        </div>
+                    </div><!-- End Item -->
+
+                    <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="service-item">
+                            <div class="img">
+                                <img alt="" class="img-fluid" src="assets/img/article6.png">
+                            </div>
+                            <div class="details position-relative">
+                                <div class="icon">
+                                    <i class="bi bi-easel"></i>
+                                </div>
+                                <a class="stretched-link"
+                                   href="https://www.stgeorgeutah.com/news/archive/2024/01/04/avm-spc-valleywomenshealth-24-valley-womens-health-adopts-on-call-labor-and-delivery-schedule-to-better-serve-patients-doctors/">
+                                    <h3>Valley Women’s Health adopts on-call labor and delivery schedule to better serve
+                                        patients, doctors</h3>
+                                </a>
+                                <p>Valley Women’s Health recently adopted a rotating physician call schedule. </p>
+                            </div>
+                        </div>
+                    </div><!-- End  Item -->
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+</div>
+</body>
 </html>

@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.*;
@@ -43,7 +44,7 @@ public class User {
     private LocalDate bday;
 
     @Lob
-	@Column(columnDefinition = "MEDIUMBLOB")
+    @Column(columnDefinition = "MEDIUMBLOB")
     private String pic;
 
     @Column
@@ -163,7 +164,6 @@ public class User {
     }
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
 
 
         return Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));

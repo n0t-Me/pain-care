@@ -1,54 +1,55 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout}">
-    <head>
-        <title th:text="#{user.list.headline}" />
-    </head>
-    <body>
-        <div layout:fragment="content">
-            <div class="d-flex flex-wrap mb-4">
-                <h1 th:text="#{user.list.headline}" class="flex-grow-1" />
-                <div>
-                    <a th:href="@{/users/add}" th:text="#{user.list.createNew}" class="btn btn-primary ms-2" />
-                </div>
-            </div>
-            <div th:if="${users.empty}" th:text="#{user.list.empty}" />
-            <div th:if="${!users.empty}" class="table-responsive">
-                <table class="table table-striped table-hover align-middle">
-                    <thead>
-                        <tr>
-                            <th th:text="#{user.id.label}" scope="col" />
-                            <th th:text="#{user.name.label}" scope="col" />
-                            <th th:text="#{user.email.label}" scope="col" />
-                            <th th:text="#{user.password.label}" scope="col" />
-                            <th th:text="#{user.bday.label}" scope="col" />
-                            <th th:text="#{user.pic.label}" scope="col" />
-                            <th th:text="#{user.language.label}" scope="col" />
-                            <th><!-- --></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="user : ${users}">
-                            <td th:text="${user.id}" />
-                            <td th:text="${user.name}" />
-                            <td th:text="${user.email}" />
-                            <td th:text="${user.password}" />
-                            <td th:text="${user.bday}" />
-                            <td th:text="${user.pic}" />
-                            <td th:text="${user.language}" />
-                            <td>
-                                <div class="float-end text-nowrap">
-                                    <a th:href="@{/users/edit/{id}(id=${user.id})}" th:text="#{user.list.edit}" class="btn btn-sm btn-secondary" />
-                                    <form th:action="@{/users/delete/{id}(id=${user.id})}"
-                                            th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
-                                        <button th:text="#{user.list.delete}" type="submit" class="btn btn-sm btn-secondary" />
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+<html layout:decorate="~{layout}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{user.list.headline}"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="d-flex flex-wrap mb-4">
+        <h1 class="flex-grow-1" th:text="#{user.list.headline}"/>
+        <div>
+            <a class="btn btn-primary ms-2" th:href="@{/users/add}" th:text="#{user.list.createNew}"/>
         </div>
-    </body>
+    </div>
+    <div th:if="${users.empty}" th:text="#{user.list.empty}"/>
+    <div class="table-responsive" th:if="${!users.empty}">
+        <table class="table table-striped table-hover align-middle">
+            <thead>
+            <tr>
+                <th scope="col" th:text="#{user.id.label}"/>
+                <th scope="col" th:text="#{user.name.label}"/>
+                <th scope="col" th:text="#{user.email.label}"/>
+                <th scope="col" th:text="#{user.password.label}"/>
+                <th scope="col" th:text="#{user.bday.label}"/>
+                <th scope="col" th:text="#{user.pic.label}"/>
+                <th scope="col" th:text="#{user.language.label}"/>
+                <th><!-- --></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}"/>
+                <td th:text="${user.name}"/>
+                <td th:text="${user.email}"/>
+                <td th:text="${user.password}"/>
+                <td th:text="${user.bday}"/>
+                <td th:text="${user.pic}"/>
+                <td th:text="${user.language}"/>
+                <td>
+                    <div class="float-end text-nowrap">
+                        <a class="btn btn-sm btn-secondary" th:href="@{/users/edit/{id}(id=${user.id})}"
+                           th:text="#{user.list.edit}"/>
+                        <form class="d-inline"
+                              method="post" th:action="@{/users/delete/{id}(id=${user.id})}" th:hx-confirm="#{delete.confirm}">
+                            <button class="btn btn-sm btn-secondary" th:text="#{user.list.delete}" type="submit"/>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
 </html>

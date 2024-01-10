@@ -1,9 +1,13 @@
 package com.pain_care.pain_care.controller;
 
+import com.pain_care.pain_care.domain.Comment;
+import com.pain_care.pain_care.domain.Post;
 import com.pain_care.pain_care.domain.User;
+import com.pain_care.pain_care.model.CommentDTO;
 import com.pain_care.pain_care.model.PostDTO;
 import com.pain_care.pain_care.model.UserDTO;
 import com.pain_care.pain_care.repos.UserRepository;
+import com.pain_care.pain_care.service.CommentService;
 import com.pain_care.pain_care.service.PostService;
 import com.pain_care.pain_care.service.UserService;
 import com.pain_care.pain_care.util.CustomCollectors;
@@ -22,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.io.IOException;
 import java.security.Principal;
 import java.util.Base64;
@@ -33,6 +38,7 @@ import java.util.Map;
 import static java.util.stream.Collectors.*;
 
 
+
 @Controller
 @RequestMapping("/posts")
 public class PostController {
@@ -40,11 +46,13 @@ public class PostController {
     private final PostService postService;
     private final UserService userService;
     private final UserRepository userRepository;
+    private final CommentService commentService;
 
-    public PostController(final PostService postService, UserService userService, final UserRepository userRepository) {
+    public PostController(final PostService postService, UserService userService, final UserRepository userRepository, CommentService commentService) {
         this.postService = postService;
         this.userService = userService;
         this.userRepository = userRepository;
+        this.commentService = commentService;
     }
 
     @ModelAttribute
@@ -68,7 +76,7 @@ public class PostController {
                                 (user1, user2) -> {
                                     return user1;
                                 }
-                                ));
+                        ));
 
         String username = principal.getName();
         UserDTO user = userService.get(username);
@@ -88,28 +96,75 @@ public class PostController {
     @PostMapping("/add")
     public String add(
             Principal principal,
-                        @ModelAttribute("post") @Valid final PostDTO postDTO,
-                      @RequestParam("imageFile") MultipartFile imageFile,
+            @ModelAttribute("post") @Valid final PostDTO postDTO,
+            @RequestParam("imageFile") MultipartFile imageFile,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "post/add";
         }
 
-       if (imageFile != null && !imageFile.isEmpty()) {
-        try {
-            String encodedImage = Base64.getEncoder().encodeToString(imageFile.getBytes());
-            postDTO.setImage(encodedImage);
-        } catch (IOException e) {
+        if (imageFile != null && !imageFile.isEmpty()) {
+            try {
+                String encodedImage = Base64.getEncoder().encodeToString(imageFile.getBytes());
+                postDTO.setImage(encodedImage);
+            } catch (IOException e) {
 
-            e.printStackTrace();
+                e.printStackTrace();
+            }
         }
-    }
         String username = principal.getName();
         UserDTO user = userService.get(username);
         postDTO.setUser(user.getId());
         postService.create(postDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("post.create.success"));
         return "redirect:/posts";
+    }
+
+    @GetMapping("/{id}")
+    public String show(Principal principal,
+                       @PathVariable final Integer id,
+                       @ModelAttribute("comment") final CommentDTO commentDTO,
+                       final Model model) {
+        PostDTO postDTO = postService.get(id);
+        UserDTO poster = userService.get(postDTO.getUser());
+        String username = principal.getName();
+        UserDTO user = userService.get(username);
+        /*
+        Map<Integer, String> userNames = postDTO.getComments().stream()
+                .filter(comment -> comment.getUser() != null)
+                .collect(
+                        toMap(
+                                CommentService::getUserId,
+                                CommentService::getUserNameById,
+                                (user1, user2) -> {
+                                    return user1;
+                                }
+                        ));*/
+        model.addAttribute("post", postDTO);
+        model.addAttribute("poster_username", poster.getName());
+        model.addAttribute("user", user);
+        model.addAttribute("comments", postDTO.getComments());
+        //model.addAttribute("userNames", userNames);
+        return "post/show";
+    }
+
+    @PostMapping("/{id}")
+    public String show(Principal principal,
+                       @PathVariable final Integer id,
+                       @ModelAttribute("comment") @Valid final CommentDTO commentDTO, final BindingResult bindingResult,
+                       final RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            return "post/" + id.toString();
+        }
+
+        String username = principal.getName();
+        UserDTO user = userService.get(username);
+        commentDTO.setPost(id);
+        commentDTO.setUser(user.getId());
+        commentService.create(commentDTO);
+
+        redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("post.update.success"));
+        return "redirect:/posts/" + id.toString();
     }
 
     @GetMapping("/edit/{id}")
@@ -148,7 +203,7 @@ public class PostController {
 
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable final Integer id,
-            final RedirectAttributes redirectAttributes) {
+                         final RedirectAttributes redirectAttributes) {
         final String referencedWarning = postService.getReferencedWarning(id);
         if (referencedWarning != null) {
             redirectAttributes.addFlashAttribute(WebUtils.MSG_ERROR, referencedWarning);

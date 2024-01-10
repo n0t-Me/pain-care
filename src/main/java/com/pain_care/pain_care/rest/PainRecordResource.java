@@ -4,7 +4,9 @@ import com.pain_care.pain_care.model.PainRecordDTO;
 import com.pain_care.pain_care.service.PainRecordService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
+
 import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +51,7 @@ public class PainRecordResource {
 
     @PutMapping("/{id}")
     public ResponseEntity<Integer> updatePainRecord(@PathVariable(name = "id") final Integer id,
-            @RequestBody @Valid final PainRecordDTO painRecordDTO) {
+                                                    @RequestBody @Valid final PainRecordDTO painRecordDTO) {
         painRecordService.update(id, painRecordDTO);
         return ResponseEntity.ok(id);
     }

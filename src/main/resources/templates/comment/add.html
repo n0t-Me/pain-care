@@ -1,44 +1,44 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout2}">
-    <head>
-        <title th:text="#{comment.add.headline}" />
-    </head>
-    <body>
-            <div layout:fragment="content1">
-                <main id="main">
-                    <section id="featured-services">
-    
-                    </section>
-    
-            <div layout:fragment="content">
-    
-                <section id="contact" class="contact">
-                  <div class="container">
-            
-                    <div class="section-title">
-                      <h2 th:text="#{comment.add.headline}"></h2>
-                      <p></p>
-                    </div>
-            
-                  </div>
-            
-                  <div class="container">
-            <div th:replace="~{fragments/forms::globalErrors('comment')}" />
-            <form th:action="${requestUri}" method="post">
-                <div th:replace="~{fragments/forms::inputRow(object='comment', field='comment', type='textarea')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='comment', field='user', type='select')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='comment', field='post', type='select')}" />
-                <div class="text-center">
-                <input type="submit" th:value="#{comment.add.headline}" class="appointment-btn" />
-            </div>
-            </form>
-        </div>
-    </div>
-</section><!-- End Contact Section -->
+<html layout:decorate="~{layout2}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{comment.add.headline}"/>
+</head>
+<body>
+<div layout:fragment="content1">
+    <main id="main">
+        <section id="featured-services">
 
-    <div class="text-center">
-        <a th:href="@{/comments}" th:text="#{comment.add.back}" class="btn btn-secondary" />
-    </div>
-    </body>
+        </section>
+
+        <div layout:fragment="content">
+
+            <section class="contact" id="contact">
+                <div class="container">
+
+                    <div class="section-title">
+                        <h2 th:text="#{comment.add.headline}"></h2>
+                        <p></p>
+                    </div>
+
+                </div>
+
+                <div class="container">
+                    <div th:replace="~{fragments/forms::globalErrors('comment')}"/>
+                    <form method="post" th:action="${requestUri}">
+                        <div th:replace="~{fragments/forms::inputRow(object='comment', field='comment', type='textarea')}"/>
+                        <div th:replace="~{fragments/forms::inputRow(object='comment', field='user', type='select')}"/>
+                        <div th:replace="~{fragments/forms::inputRow(object='comment', field='post', type='select')}"/>
+                        <div class="text-center">
+                            <input class="appointment-btn" th:value="#{comment.add.headline}" type="submit"/>
+                        </div>
+                    </form>
+                </div>
+        </div>
+        </section><!-- End Contact Section -->
+
+        <div class="text-center">
+            <a class="btn btn-secondary" th:href="@{/comments}" th:text="#{comment.add.back}"/>
+        </div>
+</body>
 </html>

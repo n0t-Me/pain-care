@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <body>
-        <div th:fragment="inputRow(object, field)" th:with="type=${type} ?: 'text', required=${required}, disabled=${disabled},
-                inputClassappend=${#fields.hasErrors(field) || (type == 'textarea' && #fields.hasErrors(field + '.*')) ? 'is-invalid ' : ''} + ${inputClass}"
-                th:object="${__${object}__}" class="row mb-3">
-            <div th:if="${type == 'checkbox'}" class="col-md-10 offset-md-2">
-                <div class="form-check">
-                    <input th:type="${type}" th:field="*{__${field}__}" th:disabled="${disabled}"
-                            th:classappend="${inputClassappend}" class="form-check-input" />
-                    <label th:for="${#ids.prev(field)}" class="form-check-label">
-                        <span th:text="#{__${object}__.__${field}__.label}" /><!--/*
-                        */--><span th:replace="~{:: requiredStar(object=${object}, field=${field}, required=${required})}" />
-                    </label>
-                </div>
-                <div th:replace="~{:: fieldErrors(${object}, ${field})}" />
-            </div>
-            <strong><label th:if="${type != 'checkbox'}" th:for="${field}" class="form-label col-md-2 col-form-label">
-                <span th:text="#{__${object}__.__${field}__.label}" /><!--/*
-                */--><span th:replace="~{:: requiredStar(object=${object}, field=${field}, required=${required})}" />
-            </label></strong>
-            <div th:if="${type != 'checkbox'}" class="col-md-9">
-                <input th:if="${type == 'text' || type == 'password' || type == 'email' || type == 'tel' || type == 'number'}"
-                        th:type="${type}" th:field="*{__${field}__}" th:disabled="${disabled}"
-                        th:classappend="${inputClassappend}" class="form-control" />
-                        <div style="position: relative;">
-                <input th:if="${type == 'range'}" 
-                        th:type="${type}" 
-                        th:field="*{__${field}__}" 
-                        th:disabled="${disabled}" 
-                        th:classappend="${inputClassappend}" 
-                        th:min="0" 
-                        th:max="10" 
-                        class="form-range" style="width: 100%; height: 10px; background: linear-gradient(to right, #fff, #fff); border: 1px solid #ccc;
-                        border-radius: 5px; " />
+<body>
+<div class="row mb-3" th:fragment="inputRow(object, field)"
+     th:object="${__${object}__}" th:with="type=${type} ?: 'text', required=${required}, disabled=${disabled},
+                inputClassappend=${#fields.hasErrors(field) || (type == 'textarea' && #fields.hasErrors(field + '.*')) ? 'is-invalid ' : ''} + ${inputClass}">
+    <div class="col-md-10 offset-md-2" th:if="${type == 'checkbox'}">
+        <div class="form-check">
+            <input class="form-check-input" th:classappend="${inputClassappend}" th:disabled="${disabled}"
+                   th:field="*{__${field}__}" th:type="${type}"/>
+            <label class="form-check-label" th:for="${#ids.prev(field)}">
+                <span th:text="#{__${object}__.__${field}__.label}"/><!--/*
+                        */--><span
+                    th:replace="~{:: requiredStar(object=${object}, field=${field}, required=${required})}"/>
+            </label>
+        </div>
+        <div th:replace="~{:: fieldErrors(${object}, ${field})}"/>
+    </div>
+    <strong><label class="form-label col-md-2 col-form-label" th:for="${field}" th:if="${type != 'checkbox'}">
+        <span th:text="#{__${object}__.__${field}__.label}"/><!--/*
+                */--><span th:replace="~{:: requiredStar(object=${object}, field=${field}, required=${required})}"/>
+    </label></strong>
+    <div class="col-md-9" th:if="${type != 'checkbox'}">
+        <input class="form-control"
+               th:classappend="${inputClassappend}" th:disabled="${disabled}" th:field="*{__${field}__}"
+               th:if="${type == 'text' || type == 'password' || type == 'email' || type == 'tel' || type == 'number'}" th:type="${type}"/>
+        <div style="position: relative;">
+            <input class="form-range"
+                   style="width: 100%; height: 10px; background: linear-gradient(to right, #fff, #fff); border: 1px solid #ccc;
+                        border-radius: 5px; "
+                   th:classappend="${inputClassappend}"
+                   th:disabled="${disabled}"
+                   th:field="*{__${field}__}"
+                   th:if="${type == 'range'}"
+                   th:max="10"
+                   th:min="0" th:type="${type}"/>
 
-                        <div id="${field}Value" class="range-value" style="position: absolute;
+            <div class="range-value" id="${field}Value" style="position: absolute;
                         top: -30px; /* Adjust the distance above the thumb */
                         left: 50%;
                         transform: translateX(-50%);
@@ -43,81 +44,88 @@
                         background-color: rgba(255, 255, 255, 0.9);
                         color: maroon;
                         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-                        display: none;">0</div></div>
-
-<script th:inline="javascript">
-    /*<![CDATA[*/
-    var rangeInput = document.getElementById(/*[[${field}]]*/);
-    var rangeValue = document.getElementById('${field}Value');
-    
-    function updateTooltip() {
-        rangeValue.textContent = rangeInput.value;
-
-        // Calculate the left position of the tooltip based on the range value
-        var leftPosition = (rangeInput.value / rangeInput.max) * 100;
-        rangeValue.style.left = leftPosition + '%';
-    }
-
-    rangeInput.addEventListener('input', updateTooltip);
-
-    rangeInput.addEventListener('mousedown', function() {
-        rangeValue.style.display = 'block';
-    });
-
-    rangeInput.addEventListener('mouseup', function() {
-        rangeValue.style.display = 'none';
-    });
-
-    rangeInput.addEventListener('touchstart', function() {
-        rangeValue.style.display = 'block';
-    });
-
-    rangeInput.addEventListener('touchend', function() {
-        rangeValue.style.display = 'none';
-    });
-
-    // Initial positioning of the tooltip
-    updateTooltip();
-    /*]]>*/
-</script>
-                <textarea th:if="${type == 'textarea'}" th:field="*{__${field}__}" th:disabled="${disabled}"
-                        th:classappend="${inputClassappend}" class="form-control" />
-                <select th:if="${type == 'select' || type == 'multiselect'}" th:field="*{__${field}__}" th:disabled="${disabled}"
-                        th:multiple="${type == 'multiselect'}" th:classappend="${inputClassappend}" class="form-select">
-                    <option th:if="${type == 'select'}" value="" th:text="#{select.empty.label}" />
-                    <option th:if="${!(__${field}__Values instanceof T(java.util.Map))}"
-                            th:each="optionValue : ${__${field}__Values}" th:value="${optionValue}" th:text="${optionValue}" />
-                    <option th:if="${__${field}__Values instanceof T(java.util.Map)}"
-                            th:each="optionValue : ${__${field}__Values}" th:value="${optionValue.key}" th:text="${optionValue.value}" />
-                </select>
-                <div th:if="${type == 'radio' && !T(com.pain_care.pain_care.util.WebUtils).isRequiredField(__${object}__, field)}" class="form-check form-check-inline pt-2">
-                    <input value="" th:checked="*{__${field}__} == null" th:name="${field}" th:disabled="${disabled}"
-                            th:classappend="${inputClassappend}" type="radio" class="form-check-input" />
-                    <label th:text="#{select.empty.label}" class="form-check-label" />
-                </div>
-                <div th:if="${type == 'radio'}" th:each="radioValue : ${__${field}__Values}" class="form-check form-check-inline pt-2">
-                    <input th:field="*{__${field}__}" th:value="${radioValue}" th:disabled="${disabled}"
-                            th:classappend="${inputClassappend}" type="radio" class="form-check-input" />
-                    <label th:for="${#ids.prev(field)}" th:text="${radioValue}" class="form-check-label" />
-                </div>
-                <div th:replace="~{:: fieldErrors(${object}, ${field})}" />
+                        display: none;">0
             </div>
         </div>
 
-        <span th:fragment="requiredStar(object, field)" th:with="required=${required}"
-                th:if="${required == null ? T(com.pain_care.pain_care.util.WebUtils).isRequiredField(__${object}__, field) : required}">*</span>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            var rangeInput = document.getElementById(/*[[${field}]]*/);
+            var rangeValue = document.getElementById('${field}Value');
 
-        <div th:fragment="fieldErrors(object, field)" th:object="${__${object}__}" th:remove="tag">
-            <div th:if="${#fields.hasErrors(field) || #fields.hasErrors(field + '.*')}" class="invalid-feedback d-block">
-                <p th:each="fieldError : ${#fields.detailedErrors(field + '*')}"
-                        th:text="${(fieldError.fieldName != field ? fieldError.fieldName + ': ' : '') + fieldError.message}" class="mb-0" />
-            </div>
-        </div>
+            function updateTooltip() {
+                rangeValue.textContent = rangeInput.value;
 
-        <div th:fragment="globalErrors(object)" th:object="${__${object}__}" th:remove="tag">
-            <div th:if="${#fields.hasGlobalErrors()}" class="invalid-feedback d-block">
-                <p th:each="globalError : ${#fields.globalErrors()}" th:text="${globalError}" class="mb-0" />
-            </div>
+                // Calculate the left position of the tooltip based on the range value
+                var leftPosition = (rangeInput.value / rangeInput.max) * 100;
+                rangeValue.style.left = leftPosition + '%';
+            }
+
+            rangeInput.addEventListener('input', updateTooltip);
+
+            rangeInput.addEventListener('mousedown', function() {
+                rangeValue.style.display = 'block';
+            });
+
+            rangeInput.addEventListener('mouseup', function() {
+                rangeValue.style.display = 'none';
+            });
+
+            rangeInput.addEventListener('touchstart', function() {
+                rangeValue.style.display = 'block';
+            });
+
+            rangeInput.addEventListener('touchend', function() {
+                rangeValue.style.display = 'none';
+            });
+
+            // Initial positioning of the tooltip
+            updateTooltip();
+            /*]]>*/
+        </script>
+        <textarea class="form-control" th:classappend="${inputClassappend}" th:disabled="${disabled}"
+                  th:field="*{__${field}__}" th:if="${type == 'textarea'}"/>
+        <select class="form-select" th:classappend="${inputClassappend}"
+                th:disabled="${disabled}"
+                th:field="*{__${field}__}" th:if="${type == 'select' || type == 'multiselect'}" th:multiple="${type == 'multiselect'}">
+            <option th:if="${type == 'select'}" th:text="#{select.empty.label}" value=""/>
+            <option th:each="optionValue : ${__${field}__Values}"
+                    th:if="${!(__${field}__Values instanceof T(java.util.Map))}" th:text="${optionValue}" th:value="${optionValue}"/>
+            <option th:each="optionValue : ${__${field}__Values}"
+                    th:if="${__${field}__Values instanceof T(java.util.Map)}" th:text="${optionValue.value}"
+                    th:value="${optionValue.key}"/>
+        </select>
+        <div class="form-check form-check-inline pt-2"
+             th:if="${type == 'radio' && !T(com.pain_care.pain_care.util.WebUtils).isRequiredField(__${object}__, field)}">
+            <input class="form-check-input" th:checked="*{__${field}__} == null" th:classappend="${inputClassappend}" th:disabled="${disabled}"
+                   th:name="${field}" type="radio" value=""/>
+            <label class="form-check-label" th:text="#{select.empty.label}"/>
         </div>
-    </body>
+        <div class="form-check form-check-inline pt-2" th:each="radioValue : ${__${field}__Values}"
+             th:if="${type == 'radio'}">
+            <input class="form-check-input" th:classappend="${inputClassappend}" th:disabled="${disabled}"
+                   th:field="*{__${field}__}" th:value="${radioValue}" type="radio"/>
+            <label class="form-check-label" th:for="${#ids.prev(field)}" th:text="${radioValue}"/>
+        </div>
+        <div th:replace="~{:: fieldErrors(${object}, ${field})}"/>
+    </div>
+</div>
+
+<span th:fragment="requiredStar(object, field)" th:if="${required == null ? T(com.pain_care.pain_care.util.WebUtils).isRequiredField(__${object}__, field) : required}"
+      th:with="required=${required}">*</span>
+
+<div th:fragment="fieldErrors(object, field)" th:object="${__${object}__}" th:remove="tag">
+    <div class="invalid-feedback d-block" th:if="${#fields.hasErrors(field) || #fields.hasErrors(field + '.*')}">
+        <p class="mb-0"
+           th:each="fieldError : ${#fields.detailedErrors(field + '*')}"
+           th:text="${(fieldError.fieldName != field ? fieldError.fieldName + ': ' : '') + fieldError.message}"/>
+    </div>
+</div>
+
+<div th:fragment="globalErrors(object)" th:object="${__${object}__}" th:remove="tag">
+    <div class="invalid-feedback d-block" th:if="${#fields.hasGlobalErrors()}">
+        <p class="mb-0" th:each="globalError : ${#fields.globalErrors()}" th:text="${globalError}"/>
+    </div>
+</div>
+</body>
 </html>

@@ -1,7 +1,10 @@
 package com.pain_care.pain_care.model;
 
+import com.pain_care.pain_care.domain.Comment;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
+import java.util.Set;
 
 
 public class PostDTO {
@@ -15,9 +18,13 @@ public class PostDTO {
     @NotNull
     private String description;
 
+    private String shortDesc;
+
     private String image;
 
     private Integer user;
+
+    private Set<Comment> comments;
 
     public Integer getId() {
         return id;
@@ -41,6 +48,11 @@ public class PostDTO {
 
     public void setDescription(final String description) {
         this.description = description;
+        this.shortDesc = description.substring(0, Math.min(description.length(), 100));
+    }
+
+    public String getShortDesc() {
+        return this.shortDesc;
     }
 
     public String getImage() {
@@ -59,4 +71,11 @@ public class PostDTO {
         this.user = user;
     }
 
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
 }

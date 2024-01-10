@@ -12,8 +12,10 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
 import java.time.OffsetDateTime;
 import java.util.Set;
+
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -40,15 +42,15 @@ public class Post {
     private String description;
 
     @Lob
-	@Column(columnDefinition = "MEDIUMBLOB")
-	private String image;
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private String image;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", fetch=FetchType.EAGER)
     private Set<Comment> comments;
 
     @CreatedDate

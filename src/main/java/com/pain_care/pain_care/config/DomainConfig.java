@@ -2,6 +2,7 @@ package com.pain_care.pain_care.config;
 
 import java.time.OffsetDateTime;
 import java.util.Optional;
+
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,131 +1,131 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
-    <head>
-        <meta charset="utf-8">
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-      
-        <title th:text="#{home.index.headline}" />
-        <meta content="" name="description">
-        <meta content="" name="keywords">
-      
-        <!-- Favicons -->
-        <link href="/assets/img/Paincare_logo.jpg" rel="icon">
-        <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-      
-        <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <!-- Vendor CSS Files -->
-  <link href="/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <title th:text="#{home.index.headline}"/>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
 
-  <!-- Template Main CSS File -->
-  <link href="/assets/css/style.css" rel="stylesheet">
-  
-      </head>
-      
-      <body>
-      
-        <!-- ======= Top Bar ======= -->
-        <div   id="topbar" class="d-flex align-items-center fixed-top">
-          <div class="container d-flex align-items-center justify-content-center justify-content-md-between">
-            <nav class="topbar-nav ms-auto" th:if="${username}">
+    <!-- Favicons -->
+    <link href="/assets/img/Paincare_logo.jpg" rel="icon">
+    <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- ======= Top Bar ======= -->
+<div class="d-flex align-items-center fixed-top" id="topbar" th:if="${username}">
+    <div class="container d-flex align-items-center justify-content-center justify-content-md-between">
+        <nav class="topbar-nav ms-auto">
             <ul>
-            <li class="nav-item dropdown pe-3">
+                <li class="nav-item dropdown pe-3">
 
-              <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                <img th:src="'data:image/png;base64,' + ${picture}" alt="Profile" class="rounded-circle">
-                <span class="d-none d-md-block dropdown-toggle ps-2" th:text="${username}" ></span>
-              </a><!-- End Profile Iamge Icon -->
-    
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile profile.z-index-high">
-                <li class="dropdown-topbar">
-                  <h6 class="text-center">Profil</h6>
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown" href="#">
+                        <img alt="Profile" class="rounded-circle" th:src="'data:image/png;base64,' + ${picture}">
+                        <span class="d-none d-md-block dropdown-toggle ps-2" th:text="${username}"></span>
+                    </a><!-- End Profile Iamge Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile profile.z-index-high">
+                        <li class="dropdown-topbar">
+                            <h6 class="text-center">Profil</h6>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center"
+                               th:href="@{/users/edit}">
+                                <i class="bi bi-person"></i>
+                                <span>Mon Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <form class="dropdown-item d-flex align-items-center" th:action="@{/logout}"
+                                  th:method="POST">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <input class="dropdown-item d-flex align-items-center" type="submit"
+                                       value="Se Déconnecter"/>
+                            </form>
+                        </li>
+                    </ul>
                 </li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-    
-                <li>
-                    <a th:href="@{/users/edit/{id}(id=${userId})}"  class="dropdown-item d-flex align-items-center" >
-                    <i class="bi bi-person"></i>
-                    <span>Mon Profile</span>
-                  </a>
-                </li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>    
-    
-                <li>
-                  <form class="dropdown-item d-flex align-items-center" th:action="@{/logout}" th:method="POST">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <input class="dropdown-item d-flex align-items-center" type="submit" value="Se Déconnecter" />
-                  </form>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      
-        <!-- ======= Header ======= -->
-        <header id="header" class="fixed-top">
-          <div class="container d-flex align-items-center">
-      
-            <a th:href="@{/}" class="logo me-auto">
-                <img th:src="@{/images/Paincare_logo-V2.png}" th:alt="#{app.title}" width="60" height="58" >
-                <span th:text="#{app.title}" class="ps-1" />
-            </a>
-      
-            <nav id="navbar" class="navbar order-last order-lg-0">
-              <ul>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<!-- ======= Header ======= -->
+<header th:class="'fixed-top '+${username == null ? 'top-0' : ''}" id="header">
+    <div class="container d-flex align-items-center">
+
+        <a class="logo me-auto" th:href="@{/}">
+            <img height="58" th:alt="#{app.title}" th:src="@{/images/Paincare_logo-V2.png}" width="60">
+            <span class="ps-1" th:text="#{app.title}"/>
+        </a>
+
+        <nav class="navbar order-last order-lg-0" id="navbar">
+            <ul>
                 <li><a class="nav-link scrollto " th:href="@{/}" th:text="#{navigation.home}"/></li>
-                <li><a class="nav-link scrollto" th:href="@{/posts}" th:text="#{post.list.headline}" /></li>
-                <li><a class="nav-link scrollto" th:href="@{/comments}" th:text="#{comment.list.headline}" /></li>
+                <li><a class="nav-link scrollto" th:href="@{/posts}" th:text="#{post.list.headline}"/></li>
                 <li><a class="nav-link scrollto" th:href="@{/painRecords}" th:text="#{painRecord.list.headline}"/></li>
-              </ul>
-              <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->      
-          </div>
-        </header><!-- End Header -->
-        
-        <main >
-            <!--<div class="container"> -->
-              <div>
-                <p th:if="${MSG_SUCCESS}" th:text="${MSG_SUCCESS}" class="alert alert-success mb-4" role="alert" />
-                <p th:if="${MSG_INFO}" th:text="${MSG_INFO}" class="alert alert-info mb-4" role="alert" />
-                <p th:if="${MSG_ERROR}" th:text="${MSG_ERROR}" class="alert alert-danger mb-4" role="alert" />
-                <div layout:fragment="content1" />
-                <div layout:fragment="content" />
-            </div>
-        </main>
-        <footer id="footer">
-          <div class="footer-top">
-        <div class="container">
-          
-          <div class="credits">
-            PainCare 
-          </div>
-        </div>
-      </div>
-      </footer><!-- End Footer -->
-    
-      <div id="preloader"></div>
-      <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-        <!-- Vendor JS Files -->
-  <script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="/assets/vendor/aos/aos.js"></script>
-  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="/assets/vendor/php-email-form/validate.js"></script>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
 
-  <!-- Template Main JS File -->
-  <script src="/assets/js/main.js"></script>
-    </body>
+<main>
+    <!--<div class="container"> -->
+    <div>
+        <p class="alert alert-success mb-4" role="alert" th:if="${MSG_SUCCESS}" th:text="${MSG_SUCCESS}"/>
+        <p class="alert alert-info mb-4" role="alert" th:if="${MSG_INFO}" th:text="${MSG_INFO}"/>
+        <p class="alert alert-danger mb-4" role="alert" th:if="${MSG_ERROR}" th:text="${MSG_ERROR}"/>
+        <div layout:fragment="content1"/>
+        <div layout:fragment="content"/>
+    </div>
+</main>
+<footer id="footer" class="footer mt-auto py-3 bg-light">
+    <div class="container d-flex align-items-center justify-content-center">
+        PainCare
+    </div>
+</footer><!-- End Footer -->
+
+<!--<div id="preloader"></div>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>-->
+<!-- Vendor JS Files -->
+<script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="/assets/vendor/aos/aos.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="/assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/assets/js/main.js"></script>
+</body>
 </html>

@@ -11,6 +11,7 @@ import com.pain_care.pain_care.repos.PostRepository;
 import com.pain_care.pain_care.repos.UserRepository;
 import com.pain_care.pain_care.util.NotFoundException;
 import com.pain_care.pain_care.util.WebUtils;
+
 import java.util.List;
 
 
@@ -29,8 +30,8 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     public UserService(final UserRepository userRepository, final PostRepository postRepository,
-            final CommentRepository commentRepository,
-            final PainRecordRepository painRecordRepository,final PasswordEncoder passwordEncoder) {
+                       final CommentRepository commentRepository,
+                       final PainRecordRepository painRecordRepository, final PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.postRepository = postRepository;
         this.commentRepository = commentRepository;
@@ -61,8 +62,8 @@ public class UserService {
         final User user = new User();
         mapToEntity(userDTO, user);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-    User savedUser = userRepository.save(user);
-    return savedUser.getId();
+        User savedUser = userRepository.save(user);
+        return savedUser.getId();
     }
 
     public void update(final Integer id, final UserDTO userDTO) {

@@ -1,69 +1,72 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout2}">
+<html layout:decorate="~{layout2}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
 
-    <head>
-        <title th:text="#{post.add.headline}" />
-    </head>
-    <body>
-        <div layout:fragment="content1">
-            <main id="main">
-                <section id="featured-services">
+<head>
+    <title th:text="#{post.add.headline}"/>
+</head>
+<body>
+<div layout:fragment="content1">
+    <main id="main">
+        <section id="featured-services">
 
-                </section>
+        </section>
 
         <div layout:fragment="content">
 
-            <section id="contact" class="contact">
-              <div class="container">
-        
-                <div class="section-title">
-                  <h2 th:text="#{post.add.headline}"></h2>
-                  <p></p>
+            <section class="contact" id="contact">
+                <div class="container">
+
+                    <div class="section-title">
+                        <h2 th:text="#{post.add.headline}"></h2>
+                        <p></p>
+                    </div>
+
                 </div>
-        
-              </div>
-        
-              <div class="container" style="background-image:url(/assets/img/61805.jpg); /* White background color */
+
+                <div class="container" style="background-image:url(/assets/img/61805.jpg); /* White background color */
               background-position: center;
               background-size: cover;
             border-radius: 10px; /* Rounded corners */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
             padding: 20px; /* Add some padding inside the box */">
-            <div th:replace="~{fragments/forms::globalErrors('post')}" />
-            <form th:action="${requestUri}" method="post" enctype="multipart/form-data" >
-                <div class="form-group mt-3">
-                    <div class="form-control" th:replace="~{fragments/forms::inputRow(object='post', field='title')}" />
-                </div>
-                <div class="form-group mt-3">
-                    <div class="form-control" rows="7" th:replace="~{fragments/forms::inputRow(object='post', field='description', type='textarea')}" />
-                </div>
-                <!-- Update the inputRow for 'image' to include file input -->
-            <div class="row">
-                <div class="col-md-6 form-group">
-      <div class="row">
-        <label for="imageFile" class="col-sm-2 col-form-label" >Image</label>
-        <div class="col-sm-10">
-            <input type="file" id="imageFile" name="imageFile" class="form-control-file" accept="image/*" />
-        </div>
-      </div>
-    </div>
-                
+                    <div th:replace="~{fragments/forms::globalErrors('post')}"/>
+                    <form enctype="multipart/form-data" method="post" th:action="${requestUri}">
+                        <div class="form-group mt-3">
+                            <div class="form-control"
+                                 th:replace="~{fragments/forms::inputRow(object='post', field='title')}"/>
+                        </div>
+                        <div class="form-group mt-3">
+                            <div class="form-control" rows="7"
+                                 th:replace="~{fragments/forms::inputRow(object='post', field='description', type='textarea')}"/>
+                        </div>
+                        <!-- Update the inputRow for 'image' to include file input -->
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <div class="row">
+                                    <label class="col-sm-2 col-form-label" for="imageFile">Image</label>
+                                    <div class="col-sm-10">
+                                        <input accept="image/*" class="form-control-file" id="imageFile" name="imageFile"
+                                               type="file"/>
+                                    </div>
+                                </div>
+                            </div>
 
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                    <div class="text-center">
-                <input type="submit" th:value="#{post.add.headline}" class="appointment-btn" />
+
+                            <div class="col-md-6 form-group mt-3 mt-md-0">
+                                <div class="text-center">
+                                    <input class="appointment-btn" th:value="#{post.add.headline}" type="submit"/>
+                                </div>
+                            </div>
+                    </form>
                 </div>
-            </div>
-            </form>
         </div>
-      </div>
-      <div class="text-center">
-        <a th:href="@{/posts}" th:text="#{post.add.back}" class="btn btn-secondary" />
-    </div>
-    </section><!-- End Contact Section -->
+        <div class="text-center">
+            <a class="btn btn-secondary" th:href="@{/posts}" th:text="#{post.add.back}"/>
+        </div>
+        </section><!-- End Contact Section -->
 
     </main>
 </div>
-    </body>
+</body>
 </html>

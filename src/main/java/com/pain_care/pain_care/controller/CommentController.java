@@ -30,7 +30,7 @@ public class CommentController {
     private final PostRepository postRepository;
 
     public CommentController(final CommentService commentService,
-            final UserRepository userRepository, final PostRepository postRepository) {
+                             final UserRepository userRepository, final PostRepository postRepository) {
         this.commentService = commentService;
         this.userRepository = userRepository;
         this.postRepository = postRepository;
@@ -59,7 +59,7 @@ public class CommentController {
 
     @PostMapping("/add")
     public String add(@ModelAttribute("comment") @Valid final CommentDTO commentDTO,
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
+                      final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "comment/add";
         }
@@ -76,8 +76,8 @@ public class CommentController {
 
     @PostMapping("/edit/{id}")
     public String edit(@PathVariable final Integer id,
-            @ModelAttribute("comment") @Valid final CommentDTO commentDTO,
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
+                       @ModelAttribute("comment") @Valid final CommentDTO commentDTO,
+                       final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "comment/edit";
         }
@@ -88,7 +88,7 @@ public class CommentController {
 
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable final Integer id,
-            final RedirectAttributes redirectAttributes) {
+                         final RedirectAttributes redirectAttributes) {
         commentService.delete(id);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_INFO, WebUtils.getMessage("comment.delete.success"));
         return "redirect:/comments";

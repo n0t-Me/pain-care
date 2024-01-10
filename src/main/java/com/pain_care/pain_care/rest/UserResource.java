@@ -4,7 +4,9 @@ import com.pain_care.pain_care.model.UserDTO;
 import com.pain_care.pain_care.service.UserService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
+
 import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +49,7 @@ public class UserResource {
 
     @PutMapping("/{id}")
     public ResponseEntity<Integer> updateUser(@PathVariable(name = "id") final Integer id,
-            @RequestBody @Valid final UserDTO userDTO) {
+                                              @RequestBody @Valid final UserDTO userDTO) {
         userService.update(id, userDTO);
         return ResponseEntity.ok(id);
     }

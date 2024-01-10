@@ -15,7 +15,9 @@ public class CustomCollectors {
             Function<? super T, ? extends U> valueMapper) {
         return Collectors.toMap(keyMapper,
                 valueMapper,
-                (u, v) -> { throw new IllegalStateException(String.format("Duplicate key %s", u)); },
+                (u, v) -> {
+                    throw new IllegalStateException(String.format("Duplicate key %s", u));
+                },
                 LinkedHashMap::new);
     }
 

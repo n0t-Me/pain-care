@@ -4,7 +4,9 @@ import com.pain_care.pain_care.model.CommentDTO;
 import com.pain_care.pain_care.service.CommentService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
+
 import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +49,7 @@ public class CommentResource {
 
     @PutMapping("/{id}")
     public ResponseEntity<Integer> updateComment(@PathVariable(name = "id") final Integer id,
-            @RequestBody @Valid final CommentDTO commentDTO) {
+                                                 @RequestBody @Valid final CommentDTO commentDTO) {
         commentService.update(id, commentDTO);
         return ResponseEntity.ok(id);
     }

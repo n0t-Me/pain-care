@@ -17,10 +17,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import com.pain_care.pain_care.service.UserinfoService;
 
 
-
-
-
-
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -33,8 +29,6 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userdetailservice() {
-
-
 
 
         return new UserinfoService();

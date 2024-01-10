@@ -1,48 +1,51 @@
 <!DOCTYPE HTML>
-<html  lang="en" xmlns:th="http://www.thymeleaf.org" >
-    <head>
-        <title th:text="#{home.index.headline}" />
-        <!-- Favicons -->
-        <link href="/assets/img/Paincare_logo.jpg" rel="icon">
-        <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{home.index.headline}"/>
+    <!-- Favicons -->
+    <link href="/assets/img/Paincare_logo.jpg" rel="icon">
+    <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> 
-    <link rel="stylesheet" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/core.min.css">
-    <link rel='stylesheet' id='roboto-subset.css-css'  href='https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/mdb5/fonts/roboto-subset.css?ver=3.9.0-update.5' type='text/css' media='all' />
-        
-    </head>
-    <body>
-       
-            <style>
-              .register {
-                background-image: url(/assets/img/stethoscope-medications-cardiogram.jpg);
-                background-position: center;
-                background-size: cover;
-                padding: 2%;
-              }
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/core.min.css"
+          rel="stylesheet">
+    <link href='https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/mdb5/fonts/roboto-subset.css?ver=3.9.0-update.5' id='roboto-subset.css-css'
+          media='all'
+          rel='stylesheet' type='text/css'/>
 
-              .cascading-right {
-                margin-right: -50px;
-              }
-          
-              @media (max-width: 991.98px) {
-                .cascading-right {
-                  margin-right: 0;
-                }
-              }
-              .appointment-btn {
-                margin-left: 25px;
-                background: #3fbbc0;
-                color: #fff;
-                border-radius: 4px;
-                border-color: #fff;
-                padding: 8px 25px;
-                white-space: nowrap;
-                transition: 0.3s;
-                font-size: 14px;
-                display: inline-block;}
+</head>
+<body>
 
-                .file-upload{display:block;text-align:center;font-family: Helvetica, Arial, sans-serif;font-size: 12px;}
+<style>
+    .register {
+      background-image: url(/assets/img/stethoscope-medications-cardiogram.jpg);
+      background-position: center;
+      background-size: cover;
+      padding: 2%;
+    }
+
+    .cascading-right {
+      margin-right: -50px;
+    }
+
+    @media (max-width: 991.98px) {
+      .cascading-right {
+        margin-right: 0;
+      }
+    }
+    .appointment-btn {
+      margin-left: 25px;
+      background: #3fbbc0;
+      color: #fff;
+      border-radius: 4px;
+      border-color: #fff;
+      padding: 8px 25px;
+      white-space: nowrap;
+      transition: 0.3s;
+      font-size: 14px;
+      display: inline-block;}
+
+      .file-upload{display:block;text-align:center;font-family: Helvetica, Arial, sans-serif;font-size: 12px;}
 .file-upload .file-select{display:block;border: 2px solid #dce4ec;color: #4f4f4f;cursor:pointer;height:40px;line-height:40px;text-align:left;background:#FFFFFF;overflow:hidden;position:relative;}
 .file-upload .file-select .file-select-button{background:#dce4ec;padding:0 10px;display:inline-block;height:40px;line-height:40px;}
 .file-upload .file-select .file-select-name{line-height:40px;display:inline-block;padding:0 10px;}
@@ -56,67 +59,69 @@
 .file-upload .file-select.file-select-disabled:hover .file-select-button{background:#dce4ec;color:#666666;padding:0 10px;display:inline-block;height:40px;line-height:40px;}
 .file-upload .file-select.file-select-disabled:hover .file-select-name{line-height:40px;display:inline-block;padding:0 10px;}
 
-            </style>
-           <section class="register text-center text-lg-start">
-            <!-- Jumbotron -->
-            <div class="container py-4">
-              <div class="row g-0 align-items-center">
-                <div class="col-lg-7 mb-5 mb-lg-0">
-                  <div class="card cascading-right" style="
+</style>
+<section class="register text-center text-lg-start">
+    <!-- Jumbotron -->
+    <div class="container py-4">
+        <div class="row g-0 align-items-center">
+            <div class="col-lg-7 mb-5 mb-lg-0">
+                <div class="card cascading-right" style="
                       background: hsla(0, 0%, 100%, 0.55);
                       backdrop-filter: blur(30px);
                       ">
                     <div class="card-body p-5 shadow-5 text-center">
                         <div style="text-align: left;">
-                        <a th:href="@{/}" class="logo " >
-                            <img th:src="@{/images/Paincare_logo-V2.png}" th:alt="#{app.title}" width="60" height="58" >
-                            <span th:text="#{app.title}" style="line-height: 1;
+                            <a class="logo " th:href="@{/}">
+                                <img height="58" th:alt="#{app.title}" th:src="@{/images/Paincare_logo-V2.png}"
+                                     width="60">
+                                <span style="line-height: 1;
                             font-weight: 600;
                             letter-spacing: 0.5px;
-                            color: rgb(237, 140, 161); font-size: 35px;" />
-                        </a>
-                    </div>
+                            color: rgb(237, 140, 161); font-size: 35px;" th:text="#{app.title}"/>
+                            </a>
+                        </div>
 
                         <h2 class="fw-bold mb-5">Register now</h2>
-            <div th:replace="~{fragments/forms::globalErrors('user')}" />
-            <form th:action="${requestUri}" method="post" enctype="multipart/form-data">
-                <div th:replace="~{fragments/forms::inputRow(object='user', field='name')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='user', field='email')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='user', field='password')}" />
-                <div th:replace="~{fragments/forms::inputRow(object='user', field='bday', inputClass='js-datepicker')}" />
-                <!-- Update the inputRow for 'image' to include file input -->
-    <div class="form-group row">
-        <label for="imageFile" class="col-sm-2 col-form-label" >Picture</label>
+                        <div th:replace="~{fragments/forms::globalErrors('user')}"/>
+                        <form enctype="multipart/form-data" method="post" th:action="${requestUri}">
+                            <div th:replace="~{fragments/forms::inputRow(object='user', field='name')}"/>
+                            <div th:replace="~{fragments/forms::inputRow(object='user', field='email')}"/>
+                            <div th:replace="~{fragments/forms::inputRow(object='user', field='password')}"/>
+                            <div th:replace="~{fragments/forms::inputRow(object='user', field='bday', inputClass='js-datepicker')}"/>
+                            <!-- Update the inputRow for 'image' to include file input -->
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label" for="imageFile">Picture</label>
 
-        <div class="file-upload col-sm-10" >
-          <div class="file-select">
-            <div class="file-select-button" id="fileName">Choose File</div>
-            <div class="file-select-name" id="noFile">No file chosen...</div> 
-            <input type="file" id="imageFile" name="imageFile"  accept="image/*" />
-    </div>
-      </div>
-    </div>
-    <br>
-                <div th:replace="~{fragments/forms::inputRow(object='user', field='language')}" />
-                <button type="submit" class="appointment-btn" >Register</button>
-                
-            </form>
-            <br>
-        <br>
-        <p>Already have an account ? <a th:href="@{/users/login}" style="color: #3fbbc0;"><strong>Log in </strong></a></p>
-    
-            
+                                <div class="file-upload col-sm-10">
+                                    <div class="file-select">
+                                        <div class="file-select-button" id="fileName">Choose File</div>
+                                        <div class="file-select-name" id="noFile">No file chosen...</div>
+                                        <input accept="image/*" id="imageFile" name="imageFile" type="file"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div th:replace="~{fragments/forms::inputRow(object='user', field='language')}"/>
+                            <button class="appointment-btn" type="submit">Register</button>
+
+                        </form>
+                        <br>
+                        <br>
+                        <p>Already have an account ? <a style="color: #3fbbc0;" th:href="@{/users/login}"><strong>Log
+                            in </strong></a></p>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5 mb-5 mb-lg-0">
+                <img alt="" class="w-100 rounded-4 shadow-4"
+                     src="/assets/img/secrvices-medicaux.png"/>
+            </div>
         </div>
     </div>
-  </div>
-
-  <div class="col-lg-5 mb-5 mb-lg-0">
-    <img src="/assets/img/secrvices-medicaux.png" class="w-100 rounded-4 shadow-4"
-      alt="" />
-  </div>
-</div>
-</div>
-<!-- Jumbotron -->
+    <!-- Jumbotron -->
 </section>
-    </body>
+</body>
 </html>

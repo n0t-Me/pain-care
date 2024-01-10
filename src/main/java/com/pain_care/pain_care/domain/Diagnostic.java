@@ -30,7 +30,6 @@ public class Diagnostic {
     private Float score;
 
 
-
     public String getResult() {
         return result;
     }

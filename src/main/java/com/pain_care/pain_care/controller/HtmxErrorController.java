@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 
-
 @Controller
 public class HtmxErrorController {
 
@@ -23,7 +22,7 @@ public class HtmxErrorController {
     @RequestMapping(value = "${server.error.path:${error.path:/error}}", headers = "HX-Request=true")
     @ResponseStatus(HttpStatus.OK)
     public ModelAndView errorHtmx(final HttpServletRequest request,
-            final HttpServletResponse response) {
+                                  final HttpServletResponse response) {
         return basicErrorController.errorHtml(request, response);
     }
 

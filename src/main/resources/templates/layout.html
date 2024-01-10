@@ -1,67 +1,70 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    <head>
-        <title th:text="#{app.title}" layout:title-pattern="$CONTENT_TITLE | $LAYOUT_TITLE" />
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link th:href="@{/css/app.css}" rel="stylesheet" />
-        <script th:src="@{/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js}" defer></script>
-        <script th:src="@{/webjars/htmx.org/1.9.6/dist/htmx.min.js}" defer></script>
-        <script th:src="@{/webjars/flatpickr/4.6.13/dist/flatpickr.min.js}" defer></script>
-        <script th:src="@{/js/app.js}" defer></script>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title layout:title-pattern="$CONTENT_TITLE | $LAYOUT_TITLE" th:text="#{app.title}"/>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <link rel="stylesheet" th:href="@{/css/app.css}"/>
+    <script defer th:src="@{/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js}"></script>
+    <script defer th:src="@{/webjars/htmx.org/1.9.6/dist/htmx.min.js}"></script>
+    <script defer th:src="@{/webjars/flatpickr/4.6.13/dist/flatpickr.min.js}"></script>
+    <script defer th:src="@{/js/app.js}"></script>
 
-        <link href="/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-    </head>
-    <body hx-boost="true">
-        <header class="bg-light">
-            <div class="container">
-                <nav class="navbar navbar-light navbar-expand-md">
-                        <a th:href="@{/}" class="logo " >
-                            <img th:src="@{/images/Paincare_logo-V2.png}" th:alt="#{app.title}" width="60" height="58" >
-                            <span th:text="#{app.title}" style="line-height: 1;
+    <link href="/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+</head>
+<body hx-boost="true">
+<header class="bg-light">
+    <div class="container">
+        <nav class="navbar navbar-light navbar-expand-md">
+            <a class="logo " th:href="@{/}">
+                <img height="58" th:alt="#{app.title}" th:src="@{/images/Paincare_logo-V2.png}" width="60">
+                <span style="line-height: 1;
                             font-weight: 600;
                             letter-spacing: 0.5px;
-                            color: rgb(237, 140, 161); font-size: 35px;" />
-                        </a>
-                    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarToggle"
-                            th:aria-label="#{navigation.toggle}" aria-controls="navbarToggle" aria-expanded="false">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarToggle">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="navbar-item">
-                                <a th:href="@{/}" th:text="#{navigation.home}" class="nav-link" />
+                            color: rgb(237, 140, 161); font-size: 35px;" th:text="#{app.title}"/>
+            </a>
+            <button aria-controls="navbarToggle" aria-expanded="false" class="navbar-toggler" data-bs-target="#navbarToggle"
+                    data-bs-toggle="collapse" th:aria-label="#{navigation.toggle}" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggle">
+                <ul class="navbar-nav ms-auto">
+                    <li class="navbar-item">
+                        <a class="nav-link" th:href="@{/}" th:text="#{navigation.home}"/>
+                    </li>
+                    <li class="navbar-item dropdown">
+                        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                           href="#" id="navbarEntitiesLink"
+                           role="button" th:text="#{navigation.entities}"/>
+                        <ul aria-labelledby="navbarEntitiesLink" class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" th:href="@{/users}" th:text="#{user.list.headline}"/></li>
+                            <li><a class="dropdown-item" th:href="@{/posts}" th:text="#{post.list.headline}"/></li>
+                            <li><a class="dropdown-item" th:href="@{/comments}" th:text="#{comment.list.headline}"/>
                             </li>
-                            <li class="navbar-item dropdown">
-                                <a th:text="#{navigation.entities}" class="nav-link dropdown-toggle" href="#" id="navbarEntitiesLink" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false" />
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarEntitiesLink">
-                                    <li><a th:href="@{/users}" th:text="#{user.list.headline}" class="dropdown-item" /></li>
-                                    <li><a th:href="@{/posts}" th:text="#{post.list.headline}" class="dropdown-item" /></li>
-                                    <li><a th:href="@{/comments}" th:text="#{comment.list.headline}" class="dropdown-item" /></li>
-                                    <li><a th:href="@{/painRecords}" th:text="#{painRecord.list.headline}" class="dropdown-item" /></li>
-                                </ul>
-                            </li>
+                            <li><a class="dropdown-item" th:href="@{/painRecords}"
+                                   th:text="#{painRecord.list.headline}"/></li>
                         </ul>
-                    </div>
-                </nav>
+                    </li>
+                </ul>
             </div>
-        </header>
-        <main class="my-5">
-            <div class="container">
-                <p th:if="${MSG_SUCCESS}" th:text="${MSG_SUCCESS}" class="alert alert-success mb-4" role="alert" />
-                <p th:if="${MSG_INFO}" th:text="${MSG_INFO}" class="alert alert-info mb-4" role="alert" />
-                <p th:if="${MSG_ERROR}" th:text="${MSG_ERROR}" class="alert alert-danger mb-4" role="alert" />
-                <div layout:fragment="content" />
-            </div>
-        </main>
-    </body>
+        </nav>
+    </div>
+</header>
+<main class="my-5">
+    <div class="container">
+        <p class="alert alert-success mb-4" role="alert" th:if="${MSG_SUCCESS}" th:text="${MSG_SUCCESS}"/>
+        <p class="alert alert-info mb-4" role="alert" th:if="${MSG_INFO}" th:text="${MSG_INFO}"/>
+        <p class="alert alert-danger mb-4" role="alert" th:if="${MSG_ERROR}" th:text="${MSG_ERROR}"/>
+        <div layout:fragment="content"/>
+    </div>
+</main>
+</body>
 </html>

@@ -9,7 +9,9 @@ import com.pain_care.pain_care.repos.PostRepository;
 import com.pain_care.pain_care.repos.UserRepository;
 import com.pain_care.pain_care.util.NotFoundException;
 import com.pain_care.pain_care.util.WebUtils;
+
 import java.util.List;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -17,15 +19,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class PostService {
 
-    private final PostRepository postRepository;
     private static UserRepository userRepository = null;
+    private final PostRepository postRepository;
     private final CommentRepository commentRepository;
 
     public PostService(final PostRepository postRepository, final UserRepository userRepository,
-            final CommentRepository commentRepository) {
+                       final CommentRepository commentRepository) {
         this.postRepository = postRepository;
-        this.userRepository = userRepository;
+        PostService.userRepository = userRepository;
         this.commentRepository = commentRepository;
+    }
+
+    public static String getUserNameById(PostDTO post) {
+        int userId = post.getUser();
+        return userRepository.findById(userId)
+                .map(User::getName)
+                .orElse(null); // or any default value you want to use
     }
 
     public List<PostDTO> findAll() {
@@ -64,6 +73,7 @@ public class PostService {
         postDTO.setDescription(post.getDescription());
         postDTO.setImage(post.getImage());
         postDTO.setUser(post.getUser() == null ? null : post.getUser().getId());
+        postDTO.setComments(post.getComments());
         return postDTO;
     }
 
@@ -74,6 +84,7 @@ public class PostService {
         final User user = postDTO.getUser() == null ? null : userRepository.findById(postDTO.getUser())
                 .orElseThrow(() -> new NotFoundException("user not found"));
         post.setUser(user);
+        post.setComments(postDTO.getComments());
         return post;
     }
 
@@ -85,13 +96,6 @@ public class PostService {
             return WebUtils.getMessage("post.comment.post.referenced", postComment.getId());
         }
         return null;
-    }
-    
-    public static String getUserNameById(PostDTO post) {
-        int userId = post.getUser();
-        return userRepository.findById(userId)
-                .map(User::getName)
-                .orElse(null); // or any default value you want to use
     }
 
 }

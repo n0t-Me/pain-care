@@ -19,25 +19,26 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String index(@AuthenticationPrincipal UserDetailsinfo userDetails,Model model) {
+    public String index(@AuthenticationPrincipal UserDetailsinfo userDetails, Model model) {
 
-            if (userDetails != null) {
-                String username = userDetails.getName();
-                Integer userId = userDetails.getId();
-                String pic = userDetails.getPic();
-                DiagnosticDTO diagnosticDTO = diagnosticService.getLatestDiagnostic(userId);
-                                 if (diagnosticDTO== null) {
+        if (userDetails != null) {
+            String username = userDetails.getName();
+            Integer userId = userDetails.getId();
+            String pic = userDetails.getPic();
+            DiagnosticDTO diagnosticDTO = diagnosticService.getLatestDiagnostic(userId);
+            if (diagnosticDTO == null) {
 
-                                model.addAttribute("diagnosticResult", "Go !");
+                model.addAttribute("diagnosticResult", "Go !");
 
-                      }else{
+            } else {
                 System.out.println(diagnosticDTO);
-                                model.addAttribute("diagnosticResult", diagnosticDTO.getResult());}
-
-                model.addAttribute("username", username);
-                model.addAttribute("userId", userId);
-                model.addAttribute("picture", pic);
+                model.addAttribute("diagnosticResult", diagnosticDTO.getResult());
             }
+
+            model.addAttribute("username", username);
+            model.addAttribute("userId", userId);
+            model.addAttribute("picture", pic);
+        }
 
 
         return "home/index";

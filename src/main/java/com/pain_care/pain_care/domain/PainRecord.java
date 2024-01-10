@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
 import java.time.OffsetDateTime;
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class PainRecord {
     @Column(nullable = false, columnDefinition = "longtext")
     private List<Feelings> feelings;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 

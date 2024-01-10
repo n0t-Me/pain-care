@@ -1,100 +1,105 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout2}">
+<html lang="en" layout:decorate="~{layout2}" xmlns:th="http://www.thymeleaf.org">
 <head>
-   
-    <title th:text="#{home.index.headline}" />
+
+    <title th:text="#{home.index.headline}"/>
 </head>
 <body>
-    <div layout:fragment="content1">
-        <main id="main">
-            <section id="featured-services">
+<div layout:fragment="content1">
+    <main id="main">
+        <section id="featured-services">
 
-            </section>
+        </section>
 
-    <div layout:fragment="content">
+        <div layout:fragment="content">
 
-        <section id="contact" class="contact">
-          <div class="container">
-    
-            <div class="section-title">
-              <h2>Test diagnostic</h2>
-              <p></p>
-            </div>
-    
-          </div>
-    
-          <div class="container">
+            <section class="contact" id="contact">
+                <div class="container">
 
-          
-            <section id="heroD">
+                    <div class="section-title">
+                        <h2>Test diagnostic</h2>
+                        <p></p>
+                    </div>
 
-    <form id="diagnostic-form" th:action="@{/diagnostic}" method="POST" th:object="${diagnosticDTO}">
-            <div id="heroCarousel" data-bs-interval="false" class="carousel slide carousel-fade" >
-        
-        
-              <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
-        
-              <div class="carousel-inner" role="listbox">
+                </div>
+
+                <div class="container">
 
 
-        <div th:each="question, questionIndex : ${questionsBank}"  class="carousel-item " th:classappend="${questionIndex.index == 0} ? 'active' : ''" style="background-image: url(/assets/img/stethoscope-medical-equipment.jpg) ;      background-position: center 53%; /* Adjust the percentage for desired cropping */"        >
-            <div class="container">
+                    <section id="heroD">
 
-            <div class="mb-3">
-                <p th:text="${question[0]}"></p>
-            </div>
-            <th:block th:each="answer, answerIndex : ${question[1]}" varStatus="loop2">
-            <div class="mb-3">
-                <input type="radio" th:name="'answers[' + ${questionIndex.index} + ']'" th:value="${answerIndex.index}" th:id="'Q' + ${questionIndex.index} + 'A' + ${answer}" >
-                <label th:for="'Q' + ${questionIndex.index} + 'A' + ${answer}" th:text="${answer}"></label>
-            </div>
-        </th:block>
-        </div>
-        </div>
-    </div>
-</div>
+                        <form id="diagnostic-form" method="POST" th:action="@{/diagnostic}"
+                              th:object="${diagnosticDTO}">
+                            <div class="carousel slide carousel-fade" data-bs-interval="false" id="heroCarousel">
 
-</div>
 
-<a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
-<span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true" style="color: rgba(255, 255, 255, 0.8); background-color :  #3fbbc0; border-radius: 50%;  margin-top: 450px;"></span>
-</a>
+                                <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
 
-<a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
-<span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true" style="color: rgba(255, 255, 255, 0.8); background-color :  #3fbbc0; border-radius: 50%;  margin-top: 450px;">
+                                <div class="carousel-inner" role="listbox">
+
+
+                                    <div class="carousel-item " style="background-image: url(/assets/img/stethoscope-medical-equipment.jpg) ;      background-position: center 53%; /* Adjust the percentage for desired cropping */"
+                                         th:classappend="${questionIndex.index == 0} ? 'active' : ''"
+                                         th:each="question, questionIndex : ${questionsBank}">
+                                        <div class="container">
+
+                                            <div class="mb-3">
+                                                <p th:text="${question[0]}"></p>
+                                            </div>
+                                            <th:block th:each="answer, answerIndex : ${question[1]}" varStatus="loop2">
+                                                <div class="mb-3">
+                                                    <input th:id="'Q' + ${questionIndex.index} + 'A' + ${answer}"
+                                                           th:name="'answers[' + ${questionIndex.index} + ']'"
+                                                           th:value="${answerIndex.index}"
+                                                           type="radio">
+                                                    <label th:for="'Q' + ${questionIndex.index} + 'A' + ${answer}"
+                                                           th:text="${answer}"></label>
+                                                </div>
+                                            </th:block>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                </div>
+
+                <a class="carousel-control-prev" data-bs-slide="prev" href="#heroCarousel" role="button">
+                    <span aria-hidden="true" class="carousel-control-prev-icon bi bi-chevron-left"
+                          style="color: rgba(255, 255, 255, 0.8); background-color :  #3fbbc0; border-radius: 50%;  margin-top: 450px;"></span>
+                </a>
+
+                <a class="carousel-control-next" data-bs-slide="next" href="#heroCarousel" role="button">
+<span aria-hidden="true" class="carousel-control-next-icon bi bi-chevron-right"
+      style="color: rgba(255, 255, 255, 0.8); background-color :  #3fbbc0; border-radius: 50%;  margin-top: 450px;">
 </span>
-</a>
-<br>
-<div class="text-center">
-<button id="submit-btn" class="appointment-btn" type="submit">Submit</button>
-</div>
+                </a>
+                <br>
+                <div class="text-center">
+                    <button class="appointment-btn" id="submit-btn" type="submit">Submit</button>
+                </div>
 
-    </form>
-</section><!-- End Hero -->
+                </form>
+            </section><!-- End Hero -->
 
 
-        
-        
-        
+            <div th:if="${diagnosticDTO ne null}">
+                <div class="mb-3">
+                    <p th:text="'Risk Level : ' + ${diagnosticDTO.calcResult()}"></p>
+                </div>
+                <th:each items="${questionsBank}" var="item" varStatus="loop">
+                    <div class="mb-3">
+                        <p th:text="'Question : ' + ${item[0]}"></p>
+                    </div>
+                    <div class="mb-3">
+                        <p th:text="'Answer : ' + ${item[1][diagnosticDTO.answers[loop.index]]}"></p>
+                    </div>
+                </th:each>
 
-        <div th:if="${diagnosticDTO ne null}">
-            <div class="mb-3">
-                <p th:text="'Risk Level : ' + ${diagnosticDTO.calcResult()}"></p>
             </div>
-            <th:each var="item" items="${questionsBank}" varStatus="loop">
-                <div class="mb-3">
-                    <p th:text="'Question : ' + ${item[0]}"></p>
-                </div>
-                <div class="mb-3">
-                    <p th:text="'Answer : ' + ${item[1][diagnosticDTO.answers[loop.index]]}"></p>
-                </div>
-            </th:each>
-           
-        </div>
-       
-</div>
 
-    </div>
+        </div>
+
+</div>
 
 </body>
 </html>

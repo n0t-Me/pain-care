@@ -4,7 +4,9 @@ import com.pain_care.pain_care.model.PostDTO;
 import com.pain_care.pain_care.service.PostService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
+
 import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +49,7 @@ public class PostResource {
 
     @PutMapping("/{id}")
     public ResponseEntity<Integer> updatePost(@PathVariable(name = "id") final Integer id,
-            @RequestBody @Valid final PostDTO postDTO) {
+                                              @RequestBody @Valid final PostDTO postDTO) {
         postService.update(id, postDTO);
         return ResponseEntity.ok(id);
     }

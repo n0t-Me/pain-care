@@ -2,12 +2,12 @@ package com.pain_care.pain_care.config;
 
 import java.io.File;
 import java.io.IOException;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.ClassPathResource;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.templateresolver.FileTemplateResolver;
-
 
 
 @Configuration

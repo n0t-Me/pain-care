@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import java.io.IOException; 
+
+import java.io.IOException;
+import java.security.Principal;
 import java.util.Base64;
 
 @Controller
@@ -43,7 +45,7 @@ public class UserController {
     @PostMapping("/add")
     public String add(@ModelAttribute("user") @Valid final UserDTO userDTO,
                       @RequestParam(value = "imageFile", required = false) MultipartFile imageFile,
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
+                      final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (!bindingResult.hasFieldErrors("email") && userService.emailExists(userDTO.getEmail())) {
             bindingResult.rejectValue("email", "Exists.user.email");
         }
@@ -52,32 +54,35 @@ public class UserController {
         }
 
 
-       if (imageFile != null && !imageFile.isEmpty()) {
-        try {
-            String encodedImage = Base64.getEncoder().encodeToString(imageFile.getBytes());
-            userDTO.setPic(encodedImage);
-        } catch (IOException e) {
+        if (imageFile != null && !imageFile.isEmpty()) {
+            try {
+                String encodedImage = Base64.getEncoder().encodeToString(imageFile.getBytes());
+                userDTO.setPic(encodedImage);
+            } catch (IOException e) {
 
-            e.printStackTrace();
+                e.printStackTrace();
+            }
         }
-    }
         userService.create(userDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("user.create.success"));
         return "redirect:/users";
     }
 
-    @GetMapping("/edit/{id}")
-    public String edit(@PathVariable final Integer id, final Model model) {
-        model.addAttribute("user", userService.get(id));
+    @GetMapping("/edit")
+    public String edit(Principal principal, final Model model) {
+        String username = principal.getName();
+        UserDTO user = userService.get(username);
+        model.addAttribute("user", user);
         return "user/edit";
     }
 
-    @PostMapping("/edit/{id}")
-    public String edit(@PathVariable final Integer id,
+    @PostMapping("/edit")
+    public String edit(Principal principal,
                        @RequestParam("imageFile") MultipartFile imageFile,
-            @ModelAttribute("user") @Valid final UserDTO userDTO, final BindingResult bindingResult,
-            final RedirectAttributes redirectAttributes) {
-        final UserDTO currentUserDTO = userService.get(id);
+                       @ModelAttribute("user") @Valid final UserDTO userDTO, final BindingResult bindingResult,
+                       final RedirectAttributes redirectAttributes) {
+        String username = principal.getName();
+        UserDTO currentUserDTO = userService.get(username);
         if (!bindingResult.hasFieldErrors("email") &&
                 !userDTO.getEmail().equalsIgnoreCase(currentUserDTO.getEmail()) &&
                 userService.emailExists(userDTO.getEmail())) {
@@ -96,63 +101,70 @@ public class UserController {
                 e.printStackTrace();
             }
         }
-        userService.update(id, userDTO);
+        currentUserDTO.setBday(userDTO.getBday());
+        currentUserDTO.setEmail(userDTO.getEmail());
+        currentUserDTO.setLanguage(userDTO.getLanguage());
+        currentUserDTO.setName(userDTO.getName());
+        userService.update(currentUserDTO.getId(), currentUserDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("user.update.success"));
         return "redirect:/";
     }
 
-    @PostMapping("/delete/{id}")
-    public String delete(@PathVariable final Integer id,
-            final RedirectAttributes redirectAttributes) {
-        final String referencedWarning = userService.getReferencedWarning(id);
+    @PostMapping("/delete")
+    public String delete(Principal principal,
+                         final RedirectAttributes redirectAttributes) {
+        String username = principal.getName();
+        UserDTO currentUserDTO = userService.get(username);
+        final String referencedWarning = userService.getReferencedWarning(currentUserDTO.getId());
         if (referencedWarning != null) {
             redirectAttributes.addFlashAttribute(WebUtils.MSG_ERROR, referencedWarning);
         } else {
-            userService.delete(id);
+            userService.delete(currentUserDTO.getId());
             redirectAttributes.addFlashAttribute(WebUtils.MSG_INFO, WebUtils.getMessage("user.delete.success"));
         }
         return "redirect:/users";
     }
+
     @GetMapping("/register")
     public String register(@ModelAttribute("user") final UserDTO userDTO) {
         return "user/register";
     }
 
     @PostMapping("/register")
-public String register(@ModelAttribute("user") @Valid final UserDTO userDTO,
-                        @RequestParam(value = "imageFile", required = false) MultipartFile imageFile,
-        final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
-            if (!bindingResult.hasFieldErrors("email") && userService.emailExists(userDTO.getEmail())) {
-                bindingResult.rejectValue("email", "Exists.user.email");
-            }
-            if (bindingResult.hasErrors()) {
-                return "user/register";
-            }
-
-       if (imageFile != null && !imageFile.isEmpty()) {
-        try {
-            String encodedImage = Base64.getEncoder().encodeToString(imageFile.getBytes());
-            userDTO.setPic(encodedImage);
-        } catch (IOException e) {
-
-            e.printStackTrace();
+    public String register(@ModelAttribute("user") @Valid final UserDTO userDTO,
+                           @RequestParam(value = "imageFile", required = false) MultipartFile imageFile,
+                           final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
+        if (!bindingResult.hasFieldErrors("email") && userService.emailExists(userDTO.getEmail())) {
+            bindingResult.rejectValue("email", "Exists.user.email");
         }
+        if (bindingResult.hasErrors()) {
+            return "user/register";
+        }
+
+        if (imageFile != null && !imageFile.isEmpty()) {
+            try {
+                String encodedImage = Base64.getEncoder().encodeToString(imageFile.getBytes());
+                userDTO.setPic(encodedImage);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        userService.create(userDTO);
+
+        redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("user.register.success"));
+        return "user/login";
     }
-    userService.create(userDTO);
 
-    redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("user.register.success"));
-    return "user/login";
-}
-
-@GetMapping("/login")
+    @GetMapping("/login")
     public String login(@ModelAttribute("user") final UserDTO userDTO) {
         return "user/login";
     }
- @PostMapping("/login")
+
+    @PostMapping("/login")
     public String processLogin(@ModelAttribute("user") final UserDTO userDTO) {
 
 
-            return "home/index";
-        }    
+        return "home/index";
+    }
 }
 

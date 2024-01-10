@@ -35,27 +35,27 @@ public class DiagnosticController {
     public String showDiagnosticForm(@ModelAttribute("diagnostics") @Valid final DiagnosticDTO diagnosticDTO, Model model) {
 
         Object[][] questionsBank = {
-            {"When do you start your period ?", new String[]{
-                "Before 11 years old",
-                "Above 11 years old"
-            }},
-            {"Your menstrual cycle length average ?", new String[]{
-                "Less than 27 days",
-                "More than 27 days",
-                "Not sure"
-            }},
-            {"Do you have a familly history of endometriosis ?", new String[]{
-                "Yes",
-                "No"
-            }},
-            {"Did you give birth ?", new String[]{
-                "Yes",
-                "No"
-            }},
-            {"Do you have trouble getting pregnant ?", new String[]{
-                "Yes",
-                "No"
-            }}
+                {"When do you start your period ?", new String[]{
+                        "Before 11 years old",
+                        "Above 11 years old"
+                }},
+                {"Your menstrual cycle length average ?", new String[]{
+                        "Less than 27 days",
+                        "More than 27 days",
+                        "Not sure"
+                }},
+                {"Do you have a familly history of endometriosis ?", new String[]{
+                        "Yes",
+                        "No"
+                }},
+                {"Did you give birth ?", new String[]{
+                        "Yes",
+                        "No"
+                }},
+                {"Do you have trouble getting pregnant ?", new String[]{
+                        "Yes",
+                        "No"
+                }}
         };
 
         model.addAttribute("questionsBank", questionsBank);
@@ -63,7 +63,7 @@ public class DiagnosticController {
     }
 
     @PostMapping
-public String submitDiagnosticForm(
+    public String submitDiagnosticForm(
             Principal principal,
             @ModelAttribute("diagnostics") @Valid final DiagnosticDTO diagnosticDTO,
             final BindingResult bindingResult,
@@ -73,35 +73,35 @@ public String submitDiagnosticForm(
         }
         String username = principal.getName();
         UserDTO user = userService.get(username);
-    try {
-        diagnosticDTO.setUserId(user.getId());
+        try {
+            diagnosticDTO.setUserId(user.getId());
 
-        float calculatedScore = calculateScore(diagnosticDTO.getAnswers());
-        diagnosticDTO.setScore(calculatedScore);
-
-
-        String result = calculateResult(calculatedScore);
-        diagnosticDTO.setResult(result);
-
-        System.out.println(diagnosticDTO);
+            float calculatedScore = calculateScore(diagnosticDTO.getAnswers());
+            diagnosticDTO.setScore(calculatedScore);
 
 
-        diagnosticService.create(diagnosticDTO);
+            String result = calculateResult(calculatedScore);
+            diagnosticDTO.setResult(result);
+
+            System.out.println(diagnosticDTO);
 
 
-        redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("diagnostic.create.success"));
+            diagnosticService.create(diagnosticDTO);
 
 
-        return "redirect:/";
-    } catch (Exception e) {
+            redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("diagnostic.create.success"));
 
-        e.printStackTrace();
 
-        redirectAttributes.addFlashAttribute(WebUtils.MSG_ERROR, "An error occurred while processing the form.");
+            return "redirect:/";
+        } catch (Exception e) {
 
-        return "redirect:/diagnostic";
+            e.printStackTrace();
+
+            redirectAttributes.addFlashAttribute(WebUtils.MSG_ERROR, "An error occurred while processing the form.");
+
+            return "redirect:/diagnostic";
+        }
     }
-}
 
 
     private float calculateScore(List<Integer> answers) {

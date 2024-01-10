@@ -6,7 +6,9 @@ import com.pain_care.pain_care.model.PainRecordDTO;
 import com.pain_care.pain_care.repos.PainRecordRepository;
 import com.pain_care.pain_care.repos.UserRepository;
 import com.pain_care.pain_care.util.NotFoundException;
+
 import java.util.List;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +20,7 @@ public class PainRecordService {
     private final UserRepository userRepository;
 
     public PainRecordService(final PainRecordRepository painRecordRepository,
-            final UserRepository userRepository) {
+                             final UserRepository userRepository) {
         this.painRecordRepository = painRecordRepository;
         this.userRepository = userRepository;
     }

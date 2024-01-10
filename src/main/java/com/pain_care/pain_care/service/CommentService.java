@@ -4,11 +4,14 @@ import com.pain_care.pain_care.domain.Comment;
 import com.pain_care.pain_care.domain.Post;
 import com.pain_care.pain_care.domain.User;
 import com.pain_care.pain_care.model.CommentDTO;
+import com.pain_care.pain_care.model.PostDTO;
 import com.pain_care.pain_care.repos.CommentRepository;
 import com.pain_care.pain_care.repos.PostRepository;
 import com.pain_care.pain_care.repos.UserRepository;
 import com.pain_care.pain_care.util.NotFoundException;
+
 import java.util.List;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +24,7 @@ public class CommentService {
     private final PostRepository postRepository;
 
     public CommentService(final CommentRepository commentRepository,
-            final UserRepository userRepository, final PostRepository postRepository) {
+                          final UserRepository userRepository, final PostRepository postRepository) {
         this.commentRepository = commentRepository;
         this.userRepository = userRepository;
         this.postRepository = postRepository;
@@ -76,4 +79,11 @@ public class CommentService {
         return comment;
     }
 
+    public static String getUserNameById(Comment post) {
+        return post.getUser().getName();
+    }
+
+    public static Integer getUserId(Comment comment) {
+        return comment.getUser().getId();
+    }
 }

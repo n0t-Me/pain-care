@@ -33,7 +33,7 @@ public class PainRecordController {
     private final UserRepository userRepository;
 
     public PainRecordController(final PainRecordService painRecordService,
-            final UserRepository userRepository) {
+                                final UserRepository userRepository) {
         this.painRecordService = painRecordService;
         this.userRepository = userRepository;
     }
@@ -52,7 +52,7 @@ public class PainRecordController {
     }
 
     @GetMapping("/add")
-    public String add(@ModelAttribute("painRecord") final PainRecordDTO painRecordDTO,@AuthenticationPrincipal UserDetailsinfo userDetails,Model model) {
+    public String add(@ModelAttribute("painRecord") final PainRecordDTO painRecordDTO, @AuthenticationPrincipal UserDetailsinfo userDetails, Model model) {
         if (userDetails != null) {
             Integer userId = userDetails.getId();
 
@@ -68,7 +68,7 @@ public class PainRecordController {
 
     @PostMapping("/add")
     public String add(@ModelAttribute("painRecord") @Valid final PainRecordDTO painRecordDTO,
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
+                      final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "painRecord/add";
         }
@@ -89,8 +89,8 @@ public class PainRecordController {
 
     @PostMapping("/edit/{id}")
     public String edit(@PathVariable final Integer id,
-            @ModelAttribute("painRecord") @Valid final PainRecordDTO painRecordDTO,
-            final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
+                       @ModelAttribute("painRecord") @Valid final PainRecordDTO painRecordDTO,
+                       final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "painRecord/edit";
         }
@@ -101,7 +101,7 @@ public class PainRecordController {
 
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable final Integer id,
-            final RedirectAttributes redirectAttributes) {
+                         final RedirectAttributes redirectAttributes) {
         painRecordService.delete(id);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_INFO, WebUtils.getMessage("painRecord.delete.success"));
         return "redirect:/painRecords";

@@ -1,151 +1,154 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout2}">
-    <head>
-        <title th:text="#{painRecord.list.headline}" />
-    </head>
-    <body>
-        <div layout:fragment="content1">
-           
-            <main id="main">
+<html layout:decorate="~{layout2}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{painRecord.list.headline}"/>
+</head>
+<body>
+<div layout:fragment="content1">
 
-                <section id="featured-services">
+    <main id="main">
 
-                </section>
-
-        <section id="doctors" class="doctors section-bg">
-    <div class="container" data-aos="fade-up">
-
-      <div class="section-title">
-                <h2 th:text="#{painRecord.list.headline}"  />
-                <p th:if="${painRecords.empty}" th:text="#{painRecord.list.empty}"></p>
-                <a th:href="@{/painRecords/add}" class="appointment-btn scrollto"><span th:text="#{painRecord.list.createNew}" class="d-none d-md-inline"></span></a>
-              </div>
-
-              <!-- ======= Call To Action Section ======= -->
-    <section id="cta" class="cta" style="background-image: url(/assets/img/61805.jpg);border-radius: 15px; background-position: center;
-    background-size: cover;   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); ">
-        <div class="container" data-aos="zoom-out">
-  
-          <div class="row g-5">
-  
-            <div class="col-lg-8 col-md-6 content d-flex flex-column justify-content-center order-last order-md-first">   
-              <div style="display: flex; justify-content: center;  ">
-                <div class="card" style="width: 650px;" >
-                  <div class="card-body">
-                    <h5 class="card-title">Line Chart</h5>
-      
-<!-- Line Chart -->
-<canvas id="lineChart" style="max-height: 400px;" ></canvas>
-
-<script th:inline="javascript">
-  /*<![CDATA[*/
-  // Extracting pain records data directly from Thymeleaf
-  const painRecords = /*[[${painRecords}]]*/ [];
-
-    document.addEventListener("DOMContentLoaded", () => {
-        
-
-        // Check if data is available
-        if (painRecords && painRecords.length > 0) {
-            // Sort the pain records by dateCreated
-            painRecords.sort((a, b) => new Date(a.dateCreated) - new Date(b.dateCreated));
-
-            const chartData = {
-                labels: [],
-                datasets: [{
-                    label: 'Line Chart',
-                    data: [],
-                    fill: false,
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1
-                }]
-            };
-
-            const dateFormatter = new Intl.DateTimeFormat('en-US', {
-                year: 'numeric',
-                month: 'numeric',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                second: 'numeric'
-            });
-
-            painRecords.forEach(painRecord => {
-                const formattedDate = dateFormatter.format(new Date(painRecord.dateCreated));
-                chartData.labels.push(formattedDate);
-                chartData.datasets[0].data.push(painRecord.level);
-            });
-
-            new Chart(document.querySelector('#lineChart'), {
-                type: 'line',
-                data: chartData,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        } else {
-            console.error('No painRecords data available.1');
-        }
-    });
-</script>
-<!-- End Line Chart -->
-   </div>
-                </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 order-first order-md-last d-flex align-items-center">
-                <div class="img">
-                  <img src="/assets/img/4913290.jpg" alt="" class="img-fluid">
-                </div>
-              </div>
-    
-            </div>
-    
-          </div>
+        <section id="featured-services">
 
         </section>
 
+        <section class="doctors section-bg" id="doctors">
+            <div class="container" data-aos="fade-up">
 
-        <div th:if="${!painRecords.empty}" class="table-responsive">
-          <table class="table table-striped table-hover align-middle">
-              <thead>
-                  <tr>
-                      <th th:text="#{painRecord.id.label}" scope="col" />
-                      <th th:text="#{painRecord.level.label}" scope="col" />
-                      <th th:text="#{painRecord.Date.label}" scope="col" />
-                      <th><!-- --></th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr th:each="painRecord : ${painRecords}">
-                      <td th:text="${painRecord.id}" />
-                      <td th:text="${painRecord.level}" />
-                      <td th:text="${painRecord.dateCreated}" />
-                      <td>
-                          <div class="float-end text-nowrap">
-                              <a th:href="@{/painRecords/edit/{id}(id=${painRecord.id})}" th:text="#{painRecord.list.edit}" class="btn btn-sm btn-secondary" />
-                              <form th:action="@{/painRecords/delete/{id}(id=${painRecord.id})}"
-                                      th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
-                                  <button th:text="#{painRecord.list.delete}" type="submit" class="btn btn-sm btn-secondary" />
-                              </form>
-                          </div>
-                      </td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
-      </section>
+                <div class="section-title">
+                    <h2 th:text="#{painRecord.list.headline}"/>
+                    <p th:if="${painRecords.empty}" th:text="#{painRecord.list.empty}"></p>
+                    <a class="appointment-btn scrollto" th:href="@{/painRecords/add}"><span
+                            class="d-none d-md-inline" th:text="#{painRecord.list.createNew}"></span></a>
+                </div>
+
+                <!-- ======= Call To Action Section ======= -->
+                <section class="cta" id="cta" style="background-image: url(/assets/img/61805.jpg);border-radius: 15px; background-position: center;
+    background-size: cover;   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); ">
+                    <div class="container" data-aos="zoom-out">
+
+                        <div class="row g-5">
+
+                            <div class="col-lg-8 col-md-6 content d-flex flex-column justify-content-center order-last order-md-first">
+                                <div style="display: flex; justify-content: center;  ">
+                                    <div class="card" style="width: 650px;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Line Chart</h5>
+
+                                            <!-- Line Chart -->
+                                            <canvas id="lineChart" style="max-height: 400px;"></canvas>
+
+                                            <script th:inline="javascript">
+                                                /*<![CDATA[*/
+                                                // Extracting pain records data directly from Thymeleaf
+                                                const painRecords = /*[[${painRecords}]]*/ [];
+
+                                                  document.addEventListener("DOMContentLoaded", () => {
+
+
+                                                      // Check if data is available
+                                                      if (painRecords && painRecords.length > 0) {
+                                                          // Sort the pain records by dateCreated
+                                                          painRecords.sort((a, b) => new Date(a.dateCreated) - new Date(b.dateCreated));
+
+                                                          const chartData = {
+                                                              labels: [],
+                                                              datasets: [{
+                                                                  label: 'Line Chart',
+                                                                  data: [],
+                                                                  fill: false,
+                                                                  borderColor: 'rgb(75, 192, 192)',
+                                                                  tension: 0.1
+                                                              }]
+                                                          };
+
+                                                          const dateFormatter = new Intl.DateTimeFormat('en-US', {
+                                                              year: 'numeric',
+                                                              month: 'numeric',
+                                                              day: 'numeric',
+                                                              hour: 'numeric',
+                                                              minute: 'numeric',
+                                                              second: 'numeric'
+                                                          });
+
+                                                          painRecords.forEach(painRecord => {
+                                                              const formattedDate = dateFormatter.format(new Date(painRecord.dateCreated));
+                                                              chartData.labels.push(formattedDate);
+                                                              chartData.datasets[0].data.push(painRecord.level);
+                                                          });
+
+                                                          new Chart(document.querySelector('#lineChart'), {
+                                                              type: 'line',
+                                                              data: chartData,
+                                                              options: {
+                                                                  scales: {
+                                                                      y: {
+                                                                          beginAtZero: true
+                                                                      }
+                                                                  }
+                                                              }
+                                                          });
+                                                      } else {
+                                                          console.error('No painRecords data available.1');
+                                                      }
+                                                  });
+                                            </script>
+                                            <!-- End Line Chart -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 order-first order-md-last d-flex align-items-center">
+                                <div class="img">
+                                    <img alt="" class="img-fluid" src="/assets/img/4913290.jpg">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <div class="table-responsive" th:if="${!painRecords.empty}">
+                    <table class="table table-striped table-hover align-middle">
+                        <thead>
+                        <tr>
+                            <th scope="col" th:text="#{painRecord.id.label}"/>
+                            <th scope="col" th:text="#{painRecord.level.label}"/>
+                            <th scope="col" th:text="#{painRecord.Date.label}"/>
+                            <th><!-- --></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="painRecord : ${painRecords}">
+                            <td th:text="${painRecord.id}"/>
+                            <td th:text="${painRecord.level}"/>
+                            <td th:text="${#temporals.format(painRecord.dateCreated, 'dd/MM/yyyy HH:mm')}"/>
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a class="btn btn-sm btn-secondary"
+                                       th:href="@{/painRecords/edit/{id}(id=${painRecord.id})}" th:text="#{painRecord.list.edit}"/>
+                                    <form class="d-inline"
+                                          method="post" th:action="@{/painRecords/delete/{id}(id=${painRecord.id})}" th:hx-confirm="#{delete.confirm}">
+                                        <button class="btn btn-sm btn-secondary" th:text="#{painRecord.list.delete}"
+                                                type="submit"/>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </section>
 
         <script src="/assets/vendor/chart.js/chart.umd.js"></script>
-  <script src="/assets/vendor/tinymce/tinymce.min.js"></script>
+        <script src="/assets/vendor/tinymce/tinymce.min.js"></script>
 
         <script src="/assets/js/main2.js"></script>
 
-    </body>
+</body>
 </html>

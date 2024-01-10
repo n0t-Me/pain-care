@@ -1,92 +1,93 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorate="~{layout2}">
+<html layout:decorate="~{layout2}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
 
 
-    <head>
-        <title th:text="#{post.list.headline}" />
-    </head>
-    <body>
-        <div layout:fragment="content1">
-            <main id="main">
+<head>
+    <title th:text="#{post.list.headline}"/>
+</head>
+<body>
+<div layout:fragment="content1">
+    <main id="main">
 
-                <section id="featured-services">
+        <section id="featured-services">
 
-                </section>
-        
+        </section>
 
-         <!-- ======= Doctors Section ======= -->
-    <section id="doctors" class="doctors section-bg">
-        <div class="container" data-aos="fade-up">
-  
-          <div class="section-title">
-            <h2  th:text="#{post.list.headline}"></h2>
-            <p th:if="${posts.empty}" th:text="#{post.list.empty}"></p>
-            <a th:href="@{/posts/add}" class="appointment-btn scrollto"><span th:text="#{post.list.createNew}" class="d-none d-md-inline"></span></a>
-          </div>
-  
-          <section id="blog" class="blog">
+
+        <!-- ======= Doctors Section ======= -->
+        <section class="doctors section-bg" id="doctors">
             <div class="container" data-aos="fade-up">
-      
-      
-      
-                  <div th:if="${!posts.empty}" class="row gy-4 posts-list">
 
-            <div th:each="post : ${posts}" class="col-lg-6 posts-list">
-              <article class="d-flex flex-column" >
-                <div class="post-img">
-                    <img th:src="'data:image/png;base64,' + ${post.image}" alt="Image" class="img-fluid"/>
+                <div class="section-title">
+                    <h2 th:text="#{post.list.headline}"></h2>
+                    <p th:if="${posts.empty}" th:text="#{post.list.empty}"></p>
+                    <a class="appointment-btn scrollto" th:href="@{/posts/add}"><span class="d-none d-md-inline"
+                                                                                      th:text="#{post.list.createNew}"></span></a>
                 </div>
 
-                <h2 th:text="${post.title}"class="title"></h2>
-
-                <div class="meta-top">
-                  <ul>
-                    <li class="d-flex align-items-center"><i class="bi bi-sticky" th:text="${post.id}"></i></li>
-                    <li class="d-flex align-items-center">
-                      <i class="bi bi-person" th:text="${userNames.get(post.user)}" ></i>
-                  </li>
-                  </ul>
-                </div>
-
-                <div class="content" style="  word-wrap: break-word;">
-                  <p th:text="${post.description}"></p>
-                </div>
+                <section class="blog" id="blog">
+                    <div class="container" data-aos="fade-up">
 
 
-                <div class="row gy-4 ">
-                <div class="col-lg-4" th:if="${post.user == user.id}">
+                        <div class="row gy-4 posts-list" th:if="${!posts.empty}">
 
-                  <a  th:href="@{/posts/edit/{id}(id=${post.id})}" >
-                    <button th:text="#{post.list.edit}" class="appointment-btn"></button>
-                  </a>
-                </div>
+                            <div class="col-lg-6 posts-list" th:each="post : ${posts}">
+                                <article class="d-flex flex-column">
+                                    <div class="post-img">
+                                        <img alt="Image" class="img-fluid"
+                                             th:src="'data:image/png;base64,' + ${post.image}"/>
+                                    </div>
 
-                <div class="col-lg-4" th:if="${post.user == user.id}">
-                  <form th:action="@{/posts/delete/{id}(id=${post.id})}"
-                            th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
-                        <button th:text="#{post.list.delete}" type="submit" class="appointment-btn" />
-                    </form>
-                </div>
-              </div>
+                                    <a th:href="@{/posts/{id}(id=${post.id})}"><h2 class="title"
+                                                                                   th:text="${post.title}"></h2></a>
 
-                
-                
+                                    <div class="meta-top">
+                                        <ul>
+                                            <li class="d-flex align-items-center"><i class="bi bi-sticky"
+                                                                                     th:text="${post.id}"></i></li>
+                                            <li class="d-flex align-items-center">
+                                                <i class="bi bi-person" th:text="${userNames.get(post.user)}"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
 
-              </article>
-            </div><!-- End post list item -->
+                                    <div class="content" style="  word-wrap: break-word;">
+                                        <p th:text="${post.shortDesc}"></p>
+                                    </div>
 
-              </div>
+
+                                    <div class="row gy-4 ">
+                                        <div class="col-lg-4" th:if="${post.user == user.id}">
+
+                                            <a th:href="@{/posts/edit/{id}(id=${post.id})}">
+                                                <button class="appointment-btn" th:text="#{post.list.edit}"></button>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-lg-4" th:if="${post.user == user.id}">
+                                            <form class="d-inline"
+                                                  method="post" th:action="@{/posts/delete/{id}(id=${post.id})}" th:hx-confirm="#{delete.confirm}">
+                                                <button class="appointment-btn" th:text="#{post.list.delete}"
+                                                        type="submit"/>
+                                            </form>
+                                        </div>
+                                    </div>
+
+
+                                </article>
+                            </div><!-- End post list item -->
+
+                        </div>
+                    </div>
+
+
             </div>
-  
-            
-  
-        </div>
-          </div>
-        </section><!-- End Blog Section -->
-        </div>
-      </section><!-- End Doctors Section -->
-            </main>
-        </div>
-    </body>
+</div>
+</section><!-- End Blog Section -->
+</div>
+</section><!-- End Doctors Section -->
+</main>
+</div>
+</body>
 </html>
