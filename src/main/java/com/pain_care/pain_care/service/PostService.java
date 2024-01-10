@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class PostService {
 
     private final PostRepository postRepository;
-    private final UserRepository userRepository;
+    private static UserRepository userRepository = null;
     private final CommentRepository commentRepository;
 
     public PostService(final PostRepository postRepository, final UserRepository userRepository,
@@ -87,7 +87,8 @@ public class PostService {
         return null;
     }
     
-    public String getUserNameById(Integer userId) {
+    public static String getUserNameById(PostDTO post) {
+        int userId = post.getUser();
         return userRepository.findById(userId)
                 .map(User::getName)
                 .orElse(null); // or any default value you want to use

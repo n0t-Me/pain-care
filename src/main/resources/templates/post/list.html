@@ -55,13 +55,14 @@
 
 
                 <div class="row gy-4 ">
-                <div class="col-lg-4">
+                <div class="col-lg-4" th:if="${post.user == user.id}">
+
                   <a  th:href="@{/posts/edit/{id}(id=${post.id})}" >
                     <button th:text="#{post.list.edit}" class="appointment-btn"></button>
                   </a>
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-lg-4" th:if="${post.user == user.id}">
                   <form th:action="@{/posts/delete/{id}(id=${post.id})}"
                             th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
                         <button th:text="#{post.list.delete}" type="submit" class="appointment-btn" />

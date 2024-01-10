@@ -2,11 +2,14 @@ package com.pain_care.pain_care.controller;
 
 import com.pain_care.pain_care.domain.User;
 import com.pain_care.pain_care.model.PostDTO;
+import com.pain_care.pain_care.model.UserDTO;
 import com.pain_care.pain_care.repos.UserRepository;
 import com.pain_care.pain_care.service.PostService;
+import com.pain_care.pain_care.service.UserService;
 import com.pain_care.pain_care.util.CustomCollectors;
 import com.pain_care.pain_care.util.WebUtils;
 import jakarta.validation.Valid;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,12 +22,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import java.io.IOException; 
+import java.io.IOException;
+import java.security.Principal;
 import java.util.Base64;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.stream.Collectors.*;
 
 
 @Controller
@@ -32,10 +38,12 @@ import java.util.Map;
 public class PostController {
 
     private final PostService postService;
+    private final UserService userService;
     private final UserRepository userRepository;
 
-    public PostController(final PostService postService, final UserRepository userRepository) {
+    public PostController(final PostService postService, UserService userService, final UserRepository userRepository) {
         this.postService = postService;
+        this.userService = userService;
         this.userRepository = userRepository;
     }
 
@@ -47,16 +55,27 @@ public class PostController {
     }
 
     @GetMapping
-    public String list(final Model model) {
-        model.addAttribute("posts", postService.findAll());
+    public String list(Principal principal, final Model model) {
+        //model.addAttribute("posts", postService.findAll());
         List<PostDTO> posts = postService.findAll();
         // Fetch user names for each post
         Map<Integer, String> userNames = posts.stream()
                 .filter(post -> post.getUser() != null)
-                .collect(Collectors.toMap(PostDTO::getUser, post -> postService.getUserNameById(post.getUser())));
+                .collect(
+                        toMap(
+                                PostDTO::getUser,
+                                PostService::getUserNameById,
+                                (user1, user2) -> {
+                                    return user1;
+                                }
+                                ));
+
+        String username = principal.getName();
+        UserDTO user = userService.get(username);
 
         model.addAttribute("posts", posts);
         model.addAttribute("userNames", userNames);
+        model.addAttribute("user", user);
 
         return "post/list";
     }
@@ -67,7 +86,9 @@ public class PostController {
     }
 
     @PostMapping("/add")
-    public String add(@ModelAttribute("post") @Valid final PostDTO postDTO,
+    public String add(
+            Principal principal,
+                        @ModelAttribute("post") @Valid final PostDTO postDTO,
                       @RequestParam("imageFile") MultipartFile imageFile,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
@@ -83,6 +104,9 @@ public class PostController {
             e.printStackTrace();
         }
     }
+        String username = principal.getName();
+        UserDTO user = userService.get(username);
+        postDTO.setUser(user.getId());
         postService.create(postDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("post.create.success"));
         return "redirect:/posts";
@@ -95,7 +119,9 @@ public class PostController {
     }
 
     @PostMapping("/edit/{id}")
-    public String edit(@PathVariable final Integer id,
+    public String edit(
+            Principal principal,
+            @PathVariable final Integer id,
             @ModelAttribute("post") @Valid final PostDTO postDTO, final BindingResult bindingResult,
             @RequestParam("imageFile") MultipartFile imageFile,
             final RedirectAttributes redirectAttributes) {
@@ -112,6 +138,9 @@ public class PostController {
                 e.printStackTrace();
             }
         }
+        String username = principal.getName();
+        UserDTO user = userService.get(username);
+        postDTO.setUser(user.getId());
         postService.update(id, postDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("post.update.success"));
         return "redirect:/posts";

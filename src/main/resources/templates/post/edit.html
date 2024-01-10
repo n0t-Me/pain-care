@@ -26,7 +26,6 @@
               <div class="container">
             <div th:replace="~{fragments/forms::globalErrors('post')}" />
             <form th:action="${requestUri}" method="post" enctype="multipart/form-data">
-                <div th:replace="~{fragments/forms::inputRow(object='post', field='id', disabled=true, type='number')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='post', field='title')}" />
                 <div th:replace="~{fragments/forms::inputRow(object='post', field='description', type='textarea')}" />
 
@@ -37,7 +36,6 @@
             <input type="file" id="imageFile" name="imageFile" class="form-control-file" accept="image/*" />
         </div>
     </div>
-                <div th:replace="~{fragments/forms::inputRow(object='post', field='user', type='select')}" />
                 <div class="text-center">
                 <input type="submit" th:value="#{post.edit.headline}" class="appointment-btn" />
                 </div>
