@@ -70,7 +70,7 @@ public class UserService {
         final User user = userRepository.findById(id)
                 .orElseThrow(NotFoundException::new);
         mapToEntity(userDTO, user);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        //user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 

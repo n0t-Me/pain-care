@@ -84,12 +84,17 @@ public class UserController {
         String username = principal.getName();
         UserDTO currentUserDTO = userService.get(username);
         if (!bindingResult.hasFieldErrors("email") &&
-                !userDTO.getEmail().equalsIgnoreCase(currentUserDTO.getEmail()) &&
-                userService.emailExists(userDTO.getEmail())) {
+                (!userDTO.getEmail().equalsIgnoreCase(currentUserDTO.getEmail()) &&
+                userService.emailExists(userDTO.getEmail()))) {
+            System.out.println("EMAIL ERR");
             bindingResult.rejectValue("email", "Exists.user.email");
         }
         if (bindingResult.hasErrors()) {
-            return "user/edit";
+            if (!(bindingResult.getErrorCount() == 1 &&
+            bindingResult.hasFieldErrors("password"))) {
+                System.out.println(bindingResult.getAllErrors());
+                return "user/edit";
+            }
         }
 
         if (imageFile != null && !imageFile.isEmpty()) {
@@ -101,10 +106,12 @@ public class UserController {
                 e.printStackTrace();
             }
         }
+        System.out.println(userDTO);
         currentUserDTO.setBday(userDTO.getBday());
         currentUserDTO.setEmail(userDTO.getEmail());
         currentUserDTO.setLanguage(userDTO.getLanguage());
         currentUserDTO.setName(userDTO.getName());
+        System.out.println(currentUserDTO);
         userService.update(currentUserDTO.getId(), currentUserDTO);
         redirectAttributes.addFlashAttribute(WebUtils.MSG_SUCCESS, WebUtils.getMessage("user.update.success"));
         return "redirect:/";
