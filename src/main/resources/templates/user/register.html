@@ -89,6 +89,7 @@
                             <div th:replace="~{fragments/forms::inputRow(object='user', field='password')}"/>
                             <div th:replace="~{fragments/forms::inputRow(object='user', field='bday', inputClass='js-datepicker')}"/>
                             <!-- Update the inputRow for 'image' to include file input -->
+                            <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label" for="imageFile">Picture</label>
 
@@ -100,6 +101,20 @@
                                     </div>
                                 </div>
                             </div>
+                            <script>
+                               $('#imageFile').bind('change', function () {
+  var filename = $("#imageFile").val();
+  if (/^\s*$/.test(filename)) {
+    $(".file-upload").removeClass('active');
+    $("#noFile").text("No file chosen..."); 
+  }
+  else {
+    $(".file-upload").addClass('active');
+    $("#noFile").text(filename.replace("C:\\fakepath\\", "")); 
+  }
+});
+
+                            </script>
                             <br>
                             <div th:replace="~{fragments/forms::inputRow(object='user', field='language')}"/>
                             <button class="appointment-btn" type="submit">Register</button>
