@@ -12,11 +12,17 @@ Go to the project directory
   cd pain-care
 ```
 
+Change the database information in `src/main/resources/application.yml`
+
+Create a paincare database: `CREATE DATABASE paincare`
+
 Run the project
 
 ```bash
   gradlew bootRun
 ```
+
+The website will be listening on `localhost:8080`
 
 
 ## Tech Stack
