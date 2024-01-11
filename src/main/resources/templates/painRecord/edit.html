@@ -21,17 +21,23 @@
 
             </div>
 
-            <div class="container">
+            <div class="container" style="background-image:url(/assets/img/stethoscope-medical-equipment.jpg); /* White background color */
+            background-position: center;
+            background-size: cover;
+          border-radius: 10px; /* Rounded corners */
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+          padding: 20px; /* Add some padding inside the box */">
                 <div th:replace="~{fragments/forms::globalErrors('painRecord')}"/>
                 <form method="post" th:action="${requestUri}">
                     <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='id', disabled=true, type='number')}"/>
-                    <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='level', type='number')}"/>
+                    
+                    <div th:replace="~{fragments/forms::inputRow(object='painRecord', field='level', type='range')}"/>
 
                     <div class="row">
                         <div class="col-md-3">
-                            <label for="locations">Localisation des douleurs:</label>
+                            <label for="locations">Pain Location :</label>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-9">
                             <ul class="checkbox">
                                 <li th:each="location : ${locationValues}" th:id="${'check-' + location}">
                                     <input th:checked="${painRecord.locations.contains(location)}" th:field="${painRecord.locations}" th:value="${location}"
@@ -45,9 +51,9 @@
 
                     <div class="row">
                         <div class="col-md-3">
-                            <label for="symptoms">Symptomes:</label>
+                            <label for="symptoms">Symptoms:</label>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-9">
                             <ul class="checkbox">
                                 <li th:each="symptom : ${symptomeValues}" th:id="${'check-' + symptom}">
                                     <input th:checked="${painRecord.symptoms.contains(symptom)}" th:field="${painRecord.symptoms}" th:value="${symptom}"
@@ -60,9 +66,9 @@
 
                     <div class="row">
                         <div class="col-md-3">
-                            <label for="makePainWorse">Ce qui aggrave la douleur:</label>
+                            <label for="makePainWorse">What makes the Pain Worse:</label>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-9">
                             <ul class="checkbox">
                                 <li th:each="makePainWors : ${makepainworseValues}" th:id="${'check-' + makePainWors}">
                                     <input th:checked="${painRecord.makePainWorse.contains(makePainWors)}" th:field="${painRecord.makePainWorse}"
@@ -76,10 +82,10 @@
 
                     <div class="row">
                         <div class="col-md-3">
-                            <label for="feelings">Sentiments:</label>
+                            <label for="feelings">Feelings:</label>
                         </div>
-                        <div class="col-md-6">
-                            <ul>
+                        <div class="col-md-9">
+                            <ul class="checkbox">
                                 <li th:each="feeling : ${feelingsValues}">
                                     <div>
                                         <input th:checked="${painRecord.feelings.contains(feeling)}" th:field="${painRecord.feelings}" th:value="${feeling}"
@@ -101,6 +107,6 @@
         </section><!-- End Contact Section -->
         <div class="text-center">
             <a class="btn btn-secondary" th:href="@{/painRecords}" th:text="#{painRecord.edit.back}"/>
-        </div>
+        </div><br>
 </body>
 </html>
