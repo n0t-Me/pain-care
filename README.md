@@ -1,45 +1,48 @@
+
 # PainCare
 
-This app was created with Bootify.io - tips on working with the code [can be found here](https://bootify.io/next-steps/).
-Feel free to contact us for further questions.
+PainCare is an m-Health solution that has been developed with the aim of providing comprehensive resources and support to women battling endometriosis.
 
-## Development
 
-Update your local database connection in `application.yml` or create your own `application-local.yml` file to override
-settings for development.
+## Run Locally
 
-During development it is recommended to use the profile `local`. In IntelliJ `-Dspring.profiles.active=local` can be
-added in the VM options of the Run Configuration after enabling this property in "Modify options".
+Go to the project directory
 
-After starting the application it is accessible under `localhost:8080`.
-
-## Build
-
-The application can be built using the following command:
-
-```
-gradlew clean build
+```bash
+  cd pain-care
 ```
 
-Start your application with the following command - here with the profile `production`:
+Change the database information in `src/main/resources/application.yml`
 
-```
-java -Dspring.profiles.active=production -jar ./build/libs/pain-care-0.0.1-SNAPSHOT.jar
-```
+Create a paincare database: `CREATE DATABASE paincare`
 
-If required, a Docker image can be created with the Spring Boot plugin. Add `SPRING_PROFILES_ACTIVE=production` as
-environment variable when running the container.
+Run the project
 
-```
-gradlew bootBuildImage --imageName=com.pain-care/pain-care
+```bash
+  gradlew bootRun
 ```
 
-## Further readings
+The website will be listening on `localhost:8080`
 
-* [Gradle user manual](https://docs.gradle.org/)  
-* [Spring Boot reference](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)  
-* [Spring Data JPA reference](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/)  
-* [Thymeleaf docs](https://www.thymeleaf.org/documentation.html)  
-* [Bootstrap docs](https://getbootstrap.com/docs/5.3/getting-started/introduction/)  
-* [Htmx in a nutshell](https://htmx.org/docs/)  
-* [Learn Spring Boot with Thymeleaf](https://www.wimdeblauwe.com/books/taming-thymeleaf/)  
+
+## Tech Stack
+
+- Spring Boot
+- Spring Security
+- Thymeleaf
+- MySQL
+- Bootstrap
+- Gradle
+
+
+## Primary Features
+- A home page with information about endometriosis
+- A community where users can post and comment
+- A pain recording function with a graph to show pain evolution
+- A diagnostic test with a score
+
+## Secondary Features
+- Security
+- High response time
+- Simple UI/UX
+

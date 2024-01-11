@@ -162,9 +162,7 @@ public class UserController {
 
     @PostMapping("/login")
     public String processLogin(@ModelAttribute("user") final UserDTO userDTO) {
-
-
-        return "home/index";
+        return "redirect:/";
     }
 }
 
