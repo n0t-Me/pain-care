@@ -16,10 +16,10 @@
         </div>
         <div th:replace="~{:: fieldErrors(${object}, ${field})}"/>
     </div>
-    <strong><label class="form-label col-md-2 col-form-label" th:for="${field}" th:if="${type != 'checkbox'}">
+<label class="form-label col-md-2 col-form-label" th:for="${field}" th:if="${type != 'checkbox'}">
         <span th:text="#{__${object}__.__${field}__.label}"/><!--/*
                 */--><span th:replace="~{:: requiredStar(object=${object}, field=${field}, required=${required})}"/>
-    </label></strong>
+    </label>
     <div class="col-md-9" th:if="${type != 'checkbox'}">
         <input class="form-control"
                th:classappend="${inputClassappend}" th:disabled="${disabled}" th:field="*{__${field}__}"

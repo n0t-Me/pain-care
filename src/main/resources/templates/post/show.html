@@ -12,88 +12,108 @@
         </section>
 
         <div layout:fragment="content">
-            <section class="blog" id="blog">
-                <article class="d-flex flex-column">
-                    <div class="container">
-                        <div class="section-title">
-                            <h2 th:text="${post.title}"></h2>
-                        </div>
-
-                        <div class="d-flex flex-row justify-content-between">
-                            <ul class="d-flex flex-row">
-                                <li class="d-flex align-items-center"><i class="bi bi-sticky" th:text="${post.id}"></i>
-                                </li>
-                                <li class="d-flex me-2"></li>
-                                <li class="d-flex align-items-center">
-                                    <i class="bi bi-person" th:text="${poster_username}"></i>
-                                </li>
-                            </ul>
-                            <div class="row">
-                                <div class="col-lg-4" th:if="${post.user == user.id}">
-
-                                    <a th:href="@{/posts/edit/{id}(id=${post.id})}">
-                                        <button class="appointment-btn" th:text="#{post.list.edit}"></button>
-                                    </a>
-                                </div>
-
-                                <div class="col-lg-4" th:if="${post.user == user.id}">
-                                    <form class="d-inline"
-                                          method="post" th:action="@{/posts/delete/{id}(id=${post.id})}"
-                                          th:hx-confirm="#{delete.confirm}">
-                                        <button class="appointment-btn" th:text="#{post.list.delete}"
-                                                type="submit"/>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="container mb-5"></div>
-
-                        <div class="container">
-                            <article class="d-flex flex-column align-items-center justify-content-around">
-                                <div class="post-img mb-5">
-                                    <img alt="Image" class="img-fluid"
-                                         th:src="'data:image/png;base64,' + ${post.image}"/>
-                                </div>
-
-
-                                <div class="content flex-column align-items-start justify-content-start" style="  word-wrap: break-word;">
-                                    <p th:text="${post.description}"></p>
-                                </div>
-
-                                <div class="container">
-                                    <div th:replace="~{fragments/forms::globalErrors('comment')}"/>
-                                    <form method="post" th:action="${requestUri}" class="d-flex justify-content-around">
-                                        <div th:replace="~{fragments/forms::inputRow(object='comment', field='comment')}"/>
-                                        <input class="appointment-btn" th:value="Comment" type="submit"/>
-                                    </form>
-                                </div>
-
-                                <div class="col-lg-6 posts-list">
-                                    <div th:each="comment : ${comments}">
-                                        <!-- comment + username + date -->
-                                        <article class="d-flex flex-column">
-
-                                            <div class="meta-top">
-                                                <ul>
-                                                    <li class="d-flex align-items-center"><i class="bi bi-sticky"
-                                                                                             th:text="${comment.user.name}"></i></li>
-                                                    <li class="d-flex align-items-center">
-                                                        <i class="bi bi-person" th:text="${#temporals.format(comment.dateCreated, 'dd/MM/yyyy HH:mm')}"></i>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="content" style="  word-wrap: break-word;">
-                                                <p th:text="${comment.comment}"></p>
-                                            </div>
-                                        </article>
+            <section id="blog" class="blog">
+                <div class="container" data-aos="fade-up">
+          
+                  <div class="row g-5">
+          
+                    <div class="col-lg-9">
+          
+                      <article class="blog-details">
+                     <div class="post-img">
+                                        <img alt="Image" class="img-fluid" style="min-height: 230px;"
+                                             th:src="'data:image/png;base64,' + ${post.image}"/>
                                     </div>
-                                </div>
+                                    <h2 class="title"><a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}"></a></h2>
 
-                            </article>
+                                    <div class="meta-top">
+                                        <ul>
+                                            <li class="d-flex align-items-center">
+                                                <i class="bi bi-person" th:text="${poster_username}"></i>
+                                            </li>
+                                            <li class="d-flex align-items-center">
+                                                <i class="bi bi-clock" th:text="' ' +${#temporals.format(post.lastUpdated, 'yyyy-MM-dd')}"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="content" style="  word-wrap: break-word;">
+                                        <p th:text="${post.description}"></p>
+                                    </div>
+
+
+                                    <div class="row gy-4 read-more mt-auto align-self-end">
+                                        <div class="col-lg-4" th:if="${post.user == user.id}">
+
+                                            <a th:href="@{/posts/edit/{id}(id=${post.id})}">
+                                                <button class="appointment-btn" th:text="#{post.list.edit}"></button>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-lg-4" th:if="${post.user == user.id}">
+                                            <form class="d-inline"
+                                                  method="post" th:action="@{/posts/delete/{id}(id=${post.id})}" th:hx-confirm="#{delete.confirm}">
+                                                <button class="appointment-btn" th:text="#{post.list.delete}"
+                                                        type="submit"/>
+                                            </form>
+                                        </div>
+                                    </div>
+                                        </article>
+                                        <div class="comments">
+
+                                        <div class="reply-form" style="background-color: #4f4f4f;">
+                                            <div th:replace="~{fragments/forms::globalErrors('comment')}"/>
+                                            <form method="post" th:action="${requestUri}" class="d-flex justify-content-around">
+                                                <label class="form-label col-md-2 col-form-label" th:for="${comment.comment}" >
+                                                    <strong><span th:text="Comment" style=" color: #fff;"/></strong>
+                                                </label>
+                                                <input class="form-control" th:disabled="${disabled}" th:field="${comment.comment}" />
+                                                <button class="appointment-btn"
+                                                        type="submit"> <i class="bi bi-send"></i></button>                                           
+                                            </form>
+                                        </div><br>
+                                            <div class="comments1" >
+                                                <h4 class="comments-count">Comments</h4>
+                                            <div class="comment">
+                                            <div th:each="comment : ${comments}" >
+                                                <div class="d-flex">
+                                                  <div class="comment-img"><img th:src="'data:image/png;base64,' + ${comment.user.pic}" alt=""></div>
+                                                  <div>
+                                                    <h5 th:text="${comment.user.name}"></h5>                                                    
+                                                    <i class="bi bi-clock" th:text="' ' + ${#temporals.format(comment.dateCreated, 'dd/MM/yyyy HH:mm')}"></i>
+                                                    <p th:text="${comment.comment}"></p>
+                                                  </div>
+                                                </div>
+                                                <hr class="my-0" style="height: 1px;   padding-bottom: 20px;" />
+                                              </div>
+                                            </div>
+                                        </div>
+    
+                                                        
+    
+                                                    
                         </div>
                     </div>
+                    <div class="col-lg-3" style="padding-right: 0%;">
+
+                        <div class="sidebar">
+
+                            <div class="sidebar-item recent-posts">
+                                <h3 class="sidebar-title">Recent Posts</h3>
+                
+                                <div class="mt-3" th:each="post : ${posts1}">
+                
+                                  <div class="post-item mt-3">
+                                    <img alt="Image" class="flex-shrink-0" th:src="'data:image/png;base64,' + ${post.image}"/>
+                                    <div>
+                                      <h4><a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}"></a></h4>
+                                      <time th:text="${#temporals.format(post.lastUpdated, 'yyyy-MM-dd')}"></time>
+                                    </div>
+                                  </div>               
+                              </div><!-- End sidebar recent posts--></div>
+            </div>
+</div>
+                  </div>
                 </article>
             </section>
         </div>

@@ -4,6 +4,7 @@ import com.pain_care.pain_care.domain.Comment;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.time.OffsetDateTime;
 import java.util.Set;
 
 
@@ -25,6 +26,8 @@ public class PostDTO {
     private Integer user;
 
     private Set<Comment> comments;
+
+    private OffsetDateTime lastUpdated;
 
     public Integer getId() {
         return id;
@@ -48,7 +51,7 @@ public class PostDTO {
 
     public void setDescription(final String description) {
         this.description = description;
-        this.shortDesc = description.substring(0, Math.min(description.length(), 100));
+        this.shortDesc = description.substring(0, Math.min(description.length(), 200));
     }
 
     public String getShortDesc() {
@@ -78,4 +81,13 @@ public class PostDTO {
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
     }
+
+    public OffsetDateTime getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(final OffsetDateTime lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
+
 }

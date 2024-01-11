@@ -67,6 +67,11 @@ public class PostController {
         //model.addAttribute("posts", postService.findAll());
         List<PostDTO> posts = postService.findAll();
         // Fetch user names for each post
+        List<PostDTO> posts1 = postService.findAll();
+        posts1 = posts1.stream()
+            .sorted((post1, post2) -> post2.getLastUpdated().compareTo(post1.getLastUpdated()))
+            .collect(Collectors.toList());
+
         Map<Integer, String> userNames = posts.stream()
                 .filter(post -> post.getUser() != null)
                 .collect(
@@ -81,6 +86,9 @@ public class PostController {
         String username = principal.getName();
         UserDTO user = userService.get(username);
 
+        posts1 = posts1.subList(0, Math.min(posts1.size(), 10));
+
+        model.addAttribute("posts1", posts1);
         model.addAttribute("posts", posts);
         model.addAttribute("userNames", userNames);
         model.addAttribute("user", user);
@@ -129,6 +137,11 @@ public class PostController {
         UserDTO poster = userService.get(postDTO.getUser());
         String username = principal.getName();
         UserDTO user = userService.get(username);
+
+        List<PostDTO> posts1 = postService.findAll();
+        posts1 = posts1.stream()
+            .sorted((post1, post2) -> post2.getLastUpdated().compareTo(post1.getLastUpdated()))
+            .collect(Collectors.toList());
         /*
         Map<Integer, String> userNames = postDTO.getComments().stream()
                 .filter(comment -> comment.getUser() != null)
@@ -140,6 +153,10 @@ public class PostController {
                                     return user1;
                                 }
                         ));*/
+                        
+        posts1 = posts1.subList(0, Math.min(posts1.size(), 10));
+
+        model.addAttribute("posts1", posts1);
         model.addAttribute("post", postDTO);
         model.addAttribute("poster_username", poster.getName());
         model.addAttribute("user", user);

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html layout:decorate="~{layout2}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html layout:decorate="~{layout2}" 
       xmlns:th="http://www.thymeleaf.org">
 
 
@@ -8,56 +8,56 @@
 </head>
 <body>
 <div layout:fragment="content1">
-    <main id="main">
+    <section id="featured-services">
 
-        <section id="featured-services">
-
-        </section>
-
+    </section>
 
         <!-- ======= Doctors Section ======= -->
         <section class="doctors section-bg" id="doctors">
-            <div class="container" data-aos="fade-up">
+            <div class="container" data-aos="fade-up" style="margin-top: 0px; padding-top: 0px;">
 
-                <div class="section-title">
-                    <h2 th:text="#{post.list.headline}"></h2>
+                <div class="section-title" style="padding: 0px;">
+                    <h2 th:text="#{post.list.headline}">  </h2>
                     <p th:if="${posts.empty}" th:text="#{post.list.empty}"></p>
                     <a class="appointment-btn scrollto" th:href="@{/posts/add}"><span class="d-none d-md-inline"
-                                                                                      th:text="#{post.list.createNew}"></span></a>
+                        th:text="#{post.list.createNew}"></span></a>
                 </div>
 
                 <section class="blog" id="blog">
                     <div class="container" data-aos="fade-up">
 
+                        <div class="row g-5" style="padding-right: 0%;">
+
+                            <div class="col-lg-9">
 
                         <div class="row gy-4 posts-list" th:if="${!posts.empty}">
 
                             <div class="col-lg-6 posts-list" th:each="post : ${posts}">
                                 <article class="d-flex flex-column">
                                     <div class="post-img">
-                                        <img alt="Image" class="img-fluid"
+                                        <img alt="Image" class="img-fluid" style="min-height: 230px;"
                                              th:src="'data:image/png;base64,' + ${post.image}"/>
                                     </div>
 
-                                    <a th:href="@{/posts/{id}(id=${post.id})}"><h2 class="title"
-                                                                                   th:text="${post.title}"></h2></a>
+                                    <h2 class="title"><a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}"></a></h2>
 
                                     <div class="meta-top">
                                         <ul>
-                                            <li class="d-flex align-items-center"><i class="bi bi-sticky"
-                                                                                     th:text="${post.id}"></i></li>
                                             <li class="d-flex align-items-center">
-                                                <i class="bi bi-person" th:text="${userNames.get(post.user)}"></i>
+                                                <i class="bi bi-person" th:text="' ' + ${userNames.get(post.user)}"></i>
+                                            </li>
+                                            <li class="d-flex align-items-center">
+                                                <i class="bi bi-clock" th:text="' ' +${#temporals.format(post.lastUpdated, 'yyyy-MM-dd')}"></i>
                                             </li>
                                         </ul>
                                     </div>
 
                                     <div class="content" style="  word-wrap: break-word;">
-                                        <p th:text="${post.shortDesc}"></p>
+                                        <p th:text="${post.shortDesc} + '...'"></p>
                                     </div>
 
 
-                                    <div class="row gy-4 ">
+                                    <div class="row gy-4 read-more mt-auto align-self-end">
                                         <div class="col-lg-4" th:if="${post.user == user.id}">
 
                                             <a th:href="@{/posts/edit/{id}(id=${post.id})}">
@@ -80,10 +80,27 @@
 
                         </div>
                     </div>
+                    <div class="col-lg-3" style="padding-right: 0%;">
 
+                        <div class="sidebar">
 
+                            <div class="sidebar-item recent-posts">
+                                <h3 class="sidebar-title">Recent Posts</h3>
+                
+                                <div class="mt-3" th:each="post : ${posts1}">
+                
+                                  <div class="post-item mt-3">
+                                    <img alt="Image" class="flex-shrink-0" th:src="'data:image/png;base64,' + ${post.image}"/>
+                                    <div>
+                                      <h4><a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}"></a></h4>
+                                      <time th:text="${#temporals.format(post.lastUpdated, 'yyyy-MM-dd')}"></time>
+                                    </div>
+                                  </div>               
+                              </div><!-- End sidebar recent posts--></div>
             </div>
 </div>
+                        </div>
+                    </div>
 </section><!-- End Blog Section -->
 </div>
 </section><!-- End Doctors Section -->

@@ -74,6 +74,7 @@ public class PostService {
         postDTO.setImage(post.getImage());
         postDTO.setUser(post.getUser() == null ? null : post.getUser().getId());
         postDTO.setComments(post.getComments());
+        postDTO.setLastUpdated(post.getLastUpdated());
         return postDTO;
     }
 
@@ -85,6 +86,7 @@ public class PostService {
                 .orElseThrow(() -> new NotFoundException("user not found"));
         post.setUser(user);
         post.setComments(postDTO.getComments());
+        post.setLastUpdated(postDTO.getLastUpdated());
         return post;
     }
 

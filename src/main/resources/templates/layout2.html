@@ -34,9 +34,9 @@
 <body>
 
 <!-- ======= Top Bar ======= -->
-<div class="d-flex align-items-center fixed-top" id="topbar" th:if="${username}">
+<div class="d-flex align-items-center fixed-top" id="topbar" >
     <div class="container d-flex align-items-center justify-content-center justify-content-md-between">
-        <nav class="topbar-nav ms-auto">
+        <nav class="topbar-nav ms-auto" th:if="${username}">
             <ul>
                 <li class="nav-item dropdown pe-3">
 
@@ -57,7 +57,7 @@
                             <a class="dropdown-item d-flex align-items-center"
                                th:href="@{/users/edit}">
                                 <i class="bi bi-person"></i>
-                                <span>Mon Profile</span>
+                                <span>My Profil</span>
                             </a>
                         </li>
                         <li>
@@ -69,18 +69,20 @@
                                   th:method="POST">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <input class="dropdown-item d-flex align-items-center" type="submit"
-                                       value="Se Déconnecter"/>
+                                       value="Logout"/>
                             </form>
                         </li>
                     </ul>
                 </li>
             </ul>
         </nav>
+        <nav class="topbar-nav ms-auto" th:unless="${username}">
+        </nav>
     </div>
 </div>
 
 <!-- ======= Header ======= -->
-<header th:class="'fixed-top '+${username == null ? 'top-0' : ''}" id="header">
+<header class="fixed-top"  id="header">
     <div class="container d-flex align-items-center">
 
         <a class="logo me-auto" th:href="@{/}">
