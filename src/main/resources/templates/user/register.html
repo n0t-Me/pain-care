@@ -86,7 +86,7 @@
                         <form enctype="multipart/form-data" method="post" th:action="${requestUri}">
                             <div th:replace="~{fragments/forms::inputRow(object='user', field='name')}"/>
                             <div th:replace="~{fragments/forms::inputRow(object='user', field='email')}"/>
-                            <div th:replace="~{fragments/forms::inputRow(object='user', field='password')}"/>
+                            <div th:replace="~{fragments/forms::inputRow(object='user', field='password', type='password')}"/>
                             <div th:replace="~{fragments/forms::inputRow(object='user', field='bday', inputClass='js-datepicker')}"/>
                             <!-- Update the inputRow for 'image' to include file input -->
                             <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
